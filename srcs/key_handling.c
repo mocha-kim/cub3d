@@ -65,11 +65,11 @@ int		key_press(int key, t_info *info)
 {
 	if (key == KEY_W || key == KEY_UP)
 		info->key.w = 1;
-	if (key == KEY_S || key == KEY_DOWN)
+	else if (key == KEY_S || key == KEY_DOWN)
 		info->key.s = 1;
 	if (key == KEY_A || key == KEY_LEFT)
 		info->key.a = 1;
-	if (key == KEY_D || key == KEY_RIGHT)
+	else if (key == KEY_D || key == KEY_RIGHT)
 		info->key.d = 1;
 	if (key == KEY_ESC)
 		main_close(info);

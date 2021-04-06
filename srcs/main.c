@@ -49,6 +49,7 @@ int		main(void)
 
 	printf("========== game init start ==========\n");
 	info_init(&info);
+	key_init(&info);
 	game_init(&info);
 	if (window_init(&info) == -1)
 		return (-1);
