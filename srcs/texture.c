@@ -5,13 +5,15 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 	int	x;
 	int	y;
 
-    printf(">> load_image : %s\n", path);
-	img->img_ptr = mlx_xpm_file_to_image(info->mlx, path, &img->width, &img->height);
-    if (!(img->img_ptr))
-        error_exit("image loading failed");
-	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp, &img->size_l, &img->endian);
-    if (!(img->data))
-        error_exit("image loading failed");
+	printf(">> load_image : %s\n", path);
+	img->img_ptr = mlx_xpm_file_to_image(info->mlx, path,
+			&img->width, &img->height);
+	if (!(img->img_ptr))
+		error_exit("image loading failed");
+	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp,
+			&img->size_l, &img->endian);
+	if (!(img->data))
+		error_exit("image loading failed");
 	y = 0;
 	while (y < img->height)
 	{
@@ -26,9 +28,9 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 	mlx_destroy_image(info->mlx, img->img_ptr);\
 }
 
-void    load_texture(t_info *info)
+void	load_texture(t_info *info)
 {
-    t_img   img;
+	t_img	img;
 
 	load_image(info, info->texture[0], "textures/eagle.xpm", &img);
 	load_image(info, info->texture[1], "textures/redbrick.xpm", &img);
