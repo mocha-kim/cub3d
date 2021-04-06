@@ -60,7 +60,6 @@ typedef struct  s_key
 	int			w;
 	int			s;
 	int			d;
-	int			esc;
 }               t_key;
 
 
@@ -171,7 +170,7 @@ void    load_texture(t_info *info);
 ** sprite.c
 */
 
-void    clac_sprite(t_info *info);
+void    calc_sprite(t_info *info);
 
 /*
 ** key_handling.c
