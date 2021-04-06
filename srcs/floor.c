@@ -28,7 +28,7 @@ int		calc_pattern(double weight, t_line *line, t_info *info)
 {
 	double	curr_floor_x;
 	double	curr_floor_y;
-	int		checke_pattern;
+	int		check_pattern;
 
 	curr_floor_x = weight * line->floorXWall + (1.0 - weight) * info->posX;
 	curr_floor_y = weight * line->floorYWall + (1.0 - weight) * info->posY;

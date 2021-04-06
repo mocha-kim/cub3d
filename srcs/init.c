@@ -37,14 +37,12 @@ void	info_init(t_info *info)
 	}
 }
 
-void	tex_free(t_info *info, int i)
+void	key_init(t_info *info)
 {
-	while (i >= 0)
-	{
-		free(info->texture[i]);
-		i--;
-	}
-	free(info->texture);
+	info->key.a = 0;
+	info->key.w = 0;
+	info->key.s = 0;
+	info->key.d = 0;
 }
 
 int		tex_init(t_info *info)
@@ -52,7 +50,7 @@ int		tex_init(t_info *info)
 	int i;
 	int j;
 
-	info->texture = (int **)malloc(sizeof(int *) * 8);
+	info->texture = (int **)malloc(sizeof(int *) * 11);
 	if (!(info->texture))
 		return (-1);
 	i = 0;

@@ -12,8 +12,6 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 		error_exit("image loading failed");
 	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp,
 			&img->size_l, &img->endian);
-	if (!(img->data))
-		error_exit("image loading failed");
 	y = 0;
 	while (y < img->height)
 	{
@@ -25,7 +23,7 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 		}
 		y++;
 	}
-	mlx_destroy_image(info->mlx, img->img_ptr);\
+	mlx_destroy_image(info->mlx, img->img_ptr);
 }
 
 void	load_texture(t_info *info)

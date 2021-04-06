@@ -48,7 +48,7 @@ void	coord_wall_texture(int x, t_line *line, t_vector *vec, t_info *info)
 	y = line->drawStart;
 	while (y < line->drawEnd)
 	{
-		line->texY = (int)texPos & (TEX_HEIGHT - 1);
+		line->texY = (int)tex_pos & (TEX_HEIGHT - 1);
 		tex_pos += step;
 		tex_tmp = TEX_WIDTH * line->texY + line->texX;
 		line->color = info->texture[line->texNum][tex_tmp];
