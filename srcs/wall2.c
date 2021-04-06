@@ -23,7 +23,14 @@ void	calc_line(t_line *line, t_vector *vec, t_info *info)
 
 void	calc_wall(t_line *line, t_vector *vec, t_info *info)
 {
-	line->texNum = info->map[vec->mapX][vec->mapY] - 1;
+	if (vec->side == 0 && vec->stepX == 1)
+		line->texNum = 1;
+	else if (vec->side == 0 && vec->stepX == -1)
+		line->texNum = 2;
+	else if (vec->side == 1 && vec->stepY == 1)
+		line->texNum = 5;
+	else
+		line->texNum = 6;
 	if (vec->side == 0)
 		line->wallX = info->posY + vec->perpWallDist * vec->rayDirY;
 	else
