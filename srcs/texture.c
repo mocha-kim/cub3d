@@ -1,19 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sunhkim <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/02 16:21:31 by sunhkim           #+#    #+#             */
-/*   Updated: 2021/04/02 16:21:33 by sunhkim          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/cub3d.h"
 
 void	load_image(t_info *info, int *texture, char *path, t_img *img)
 {
+	int	x;
+	int	y;
+
     printf(">> load_image : %s\n", path);
 	img->img_ptr = mlx_xpm_file_to_image(info->mlx, path, &img->width, &img->height);
     if (!(img->img_ptr))
@@ -21,12 +12,16 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp, &img->size_l, &img->endian);
     if (!(img->data))
         error_exit("image loading failed");
-    for (int y = 0; y < img->height; y++)
+	y = 0;
+	while (y < img->height)
 	{
-		for (int x = 0; x < img->width; x++)
+		x = 0;
+		while (x < img->width)
 		{
 			texture[img->width * y + x] = img->data[img->width * y + x];
+			x++;
 		}
+		y++;
 	}
 	mlx_destroy_image(info->mlx, img->img_ptr);\
 }
