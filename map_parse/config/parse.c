@@ -26,7 +26,7 @@ int		parse_texture(t_config *config, int id, char *line)
 	char	*path;
 
 	i = 2;
-	while (is_space(line[i]))
+	while (line[i] == ' ')
 		i++;
 	line += i;
 	if (config->tex_path[id])
@@ -34,11 +34,10 @@ int		parse_texture(t_config *config, int id, char *line)
 		free(config->tex_path[id]);
 		config->tex_path[id] = 0;
 	}
-	len = ft_strlen(line);
-	while (line[len] && is_space(line[len]))
+	len = ft_strlen(line) - 1;
+	while (line[len] == ' ')
 		len--;
-	line[len + 1] = 0;
-	if (!(path = ft_strdup(line)))
+	if (!(path = ft_substr(line, 0, len + 1)))
 		return (-1);
 	config->tex_path[id] = path;
 	return (1);
