@@ -48,13 +48,13 @@ void	ray_cast(t_vector *vec, t_info *info)
 		{
 			vec->sideDistX += vec->deltaDistX;
 			vec->mapX += vec->stepX;
-			vec->side = EW;
+			vec->side = X_PLANE;
 		}
 		else
 		{
 			vec->sideDistY += vec->deltaDistY;
 			vec->mapY += vec->stepY;
-			vec->side = NS;
+			vec->side = Y_PLANE;
 		}
 		if (info->map[vec->mapX][vec->mapY] > 0)
 			hit = 1;
@@ -64,7 +64,7 @@ void	ray_cast(t_vector *vec, t_info *info)
 void	calc_back(t_info *info)
 {
 	t_vector	vec;
-	t_line		line;
+	t_back_line		line;
 	int			x;
 
 	x = 0;
