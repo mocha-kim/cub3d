@@ -1,6 +1,6 @@
 #include "utils.h"
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strrchr(char *s, int c)
 {
 	int	size;
 

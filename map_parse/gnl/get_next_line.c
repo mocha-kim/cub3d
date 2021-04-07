@@ -6,21 +6,11 @@
 /*   By: yoahn <yoahn@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 21:28:05 by yoahn             #+#    #+#             */
-/*   Updated: 2021/01/15 23:02:57 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/04/07 13:38:23 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int		ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 char	*ft_substr(char *str, int start, int len)
 {

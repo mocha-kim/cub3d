@@ -11,9 +11,9 @@
 # define C_SO   1
 # define C_WE   2
 # define C_EA   3
-# define C_S    4
+# define C_C    4
 # define C_F    5
-# define C_C    6
+# define C_S    6
 # define C_MAP  7
 
 # define TEXTURES 9
@@ -38,6 +38,8 @@ typedef struct	s_config
 int				identifier(char *line);
 int				parse_line(t_config *config, char *line, t_list **map_buffer);
 int				parse_config(t_config *config, char *conf_path);
+void			config_init(t_config *config);
+void			clear_config(t_config *config);
 
 int				parse_resolution(t_config *config, char *line);
 int				parse_texture(t_config *config, int id, char *line);

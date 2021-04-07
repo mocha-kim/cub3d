@@ -6,11 +6,12 @@
 /*   By: ahnys <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 20:54:41 by ahnys             #+#    #+#             */
-/*   Updated: 2021/04/04 23:04:56 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/04/07 14:48:33 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
+#include <stdio.h>
 
 int		identifier(char *line)
 {
@@ -44,12 +45,21 @@ int		parse_line(t_config *config, char *line, t_list **map_buffer)
 	id = identifier(line);
 	if (id == C_R)
 		return (parse_resolution(config, line));
-	else if (id >= C_NO && id <= C_S)
+	else if ((id >= C_NO && id <= C_EA) || id == C_S)
 		return (parse_texture(config, id, line));
-	else if (id == C_F && id == C_C)
+	else if (id == C_F || id == C_C)
 		return (parse_color(config, id, line));
 	else
 		return (lst_add_back(map_buffer, ft_strdup(line)));
+}
+
+void	config_init(t_config *config)
+{
+	int	i;
+
+	i = 0;
+	while (i < TEXTURES)
+		config->tex_path[i++] = 0;
 }
 
 int		parse_config(t_config *config, char *path)
@@ -58,17 +68,24 @@ int		parse_config(t_config *config, char *path)
 	char	*line;
 	t_list	*map_buffer;
 
-	if (!ft_endcmp(path, ".cub") && ((fd = open(path, O_RDONLY)) < 0))
+	if (!(ft_endcmp(path, ".cub")))
 		return (0);
+	if ((fd = open(path, O_RDONLY)) < 0)
+		return (0);
+	if (!(map_buffer = malloc(sizeof(t_list))))
+		return (0);
+	config_init(config);
 	while (get_next_line(fd, &line))
 	{
 		parse_line(config, line, &map_buffer);
 		free(line);
 		line = NULL;
 	}
+	/*
 	if (ft_strlen(line) > 0)
 		lst_add_back(&map_buffer, ft_strdup(line));
-	free(line);
+		*/
+	//free(line);
 	close(fd);
 	/*
 	if (parse_map(config, map_buffer))
@@ -76,4 +93,13 @@ int		parse_config(t_config *config, char *path)
 	lst_clear(&map_buffer);
 	*/
 	return (1);
+}
+
+void	clear_config(t_config *config)
+{
+	int i;
+
+	i = 0;
+	while (i < TEXTURES)
+		free(config->tex_path[i++]);
 }

@@ -6,7 +6,7 @@
 /*   By: ahnys <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:01:43 by ahnys             #+#    #+#             */
-/*   Updated: 2021/04/01 21:33:42 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/04/07 13:38:50 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "../utils/utils.h"
 
 # define BUFFER_SIZE 128
 
 int				get_next_line(int fd, char **line);
-int				ft_strlen(char *s);
 char			*ft_substr(char *str, int start, int len);
 int				save_line(char **dest, char *src, char **save);
 

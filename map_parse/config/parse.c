@@ -1,4 +1,5 @@
 #include "config.h"
+#include <stdio.h>
 
 int		parse_resolution(t_config *config, char *line)
 {
@@ -49,17 +50,15 @@ int		str_to_color(char *line)
 	int i;
 	int cnt;
 
-	while (is_space(*line))
-		line++;
 	i = 0;
 	cnt = 0;
 	rgb = 0;
-	while (line[i])
+	while (line[i] && cnt <= 16)
 	{
 		while (!ft_strrchr(", ", line[i]))
 			i++;
 		line[i] = 0;
-		rgb = rgb || ft_atoi(line) << (16 - cnt);
+		rgb = rgb | (ft_atoi(line) << (16 - cnt));
 		line += i + 1;
 		i = 0;
 		cnt += 8;
@@ -72,9 +71,14 @@ int		parse_color(t_config *config, int id, char *line)
 	int				i;
 	unsigned int	color;
 
-	i = 2;
+	i = 1;
 	while (is_space(line[i]))
 		i++;
+	if (!ft_isdigit(line[i]))
+	{
+		parse_texture(config, id, line);
+		return (0);
+	}
 	if ((color = (str_to_color(line + i))) < 0)
 		return (-1);
 	config->cf_color[id - T_SKY] = color;
