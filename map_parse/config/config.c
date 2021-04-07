@@ -1,17 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   config.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ahnys <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/01 20:54:41 by ahnys             #+#    #+#             */
-/*   Updated: 2021/04/07 14:48:33 by ahnys            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "config.h"
-#include <stdio.h>
 
 int		identifier(char *line)
 {
@@ -49,8 +36,7 @@ int		parse_line(t_config *config, char *line, t_list **map_buffer)
 		return (parse_texture(config, id, line));
 	else if (id == C_F || id == C_C)
 		return (parse_color(config, id, line));
-	else
-		return (lst_add_back(map_buffer, ft_strdup(line)));
+	return (!!lst_add_back(map_buffer, ft_strdup(line)));
 }
 
 void	config_init(t_config *config)
@@ -60,6 +46,7 @@ void	config_init(t_config *config)
 	i = 0;
 	while (i < TEXTURES)
 		config->tex_path[i++] = 0;
+	config->map = NULL;
 }
 
 int		parse_config(t_config *config, char *path)
@@ -72,26 +59,20 @@ int		parse_config(t_config *config, char *path)
 		return (0);
 	if ((fd = open(path, O_RDONLY)) < 0)
 		return (0);
-	if (!(map_buffer = malloc(sizeof(t_list))))
-		return (0);
 	config_init(config);
+	map_buffer = 0;
 	while (get_next_line(fd, &line))
 	{
 		parse_line(config, line, &map_buffer);
 		free(line);
-		line = NULL;
 	}
-	/*
 	if (ft_strlen(line) > 0)
 		lst_add_back(&map_buffer, ft_strdup(line));
-		*/
-	//free(line);
+	free(line);
 	close(fd);
-	/*
-	if (parse_map(config, map_buffer))
+	if (!parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
 	lst_clear(&map_buffer);
-	*/
 	return (1);
 }
 
@@ -101,5 +82,9 @@ void	clear_config(t_config *config)
 
 	i = 0;
 	while (i < TEXTURES)
-		free(config->tex_path[i++]);
+	{
+		if (config->tex_path[i])
+			free(config->tex_path[i]);
+		i++;
+	}
 }

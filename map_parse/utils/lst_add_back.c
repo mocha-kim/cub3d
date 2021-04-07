@@ -1,19 +1,45 @@
 #include "utils.h"
+#include <stdio.h>
 
-int	lst_add_back(t_list **lst, char *line)
+t_list	*lst_add_back(t_list **lst, char *line)
 {
 	t_list	*tail;
 	t_list	*new;
 
+	if (!line)
+		return (0);
 	if (!(new = (t_list*)malloc(sizeof(t_list))))
-		return (-1);
+		return (0);
 	new->content = line;
 	new->next = NULL;
-	if (!*lst)
+	if (!(*lst))
 		*lst = new;
-	tail = *lst;
-	while (tail->next)
-		tail = tail->next;
-	tail->next = new;
-	return (1);
+	else
+	{
+		tail = ft_lstlast(*lst);
+		tail->next = new;
+	}
+	return (new);
+}
+
+int		lst_clear(t_list **lst)
+{
+	t_list	*tmp;
+
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		free((*lst)->content);
+		*lst = tmp;
+	}
+	return (0);
+}
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	if (!lst)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

@@ -6,7 +6,7 @@
 /*   By: ahnys <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 19:28:37 by ahnys             #+#    #+#             */
-/*   Updated: 2021/04/07 16:06:04 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/04/07 20:06:23 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ typedef struct		s_list
 int					ft_strcmp(char *s1, char *s2);
 int					ft_strlen(char *s);
 int					ft_endcmp(char *str, char *s);
-int					lst_add_back(t_list **list, char *line);
+t_list				*lst_add_back(t_list **list, char *line);
+int					lst_clear(t_list **lst);
+t_list				*ft_lstlast(t_list *lst);
 int					is_space(char ch);
 int					ft_atoi(const char *str);
 int					ft_isdigit(int c);
