@@ -39,6 +39,8 @@ typedef struct	s_config
 	int			map_col;
 	int			pos_x;
 	int			pos_y;
+	char		dir;
+	int			path_cnt;
 }				t_config;
 
 int				identifier(char *line);
@@ -57,4 +59,5 @@ int				parse_map(t_config *config, t_list *map_buffer);
 void			copy_map(t_config *config, t_list *map_buffer);
 int				check_map_row(t_list *map_buffer);
 int				check_map_col(t_list *map_buffer);
+
 #endif
