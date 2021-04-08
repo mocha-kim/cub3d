@@ -3,13 +3,19 @@ NAME		= cub3d
 INC_PATH	= ./includes
 SRC_PATH	= ./srcs
 MLX_PATH	= ./mlx
+CON_PATH	= ./config
+GNL_PATH	= ./gnl
+UTL_PATH	= ./utils
 
 INCS		= -I $(INC_PATH)
-SRCS		= $(addprefix $(SRC_PATH)/, $(SRC_LIST))
+SRCS		= $(SRC_PATH)/main.c $(SRC_PATH)/init.c $(SRC_PATH)/close.c $(SRC_PATH)/key_handling.c \
+			  $(SRC_PATH)/wall1.c $(SRC_PATH)/wall2.c $(SRC_PATH)/texture.c $(SRC_PATH)/floor.c \
+			  $(SRC_PATH)/sprite.c \
+			  $(CON_PATH)/config.c $(CON_PATH)/map_check.c $(CON_PATH)/map.c $(CON_PATH)/parse.c \
+			  $(GNL_PATH)/get_next_line.c $(GNL_PATH)/get_next_line_utils.c \
+			  $(UTL_PATH)/ft_atoi.c $(UTL_PATH)/ft_endcmp.c $(UTL_PATH)/ft_strcmp.c $(UTL_PATH)/ft_strlen.c \
+			  $(UTL_PATH)/ft_strrchr.c $(UTL_PATH)/lst_add_back.c $(UTL_PATH)/utils.c
 OBJS		= $(SRCS:.c=.o)
-
-SRC_LIST	= main.c init.c close.c key_handling.c wall1.c wall2.c \
-			  texture.c floor.c sprite.c
 
 CC			= gcc
 CFLAGS		= -O3 -Wall -Wextra -Werror
