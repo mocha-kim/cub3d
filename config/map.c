@@ -4,7 +4,8 @@ void	player_set(t_config *config, int x, int y)
 {
 	config->pos_x = x;
 	config->pos_y = y;
-	config->map[y][x] = '0';
+	config->dir = config->map[y][x];
+	config->map[y][x] = 'x';
 }
 
 void	copy_map(t_config *config, t_list *map_buffer)
@@ -25,7 +26,8 @@ void	copy_map(t_config *config, t_list *map_buffer)
 				break ;
 			}
 			config->map[i][j] = map_buffer->content[j];
-			if (ft_strrchr("NSWE", config->map[i][j]))
+			if (ft_strrchr("NSWE", config->map[i][j])
+			&& !config->pos_x && !config->pos_y)
 				player_set(config, j, i);
 			j++;
 		}

@@ -30,3 +30,46 @@ int		check_map_col(t_list *map_buffer)
 	}
 	return (max_col);
 }
+
+int		check_map(t_config *config, int *row, int *col)
+{
+	int r;
+	int c;
+
+	if (config->map[r][c] == ' ')
+		return (0);
+	if (config->map[r][c] == '1' || config->map[r][c] == '0')
+}
+
+int		valid_map_check(t_config *config)
+{
+	int r;
+	int c;
+	int is_valid;
+	int ;
+
+	is_valid = 0;
+	if (config->map_row <= 2 || config->map_col <= 2)
+		return (0);
+	r = 0;
+	while (r < config->map_row)
+	{
+		c = 0;
+		while (c < config->map_col)
+		{
+			if (config->map[r][c] == '0')
+			{
+				is_valid = 1;
+				if (check_map(config, r, c) == 0)
+				{
+					write(2, "Error\n", 6);
+					return (0);
+				}
+			}
+			c++;
+		}
+		r++;
+	}
+	if (!is_valid)
+		write(2, "Error\n", 6);
+}
