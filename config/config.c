@@ -36,10 +36,6 @@ int		parse_line(t_config *config, char *line, t_list **map_buffer)
 		return (parse_texture(config, id, line));
 	else if (id == C_F || id == C_C)
 		return (parse_color(config, id, line));
-	else
-	{
-		
-	}
 	return (!!lst_add_back(map_buffer, ft_strdup(line)));
 }
 
