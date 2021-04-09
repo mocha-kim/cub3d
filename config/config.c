@@ -47,7 +47,10 @@ int		parse_line(t_config *config, char *line, t_list **map_buffer)
 		return (parse_color(config, id, line));
 	config->set[id] = 1;
 	if (empty_map)
+	{
 		after_empty = 1;
+		return (0);
+	}
 	return (!!lst_add_back(map_buffer, ft_strdup(line)));
 }
 
@@ -81,14 +84,12 @@ int		parse_config(t_config *config, char *path)
 	while (get_next_line(fd, &line))
 	{
 		r = (r && parse_line(config, line, &map_buffer));
-		printf("%d\n", r);
 		free(line);
 	}
 	if (r && ft_strlen(line) > 0)
 		r = !!lst_add_back(&map_buffer, ft_strdup(line));
 	free(line);
 	close(fd);
-	printf("%d\n", r);
 	if (!r || !parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
 	lst_clear(&map_buffer);

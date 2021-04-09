@@ -58,6 +58,13 @@ static void		free_map(char **arr, int r)
 		free(arr[i]);
 }
 
+int				valid_char(char ch)
+{
+	if (ft_strrchr(" 012", ch))
+		return (1);
+	return (0);
+}
+
 int		valid_map_check(t_config *config)
 {
 	int		r;
@@ -75,7 +82,7 @@ int		valid_map_check(t_config *config)
 	while (is_valid >= 0&& ++r < config->map_row)
 	{
 		c = -1;
-		while (++c < config->map_col )
+		while (++c < config->map_col)
 			if (visit[r][c] == '0')
 			{
 				is_valid = 1;
@@ -87,8 +94,5 @@ int		valid_map_check(t_config *config)
 			}
 	}
 	free_map(visit, config->map_row);
-	if (is_valid == 1)
-		return (1);
-	else
-		return (0);
+	return (!!is_valid);
 }
