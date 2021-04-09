@@ -81,5 +81,5 @@ int		parse_color(t_config *config, int id, char *line)
 	if ((color = (str_to_color(line + i))) < 0)
 		return (-1);
 	config->cf_color[id - T_SKY] = color;
-	return (0);
+	return (1);
 }

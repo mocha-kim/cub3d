@@ -41,6 +41,7 @@ typedef struct	s_config
 	int			pos_y;
 	char		dir;
 	int			path_cnt;
+	int			set[9];
 }				t_config;
 
 int				identifier(char *line);
