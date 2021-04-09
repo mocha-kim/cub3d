@@ -21,8 +21,9 @@ void	sort_order(t_pair *sprites, int amount)
 				sprites[j + 1].dist = tmp.dist;
 				sprites[j + 1].order = tmp.order;
 			}
+			j++;
 		}
-		
+		i++;
 	}
 }
 
@@ -56,6 +57,7 @@ void	calc_sprite_vars(t_sprite_line *sprite, int *order, t_info *info, int i)
 	double	spriteY;
 	double	invDet;
 
+	printf("/clac in/ order[%d] %d ", i, order[i]);
 	spriteX = info->sprite[order[i]].x - info->posX;
 	spriteY = info->sprite[order[i]].y - info->posY;
 	invDet = 1.0 / (info->planeX * info->dirY - info->dirX * info->planeY);
@@ -77,30 +79,43 @@ void	calc_sprite_vars(t_sprite_line *sprite, int *order, t_info *info, int i)
 	sprite->drawEndX = sprite->spriteWidth / 2 + sprite->spriteScreenX;
 	if (sprite->drawEndX >= WIN_WIDTH)
 		sprite->drawEndX = WIN_WIDTH - 1;
+	printf("/clac end/ ");
 }
 
 void	coord_sprite_texture(t_info *info, int *order, t_sprite_line *sprite, int i)
 {
-	for (int stripe = sprite->drawStartX; stripe < sprite->drawEndX; stripe++)
+	int	stripe;
+	int	tex_x;
+	int	tex_y;
+	int	y;
+	int	d;
+
+	printf("/corrd in/ ");
+	stripe = sprite->drawStartX;
+	while (stripe < sprite->drawEndX)
 	{
-		int texX = (int)((256 * (stripe - (-sprite->spriteWidth / 2 + sprite->spriteScreenX)) * texWidth / spriteWidth) / 256);
-		if (sprite->transformY > 0 && stripe > 0 && stripe < WIN_HEIGHT && sprite->transformY < game->zBuffer[stripe])
+		tex_x = (int)((256 * (stripe - (-sprite->spriteWidth / 2 + sprite->spriteScreenX)) * TEX_WIDTH / sprite->spriteWidth) / 256);
+		if (sprite->transformY > 0 && stripe > 0 && stripe < WIN_HEIGHT && sprite->transformY < info->zBuffer[stripe])
 		{
-			for (int y = sprite->drawStartY; y < sprite->drawEndY;y++)
+			y = sprite->drawStartY;
+			while (y < sprite->drawEndY)
 			{
-				int d = (y - sprite->vMoveScreen) * 256 - WIN_HEIGHT * 128 + sprite->spriteHeight * 128;
-				int texY = ((d * TEX_HEIGHT) / sprite->spriteHeight) / 256;
-				int color = game->texture[sprite[order[i]].texture][texWidth * texY + texX];
-				if ((color & 0x00FFFFFF) != 0) game->buf[y][stripe] = color;
+				d = (y - sprite->vMoveScreen) * 256 - WIN_HEIGHT * 128 + sprite->spriteHeight * 128;
+				tex_y = ((d * TEX_HEIGHT) / sprite->spriteHeight) / 256;
+				sprite->color = info->texture[info->sprite[order[i]].texture][TEX_WIDTH * tex_y + tex_x];
+				if ((sprite->color & 0x00FFFFFF) != 0)
+					info->buf[y][stripe] = sprite->color;
+				y++;
 			}
 		}
+		stripe++;
 	}
+	printf("/coord end/ ");
 }
 
 void	calc_sprite(t_info *info)
 {
 	int				i;
-	int				stripe;
 	int				sprite_order[NUM_SPRITES];
 	double			sprite_dist[NUM_SPRITES];
 	t_sprite_line	sprite;
@@ -109,16 +124,18 @@ void	calc_sprite(t_info *info)
 	while (i < NUM_SPRITES)
 	{
 		sprite_order[i] = i;
-		sprite_dist[i] = ((info->posX - info->sprite[i].x) * (info->posX - info->sprite[i].x) + (info->posY - info->sprite[i].y)* (info->posY - info->sprite[i].y));
+		sprite_dist[i] = ((info->posX - info->sprite[i].x) * (info->posX - info->sprite[i].x) + (info->posY - info->sprite[i].y) * (info->posY - info->sprite[i].y));
 		i++;
 	}
 	sort_sprites(sprite_order, sprite_dist, NUM_SPRITES);
 	i = 0;
 	while (i < NUM_SPRITES)
 	{
+		printf("i : %d ", i);
 		calc_sprite_vars(&sprite, sprite_order, info, i);
 		coord_sprite_texture(info, sprite_order, &sprite, i);
 		i++;
+		printf("i : %d\n", i);
 	}
-	
+	printf("clac comp\n");
 }

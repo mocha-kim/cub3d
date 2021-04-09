@@ -43,7 +43,7 @@
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 
-# define NUM_SPRITES 19
+# define NUM_SPRITES 18
 # define U_DIV 1
 # define V_DIV 1
 # define V_MOVE 0.0
@@ -139,6 +139,7 @@ typedef struct  s_sprite_line
     int     drawEndX;
     int     drawStartY;
     int     drawEndY;
+    int     color;
 }               t_sprite_line;
 
 
@@ -209,7 +210,11 @@ void    load_texture(t_info *info);
 ** sprite.c
 */
 
-// void    calc_sprite(t_info *info);
+void	sort_order(t_pair *sprites, int amount);
+void	sort_sprites(int *order, double *dist, int amount);
+void	calc_sprite_vars(t_sprite_line *sprite, int *order, t_info *info, int i);
+void	coord_sprite_texture(t_info *info, int *order, t_sprite_line *sprite, int i);
+void    calc_sprite(t_info *info);
 
 /*
 ** key_handling.c

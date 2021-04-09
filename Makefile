@@ -9,7 +9,7 @@ SRCS		= $(addprefix $(SRC_PATH)/, $(SRC_LIST))
 OBJS		= $(SRCS:.c=.o)
 
 SRC_LIST	= main.c init.c close.c key_handling.c wall1.c wall2.c \
-			  texture.c floor.c
+			  texture.c floor.c sprite.c
 
 CC			= gcc
 CFLAGS		= -O3 -Wall -Wextra -Werror
