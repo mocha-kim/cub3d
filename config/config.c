@@ -30,7 +30,7 @@ int		parse_line(t_config *config, char *line, t_list **map_buffer)
 	int			len;
 
 	len = ft_strlen(line);
-	if (!len && config->set[C_MAP])
+	if (len == 0 && config->set[C_MAP])
 		empty_map = 1;
 	if (empty_map && after_empty)
 		return (0);
@@ -59,6 +59,9 @@ void	config_init(t_config *config)
 	while (i < TEXTURES)
 		config->tex_path[i++] = 0;
 	config->map = NULL;
+	i = 0;
+	while (i < 9)
+		config->set[i++] = 0;
 }
 
 int		parse_config(t_config *config, char *path)
@@ -68,7 +71,7 @@ int		parse_config(t_config *config, char *path)
 	t_list	*map_buffer;
 	int		r;
 
-	if (!(ft_endcmp(path, ".cub")))
+	if (!ft_endcmp(path, ".cub"))
 		return (0);
 	if ((fd = open(path, O_RDONLY)) < 0)
 		return (0);
@@ -78,12 +81,14 @@ int		parse_config(t_config *config, char *path)
 	while (get_next_line(fd, &line))
 	{
 		r = (r && parse_line(config, line, &map_buffer));
+		printf("%d\n", r);
 		free(line);
 	}
-	if (ft_strlen(line) > 0)
-		lst_add_back(&map_buffer, ft_strdup(line));
+	if (r && ft_strlen(line) > 0)
+		r = !!lst_add_back(&map_buffer, ft_strdup(line));
 	free(line);
 	close(fd);
+	printf("%d\n", r);
 	if (!r || !parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
 	lst_clear(&map_buffer);

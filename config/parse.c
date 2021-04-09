@@ -6,7 +6,7 @@ int		parse_resolution(t_config *config, char *line)
 	int		i;
 
 	i = 1;
-	config->set[C_R] = 1;
+	//config->set[C_R] = 1;
 	if (line && line[0] == 'R')
 	{
 		while (line[i] && is_space(line[i]))
@@ -27,7 +27,7 @@ int		parse_texture(t_config *config, int id, char *line)
 	char	*path;
 
 	i = 2;
-	config->set[id] = 1;
+	//config->set[id] = 1;
 	while (line[i] == ' ')
 		i++;
 	line += i;
@@ -73,7 +73,7 @@ int		parse_color(t_config *config, int id, char *line)
 	unsigned int	color;
 
 	i = 1;
-	config->set[id] = 1;
+	//config->set[id] = 1;
 	while (is_space(line[i]))
 		i++;
 	if (!ft_isdigit(line[i]))
