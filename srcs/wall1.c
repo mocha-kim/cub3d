@@ -56,7 +56,7 @@ void	ray_cast(t_vector *vec, t_info *info)
 			vec->mapY += vec->stepY;
 			vec->side = Y_PLANE;
 		}
-		if (info->map[vec->mapX][vec->mapY] > 0)
+		if (info->conf.map[vec->mapX][vec->mapY] > 0)
 			hit = 1;
 	}
 }
@@ -75,7 +75,7 @@ void	calc_back(t_info *info)
 		ray_cast(&vec, info);
 		calc_line(&line, &vec, info);
 		calc_wall(&line, &vec, info);
-		coord_wall_texture(x, &line, &vec, info);
+		coord_wall_texture(x, &line, info);
 		calc_floor(&line, &vec);
 		coord_floor_texture(x, &line, &vec, info);
 		info->zBuffer[x] = vec.perpWallDist;

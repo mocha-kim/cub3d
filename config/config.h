@@ -17,7 +17,7 @@
 # define C_S    6
 # define C_MAP  7
 
-# define TEXTURES 9
+# define TEXTURES 7
 # define T_NO 0
 # define T_SO 1
 # define T_WE 2
