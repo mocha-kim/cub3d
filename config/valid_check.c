@@ -35,12 +35,21 @@ int		char_to_int_map(t_config *config)
 	return (1);
 }
 
-int		player_valid_check(t_config *config)
-{
-	int		r;
-	int		c;
+// int		player_valid_check(t_config *config)
+// {
+	// int		r;
+	// int		c;
 
-	r = config->pos_y;
-	c = config->pos_x;
-	while ()
-}
+	// r = config->pos_y;
+	// c = config->pos_x;
+	// while (++r > config->map_row && ft_strrchr(""))
+	// 	if (!ft_strrchr("012", config->map[r][c]))
+	// 		return (0);
+	// r = config->pos_y;
+	// while (--r <= 0)
+	// 	if (!ft_strrchr("012", config->map[r][c]))
+	// 		return (0);
+	// while (!ft_strrchr("012"))
+	// return (1);
+	// player 위치가 유효한가
+// }
