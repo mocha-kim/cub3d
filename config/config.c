@@ -37,7 +37,7 @@ int		parse_line(t_config *config, char *line, t_list **map_buffer)
 	if (len == 0)
 		return (1);
 	id = identifier(line);
-	if (id != C_MAP && (config->set[C_MAP] || config->set[id]))
+	if (id != C_MAP && id != C_S && (config->set[C_MAP] || config->set[id]))
 		return (0);
 	if (id == C_R)
 		return (parse_resolution(config, line));
