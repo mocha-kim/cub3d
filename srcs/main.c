@@ -40,11 +40,11 @@ int		main(int argc, char **argv)
 	t_info		info;
 	int			has_save_opt;
 	
-	has_save_opt = (argc >= 2 && !ft_strcmp(argv[1], "-save"));
-	if (argc < (2 + has_save_opt))
+	has_save_opt = (argc >= 2 && (!ft_strcmp(argv[1], "--save")));
+	if (argc < 2 || (has_save_opt && argc < 3))
 		return (error_exit("Error: no map argument.\n"));
-	if (!parse_config(&info.conf, argv[1]))
-		return (error_exit("Error: Invalid map."));
+	if (!parse_config(&(info.conf), argv[1]))
+		return (error_exit("Error: Invalid map.\n"));
 	printf("========== game init start ==========\n");
 	info_init(&info);
 	key_init(&info);
@@ -62,7 +62,7 @@ int		main(int argc, char **argv)
 	for (int i = 0; i < info.conf.map_row; i++)
 	{
 		for (int j = 0; j < info.conf.map_col; j++)
-			printf("%c ", info.conf.map[i][j]);
+			printf("%d ", info.conf.map[i][j]);
 		printf("\n");
 	}
 	printf("> game start...\n");
