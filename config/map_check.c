@@ -22,7 +22,7 @@ static int		map_init(t_config *config, char ***visit, int dir[2][4])
 		c = -1;
 		while (++c < config->map_col)
 		{
-			(*visit)[r][c] = config->map[r][c];
+			(*visit)[r][c] = config->map_c[r][c];
 			if ((*visit)[r][c] == '2')
 				(*visit)[r][c] = '1';
 		}
@@ -70,7 +70,7 @@ static int		valid_char_map(t_config *config)
 	{
 		c = -1;
 		while (++c < config->map_col)
-			if (!ft_strrchr(" 012", config->map[r][c]))
+			if (!ft_strrchr(" 012", config->map_c[r][c]))
 				return (0);
 	}
 	return (1);
@@ -104,6 +104,8 @@ int				valid_map_check(t_config *config)
 				}
 			}
 	}
+	if (!char_to_int_map(config))
+		is_valid = 0;
 	free_map(visit, config->map_row);
 	return (is_valid);
 }

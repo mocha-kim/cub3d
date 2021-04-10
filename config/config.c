@@ -58,7 +58,7 @@ void	config_init(t_config *config)
 	i = 0;
 	while (i < TEXTURES)
 		config->tex_path[i++] = 0;
-	config->map = NULL;
+	config->map_c = NULL;
 	i = 0;
 	while (i < 9)
 		config->set[i++] = 0;
