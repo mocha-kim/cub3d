@@ -1,4 +1,4 @@
-NAME		= cub3d
+NAME		= cub3D
 
 INC_PATH	= ./includes
 SRC_PATH	= ./srcs
@@ -12,6 +12,7 @@ SRCS		= $(SRC_PATH)/main.c $(SRC_PATH)/init.c $(SRC_PATH)/close.c $(SRC_PATH)/ke
 			  $(SRC_PATH)/wall1.c $(SRC_PATH)/wall2.c $(SRC_PATH)/texture.c $(SRC_PATH)/floor.c \
 			  $(SRC_PATH)/sprite.c \
 			  $(CON_PATH)/config.c $(CON_PATH)/map_check.c $(CON_PATH)/map.c $(CON_PATH)/parse.c \
+			  $(CON_PATH)/valid_check.c \
 			  $(GNL_PATH)/get_next_line.c $(GNL_PATH)/get_next_line_utils.c \
 			  $(UTL_PATH)/ft_atoi.c $(UTL_PATH)/ft_endcmp.c $(UTL_PATH)/ft_strcmp.c $(UTL_PATH)/ft_strlen.c \
 			  $(UTL_PATH)/ft_strrchr.c $(UTL_PATH)/lst_add_back.c $(UTL_PATH)/utils.c

@@ -9,11 +9,11 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 	img->img_ptr = mlx_xpm_file_to_image(info->mlx, path,
 			&img->width, &img->height);
 	if (!(img->img_ptr))
-		error_exit("Error: texture loading failed");
+		error_exit("Error: texture loading failed\n");
 	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp,
 			&img->size_l, &img->endian);
 	if (!(img->data))
-		error_exit("Error: texture loading failed");
+		error_exit("Error: texture data loading failed\n");
 	y = 0;
 	while (y < img->height)
 	{

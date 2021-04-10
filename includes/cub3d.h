@@ -37,8 +37,6 @@
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 
-# define MAP_WIDTH 24
-# define MAP_HEIGHT 24
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
 # define TEX_WIDTH 64
@@ -88,7 +86,7 @@ typedef struct  s_info
     t_img       img;
     int         buf[WIN_HEIGHT][WIN_WIDTH];
 	double		zBuffer[WIN_WIDTH];
-    t_sprite    sprite[NUM_SPRITES];
+    t_sprite    sprite[TEXTURES];
     int         **texture;
     double      moveSpeed;
     double      rotSpeed;
@@ -194,7 +192,7 @@ void    calc_back(t_info *info);
 
 void    calc_line(t_back_line *line, t_vector *vec, t_info *info);
 void    calc_wall(t_back_line *line, t_vector *vec, t_info *info);
-void    coord_wall_texture(int x, t_back_line *line, t_vector *vec, t_info *info);
+void    coord_wall_texture(int x, t_back_line *line, t_info *info);
 
 /*
 ** floor.c

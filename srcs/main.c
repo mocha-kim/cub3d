@@ -57,10 +57,19 @@ int		main(int argc, char **argv)
 	// if (has_save_opt)
 	// 	return (save_image(&info));
 	printf("========== game init complete ==========\n");
+	printf("info : pos(%.2f, %.2f), dir(%.2f, %.2f), config map[%d][%d]\n", 
+				info.posX, info.posY,info.dirX, info.dirY, info.conf.map_row, info.conf.map_col);
+	for (int i = 0; i < info.conf.map_row; i++)
+	{
+		for (int j = 0; j < info.conf.map_col; j++)
+			printf("%c ", info.conf.map[i][j]);
+		printf("\n");
+	}
 	printf("> game start...\n");
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, EVENT_KEY_PRESS, 0, &key_press, &info);
 	mlx_hook(info.win, EVENT_KEY_RELEASE, 0, &key_release, &info);
 	mlx_hook(info.win, EVENT_KEY_EXIT, 0, &main_close, &info);
-	mlx_loop(info.mlx);
+	if (!has_save_opt)
+		mlx_loop(info.mlx);
 }

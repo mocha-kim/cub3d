@@ -11,15 +11,38 @@ int		window_init(t_info *info)
 	return (0);
 }
 
+void	dir_init(t_info *info)
+{
+	if (info->conf.dir == 'N')
+	{
+		info->dirX = 0;
+		info->dirY = 1;
+	}
+	else if (info->conf.dir == 'S')
+	{
+		info->dirX = 0;
+		info->dirY = -1;
+	}
+	else if (info->conf.dir == 'W')
+	{
+		info->dirX = -1;
+		info->dirY = 0;
+	}
+	else
+	{
+		info->dirX = 1;
+		info->dirY = 0;
+	}
+}
+
 void	info_init(t_info *info)
 {
 	int i;
 	int j;
 
-	info->posX = 12;
-	info->posY = 5;
-	info->dirX = -1;
-	info->dirY = 0;
+	info->posX = info->conf.pos_x;
+	info->posY = info->conf.pos_y;
+	dir_init(info);
 	info->planeX = 0;
 	info->planeY = 0.66;
 	info->moveSpeed = 0.05;
