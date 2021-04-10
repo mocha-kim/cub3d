@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	{
 		j = 0;
 		while (j < config.map_col)
-			printf("%c", config.map[i][j++]);
+			printf("%c", config.map_c[i][j++]);
 		printf("\n");
 		i++;
 	}

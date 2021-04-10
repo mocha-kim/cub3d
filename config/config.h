@@ -34,7 +34,8 @@ typedef struct	s_config
 	int			req_width;
 	char		*tex_path[TEXTURES];
 	int			cf_color[2];
-	char		**map;
+	int			**map;
+	char		**map_c;
 	int			map_row;
 	int			map_col;
 	int			pos_x;
@@ -63,5 +64,6 @@ int				check_map_col(t_list *map_buffer);
 int				check_map(t_config *config, char **visit, int r, int c, int dir[2][4]);
 int				valid_map_check(t_config *config);
 int				element_check(int set[]);
+int				char_to_int_map(t_config *config);
 
 #endif
