@@ -103,7 +103,7 @@ int			parse_color(t_config *config, int id, char *line)
 	if (!ft_isdigit(line[i]))
 	{
 		parse_texture(config, id, line);
-		return (0);
+		return (1);
 	}
 	if ((int)(color = str_to_color(line + i)) < 0)
 		return (0);
