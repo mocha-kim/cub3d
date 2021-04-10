@@ -21,11 +21,11 @@ int		char_to_int_map(t_config *config)
 		return (0);
 	while (++i < config->map_row)
 	{
+		if (!(config->map[i] = malloc(sizeof(int) * config->map_col)))
+			return (0);
 		j = -1;
 		while (++j < config->map_col)
 		{
-			if (!(config->map[i] = malloc(sizeof(int) * config->map_col)))
-				return (0);
 			if (config->map_c[i][j] == ' ')
 				config->map[i][j] = 0;
 			else
