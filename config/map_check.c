@@ -37,6 +37,8 @@ int				check_map(t_config *config,  char **visit, int r, int c, int dir[2][4])
 	int i;
 
 	i = -1;
+	if (r < 0 || c < 0 || r >= config->map_row || c >= config->map_col)
+		return (0);
 	if (visit[r][c] == 0 || visit[r][c] == ' ')
 		return (0);
 	if (visit[r][c] == '1' || visit[r][c] == 'x')
@@ -84,7 +86,7 @@ int				valid_map_check(t_config *config)
 	char	**visit;
 	int		dir[2][4];
 
-	is_valid = 0;
+	is_valid = 1;
 	visit = 0;
 	if (!valid_char_map(config) || config->map_row <= 2 || config->map_col <= 2
 	|| !map_init(config, &visit, dir))

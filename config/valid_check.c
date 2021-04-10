@@ -4,9 +4,9 @@ int		element_check(int set[])
 {
 	int i;
 
-	i = 0;
-	while (i < 9)
-		if (set[i++] == 0 && i != C_S)
+	i = -1;
+	while (++i < 9)
+		if (set[i] == 0 && i != C_S && i != C_MAP)
 			return (0);
 	return (1);
 }
@@ -33,4 +33,14 @@ int		char_to_int_map(t_config *config)
 		}
 	}
 	return (1);
+}
+
+int		player_valid_check(t_config *config)
+{
+	int		r;
+	int		c;
+
+	r = config->pos_y;
+	c = config->pos_x;
+	while ()
 }

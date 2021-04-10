@@ -15,9 +15,11 @@ int			parse_resolution(t_config *config, char *line)
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
 		config->req_height = ft_atoi(line + i);
+		if (config->req_height < 0 || config->req_width < 0)
+			return (0);
 		return (1);
 	}
-	return (-1);
+	return (0);
 }
 
 int			parse_texture(t_config *config, int id, char *line)
@@ -49,10 +51,14 @@ static int	color_split(char *line)
 {
 	int i;
 	int cnt;
+	int	len;
 
-	i = 0;
+	len = ft_strlen(line);
 	cnt = 0;
-	while (line[i])
+	while (is_space(line[--len]))
+		line[len] = 0;
+	i = 0;
+	while (i < len + 1)
 	{
 		if (line[i] == ',')
 			cnt++;

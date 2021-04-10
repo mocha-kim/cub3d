@@ -46,7 +46,7 @@ int		parse_line(t_config *config, char *line, t_list **map_buffer)
 	else if (id == C_F || id == C_C)
 		return (parse_color(config, id, line));
 	config->set[id] = 1;
-	if (empty_map || !element_check(config->set))
+	if (empty_map)
 		return (0);
 	return (!!lst_add_back(map_buffer, ft_strdup(line)));
 }
@@ -83,14 +83,19 @@ int		parse_config(t_config *config, char *path)
 	while (get_next_line(fd, &line))
 	{
 		r = (r && parse_line(config, line, &map_buffer));
+		// printf("%d\n", r);
 		free(line);
 	}
 	if (r && ft_strlen(line) > 0)
 		r = (r && parse_line(config, line, &map_buffer));
 	free(line);
 	close(fd);
+	// printf("%d\n", r);
+	r = r && !!element_check(config->set);
+	// printf("element_check %d\n", r);
 	if (!r || !parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
+	// printf("parse map\n");
 	lst_clear(&map_buffer);
 	return (1);
 }
