@@ -59,13 +59,19 @@ void	calc_sprite_vars(t_sprite_line *sprite, int *order, t_info *info, int i)
 
 	sprite_x = info->sprite[order[i]].x - info->posX;
 	sprite_y = info->sprite[order[i]].y - info->posY;
-	sprite->spriteScreenX = (int)((WIN_WIDTH / 2) * (1 + sprite->transformX / sprite->transformY));
+	inv_det = 1.0 / (info->planeX * info->dirY - info->dirX * info->planeY);
+	sprite->transformX = inv_det * (info->dirY * sprite_x - info->dirX * sprite_y);
+	sprite->transformY = inv_det * (-info->planeY * sprite_x + info->planeX * sprite_y);
+	sprite->spriteScreenX = (int)((WIN_WIDTH / 2)
+			* (1 + sprite->transformX / sprite->transformY));
 	sprite->vMoveScreen = (int)(V_MOVE / sprite->transformY);
 	sprite->spriteHeight = (int)fabs((WIN_HEIGHT / sprite->transformY) / V_DIV);
-	sprite->drawStartY = -sprite->spriteHeight / 2 + WIN_HEIGHT / 2 + sprite->vMoveScreen;
+	sprite->drawStartY = -sprite->spriteHeight / 2 + WIN_HEIGHT
+		/ 2 + sprite->vMoveScreen;
 	if (sprite->drawStartY < 0)
 		sprite->drawStartY = 0;
-	sprite->drawEndY = sprite->spriteHeight / 2 + WIN_HEIGHT / 2 + sprite->vMoveScreen;
+	sprite->drawEndY = sprite->spriteHeight / 2 + WIN_HEIGHT
+		/ 2 + sprite->vMoveScreen;
 	if (sprite->drawEndY >= WIN_HEIGHT)
 		sprite->drawEndY = WIN_HEIGHT - 1;
 	sprite->spriteWidth = (int)fabs((WIN_HEIGHT / sprite->transformY) / U_DIV);
@@ -88,8 +94,10 @@ void	coord_sprite_texture(t_info *info, int *order, t_sprite_line *sprite, int i
 	stripe = sprite->drawStartX;
 	while (stripe < sprite->drawEndX)
 	{
-		tex_x = (int)((256 * (stripe - (-sprite->spriteWidth / 2 + sprite->spriteScreenX)) * TEX_WIDTH / sprite->spriteWidth) / 256);
-		if (sprite->transformY > 0 && stripe > 0 && stripe < WIN_HEIGHT && sprite->transformY < info->zBuffer[stripe])
+		tex_x = (int)((256 * (stripe - (-sprite->spriteWidth / 2 + sprite->spriteScreenX))
+					* TEX_WIDTH / sprite->spriteWidth) / 256);
+		if (sprite->transformY > 0 && stripe > 0 && stripe < WIN_HEIGHT
+				&& sprite->transformY < info->zBuffer[stripe])
 		{
 			y = sprite->drawStartY;
 			while (y < sprite->drawEndY)
