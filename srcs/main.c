@@ -29,7 +29,6 @@ void	draw(t_info *info)
 	int	x;
 	int	y;
 
-	printf("draw\n");
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
@@ -37,10 +36,8 @@ void	draw(t_info *info)
 		while (x < WIN_WIDTH)
 		{
 			info->img.data[y * WIN_WIDTH + x] = info->buf[y][x];
-			printf("(%d, %d)", x, y);
 			x++;
 		}
-		printf("\n");
 		y++;
 	}
 	mlx_put_image_to_window(info->mlx, info->win, info->img.img_ptr, 0, 0);
@@ -66,10 +63,6 @@ int		main(void)
 			&info.img.size_l, &info.img.endian);
 	printf("> image info setting complete\n");
 	printf("========== game init complete ==========\n");
-	for(int i = 0; i < NUM_SPRITES; i++)
-	{
-		printf ("{%f, %f, %d}\n", info.sprite[i].x, info.sprite[i].y, info.sprite[i].texture);
-	}
 	printf("> game start...\n");
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, EVENT_KEY_PRESS, 0, &key_press, &info);

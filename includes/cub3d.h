@@ -212,8 +212,8 @@ void    load_texture(t_info *info);
 
 void	sort_order(t_pair *sprites, int amount);
 void	sort_sprites(int *order, double *dist, int amount);
-void	calc_sprite_vars(t_sprite_line *sprite, int *order, t_info *info, int i);
-void	coord_sprite_texture(t_info *info, int *order, t_sprite_line *sprite, int i);
+// void	calc_sprite_vars(t_sprite_line *sprite, int *order, t_info *info, int i);
+// void	coord_sprite_texture(t_info *info, int *order, t_sprite_line *sprite, int i);
 void    calc_sprite(t_info *info);
 
 /*
