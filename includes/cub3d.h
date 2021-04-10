@@ -20,8 +20,8 @@
 # include <math.h>
 # include <string.h>
 
-# define NS 1
-# define EW 0
+# define Y_PLANE 1
+# define X_PLANE 0
 
 # define EVENT_KEY_PRESS	2
 # define EVENT_KEY_RELEASE	3
@@ -44,6 +44,11 @@
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 
+# define NUM_SPRITES 18
+# define U_DIV 1
+# define V_DIV 1
+# define V_MOVE 0.0
+
 typedef struct	s_img
 {
 	void	    *img_ptr;
@@ -63,6 +68,12 @@ typedef struct  s_key
 	int			d;
 }               t_key;
 
+typedef struct	s_sprite
+{
+	double		x;
+	double		y;
+	int			texture;
+}				t_sprite;
 
 typedef struct  s_info
 {
@@ -77,6 +88,7 @@ typedef struct  s_info
     t_img       img;
     int         buf[WIN_HEIGHT][WIN_WIDTH];
 	double		zBuffer[WIN_WIDTH];
+    t_sprite    sprite[NUM_SPRITES];
     int         **texture;
     double      moveSpeed;
     double      rotSpeed;
@@ -100,7 +112,7 @@ typedef struct  s_vetor
     int     side;
 }               t_vector;
 
-typedef struct  s_line
+typedef struct  s_back_line
 {
     int     lineHeight;
     int     drawStart;
@@ -114,7 +126,33 @@ typedef struct  s_line
     double  floorYWall;
     int     floorTexX;
     int     floorTexY;
-}               t_line;
+}               t_back_line;
+
+typedef struct  s_sprite_line
+{
+    double  transX;
+    double  transY;
+	double	x;
+	double	y;
+    int	    texX;
+    int	    texY;
+    int     vMoveScreen;
+    int     screenX;
+    int     height;
+    int     width;
+    int     drawStartX;
+    int     drawEndX;
+    int     drawStartY;
+    int     drawEndY;
+    int     color;
+}               t_sprt_line;
+
+
+typedef struct	s_pair
+{
+	double		dist;
+	int			order;
+}				t_pair;
 
 /*
 ** main.c
@@ -154,17 +192,17 @@ void    calc_back(t_info *info);
 ** wall2.c
 */
 
-void    calc_line(t_line *line, t_vector *vec, t_info *info);
-void    calc_wall(t_line *line, t_vector *vec, t_info *info);
-void    coord_wall_texture(int x, t_line *line, t_vector *vec, t_info *info);
+void    calc_line(t_back_line *line, t_vector *vec, t_info *info);
+void    calc_wall(t_back_line *line, t_vector *vec, t_info *info);
+void    coord_wall_texture(int x, t_back_line *line, t_vector *vec, t_info *info);
 
 /*
 ** floor.c
 */
 
-void    calc_floor(t_line *line, t_vector *vec);
-int     calc_pattern(double weight, t_line *line, t_info *info);
-void    coord_floor_texture(int x, t_line *line, t_vector *vec, t_info *info);
+void    calc_floor(t_back_line *line, t_vector *vec);
+int     calc_pattern(double weight, t_back_line *line, t_info *info);
+void    coord_floor_texture(int x, t_back_line *line, t_vector *vec, t_info *info);
 
 /*
 ** texture.c
@@ -177,6 +215,10 @@ void    load_texture(t_info *info);
 ** sprite.c
 */
 
+void	sort_order(t_pair *sprites, int amount);
+void	sort_sprites(int *order, double *dist, int amount);
+void	calc_sprite_vars(t_sprt_line *sprite, int *order, t_info *info, int i);
+void	coord_sprite_tex(t_info *info, int *order, t_sprt_line *sprite, int i);
 void    calc_sprite(t_info *info);
 
 /*

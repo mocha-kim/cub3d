@@ -1,18 +1,18 @@
 #include "../includes/cub3d.h"
 
-void	calc_floor(t_line *line, t_vector *vec)
+void	calc_floor(t_back_line *line, t_vector *vec)
 {
-	if (vec->side == EW && vec->rayDirX > 0)
+	if (vec->side == X_PLANE && vec->rayDirX > 0)
 	{
 		line->floorXWall = vec->mapX;
 		line->floorYWall = vec->mapY + line->wallX;
 	}
-	else if (vec->side == EW && vec->rayDirX < 0)
+	else if (vec->side == X_PLANE && vec->rayDirX < 0)
 	{
 		line->floorXWall = vec->mapX + 1.0;
 		line->floorYWall = vec->mapY + line->wallX;
 	}
-	else if (vec->side == NS && vec->rayDirY > 0)
+	else if (vec->side == Y_PLANE && vec->rayDirY > 0)
 	{
 		line->floorXWall = vec->mapX + line->wallX;
 		line->floorYWall = vec->mapY;
@@ -24,7 +24,7 @@ void	calc_floor(t_line *line, t_vector *vec)
 	}
 }
 
-int		calc_pattern(double weight, t_line *line, t_info *info)
+int		calc_pattern(double weight, t_back_line *line, t_info *info)
 {
 	double	curr_floor_x;
 	double	curr_floor_y;
@@ -38,7 +38,7 @@ int		calc_pattern(double weight, t_line *line, t_info *info)
 	return (check_pattern);
 }
 
-void	coord_floor_texture(int x, t_line *line, t_vector *vec, t_info *info)
+void	coord_floor_texture(int x, t_back_line *line, t_vector *vec, t_info *info)
 {
 	double	weight;
 	int		y;

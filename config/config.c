@@ -24,11 +24,15 @@ int		identifier(char *line)
 
 int		parse_line(t_config *config, char *line, t_list **map_buffer)
 {
+	static int	empty_map = 0;
 	int	id;
 	int len;
 
-	if ((len = ft_strlen(line)) == 0)
-		return (0);
+	len = ft_strlen(line);
+	if (len == 0 && config->set[C_MAP] == 1)
+		empty_map = 1;
+	if (len == 0)
+		return (1);
 	id = identifier(line);
 	if (id == C_R)
 		return (parse_resolution(config, line));
@@ -53,6 +57,7 @@ int		parse_config(t_config *config, char *path)
 {
 	int		fd;
 	char	*line;
+	int		r;
 	t_list	*map_buffer;
 
 	if (!(ft_endcmp(path, ".cub")))
@@ -61,16 +66,17 @@ int		parse_config(t_config *config, char *path)
 		return (0);
 	config_init(config);
 	map_buffer = 0;
+	r = 1;
 	while (get_next_line(fd, &line))
 	{
-		parse_line(config, line, &map_buffer);
+		r = (r && parse_line(config, line, &map_buffer));
 		free(line);
 	}
-	if (ft_strlen(line) > 0)
-		lst_add_back(&map_buffer, ft_strdup(line));
+	if (r && ft_strlen(line) > 0)
+		r = !!lst_add_back(&map_buffer, ft_strdup(line));
 	free(line);
 	close(fd);
-	if (!parse_map(config, map_buffer))
+	if (!r || !parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
 	lst_clear(&map_buffer);
 	return (1);
