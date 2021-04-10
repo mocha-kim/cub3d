@@ -17,8 +17,6 @@ int		char_to_int_map(t_config *config)
 	int		j;
 
 	i = -1;
-
-	printf("int map\n");
 	if (!(config->map = malloc(sizeof(int*) * config->map_row)))
 		return (0);
 	while (++i < config->map_row)
@@ -34,6 +32,5 @@ int		char_to_int_map(t_config *config)
 				config->map[i][j] = config->map_c[i][j] - '0';
 		}
 	}
-	printf("done\n");
 	return (1);
 }
