@@ -1,8 +1,8 @@
 #include "../includes/cub3d.h"
 
-void	calc_line(t_line *line, t_vector *vec, t_info *info)
+void	calc_line(t_back_line *line, t_vector *vec, t_info *info)
 {
-	if (vec->side == EW)
+	if (vec->side == X_PLANE)
 	{
 		vec->perpWallDist = (vec->mapX - info->posX + (1 - vec->stepX) / 2);
 		vec->perpWallDist /= vec->rayDirX;
@@ -21,13 +21,13 @@ void	calc_line(t_line *line, t_vector *vec, t_info *info)
 		line->drawEnd = WIN_HEIGHT - 1;
 }
 
-void	calc_wall(t_line *line, t_vector *vec, t_info *info)
+void	calc_wall(t_back_line *line, t_vector *vec, t_info *info)
 {
-	if (vec->side == 0 && vec->stepX == 1)
+	if (vec->side == X_PLANE && vec->stepX == 1)
 		line->texNum = 1;
-	else if (vec->side == 0 && vec->stepX == -1)
+	else if (vec->side == X_PLANE && vec->stepX == -1)
 		line->texNum = 2;
-	else if (vec->side == 1 && vec->stepY == 1)
+	else if (vec->side == Y_PLANE && vec->stepY == 1)
 		line->texNum = 5;
 	else
 		line->texNum = 6;
@@ -43,7 +43,7 @@ void	calc_wall(t_line *line, t_vector *vec, t_info *info)
 		line->texX = TEX_WIDTH - line->texX - 1;
 }
 
-void	coord_wall_texture(int x, t_line *line, t_vector *vec, t_info *info)
+void	coord_wall_texture(int x, t_back_line *line, t_vector *vec, t_info *info)
 {
 	double	step;
 	double	tex_pos;
@@ -59,7 +59,7 @@ void	coord_wall_texture(int x, t_line *line, t_vector *vec, t_info *info)
 		tex_pos += step;
 		tex_tmp = TEX_WIDTH * line->texY + line->texX;
 		line->color = info->texture[line->texNum][tex_tmp];
-		if (vec->side == NS)
+		if (vec->side == Y_PLANE)
 			line->color = (line->color >> 1) & 8355711;
 		info->buf[y][x] = line->color;
 		y++;
