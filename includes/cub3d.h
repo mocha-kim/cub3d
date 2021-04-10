@@ -129,18 +129,22 @@ typedef struct  s_back_line
 
 typedef struct  s_sprite_line
 {
-    double  transformX;
-    double  transformY;
+    double  transX;
+    double  transY;
+	double	x;
+	double	y;
+    int	    texX;
+    int	    texY;
     int     vMoveScreen;
-    int     spriteScreenX;
-    int     spriteHeight;
-    int     spriteWidth;
+    int     screenX;
+    int     height;
+    int     width;
     int     drawStartX;
     int     drawEndX;
     int     drawStartY;
     int     drawEndY;
     int     color;
-}               t_sprite_line;
+}               t_sprt_line;
 
 
 typedef struct	s_pair
@@ -212,8 +216,8 @@ void    load_texture(t_info *info);
 
 void	sort_order(t_pair *sprites, int amount);
 void	sort_sprites(int *order, double *dist, int amount);
-void	calc_sprite_vars(t_sprite_line *sprite, int *order, t_info *info, int i);
-void	coord_sprite_texture(t_info *info, int *order, t_sprite_line *sprite, int i);
+void	calc_sprite_vars(t_sprt_line *sprite, int *order, t_info *info, int i);
+void	coord_sprite_tex(t_info *info, int *order, t_sprt_line *sprite, int i);
 void    calc_sprite(t_info *info);
 
 /*
