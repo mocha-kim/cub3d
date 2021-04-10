@@ -7,7 +7,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# define C_R    9
+# define C_R    8
 # define C_NO   0
 # define C_SO   1
 # define C_WE   2
@@ -62,4 +62,6 @@ int				check_map_row(t_list *map_buffer);
 int				check_map_col(t_list *map_buffer);
 int				check_map(t_config *config, char **visit, int r, int c, int dir[2][4]);
 int				valid_map_check(t_config *config);
+int				element_check(int set[]);
+
 #endif
