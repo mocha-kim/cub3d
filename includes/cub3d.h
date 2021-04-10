@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../mlx/mlx.h"
+# include "../config/config.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
@@ -36,8 +37,6 @@
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 
-# define MAP_WIDTH 24
-# define MAP_HEIGHT 24
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
 # define TEX_WIDTH 64
@@ -85,14 +84,14 @@ typedef struct  s_info
     double      planeX;
     double      planeY;
     t_img       img;
-    int         map[MAP_HEIGHT][MAP_WIDTH];
     int         buf[WIN_HEIGHT][WIN_WIDTH];
 	double		zBuffer[WIN_WIDTH];
-    t_sprite    sprite[NUM_SPRITES];
+    t_sprite    sprite[TEXTURES];
     int         **texture;
     double      moveSpeed;
     double      rotSpeed;
     t_key       key;
+    t_config    conf;
 }               t_info;
 
 typedef struct  s_vetor
@@ -159,7 +158,6 @@ typedef struct	s_pair
 
 int		main_loop(t_info *info);
 int 	main_close(t_info *info);
-void    error_exit(char *message);
 void    draw(t_info *info);
 
 /*
@@ -170,13 +168,14 @@ int 	window_init(t_info *info);
 void	info_init(t_info *info);
 void	key_init(t_info *info);
 int     tex_init(t_info *info);
-void	game_init(t_info *info);
 
 /*
 ** close.c
 */
 
 void    tex_free(t_info *info, int i);
+int		error_exit(char *message);
+void	clear_game(t_info *info);
 
 /*
 ** wall1.c
@@ -193,7 +192,7 @@ void    calc_back(t_info *info);
 
 void    calc_line(t_back_line *line, t_vector *vec, t_info *info);
 void    calc_wall(t_back_line *line, t_vector *vec, t_info *info);
-void    coord_wall_texture(int x, t_back_line *line, t_vector *vec, t_info *info);
+void    coord_wall_texture(int x, t_back_line *line, t_info *info);
 
 /*
 ** floor.c

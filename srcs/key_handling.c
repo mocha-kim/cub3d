@@ -9,7 +9,7 @@ void	move(t_info *info, int direction)
 	tmp_y = info->posY + direction * info->dirY * info->moveSpeed;
 	if (direction == 1)
 	{
-		if (!info->map[tmp_x][tmp_y])
+		if (!info->conf.map[tmp_x][tmp_y])
 		{
 			info->posX += info->dirX * info->moveSpeed;
 			info->posY += info->dirY * info->moveSpeed;
@@ -17,7 +17,7 @@ void	move(t_info *info, int direction)
 	}
 	if (direction == -1)
 	{
-		if (!info->map[tmp_x][tmp_y])
+		if (!info->conf.map[tmp_x][tmp_y])
 		{
 			info->posX -= info->dirX * info->moveSpeed;
 			info->posY -= info->dirY * info->moveSpeed;

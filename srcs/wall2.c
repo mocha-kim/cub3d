@@ -24,13 +24,13 @@ void	calc_line(t_back_line *line, t_vector *vec, t_info *info)
 void	calc_wall(t_back_line *line, t_vector *vec, t_info *info)
 {
 	if (vec->side == X_PLANE && vec->stepX == 1)
-		line->texNum = 1;
+		line->texNum = T_EA;
 	else if (vec->side == X_PLANE && vec->stepX == -1)
-		line->texNum = 2;
+		line->texNum = T_WE;
 	else if (vec->side == Y_PLANE && vec->stepY == 1)
-		line->texNum = 5;
+		line->texNum = T_NO;
 	else
-		line->texNum = 6;
+		line->texNum = T_SO;
 	if (vec->side == 0)
 		line->wallX = info->posY + vec->perpWallDist * vec->rayDirY;
 	else
@@ -43,7 +43,7 @@ void	calc_wall(t_back_line *line, t_vector *vec, t_info *info)
 		line->texX = TEX_WIDTH - line->texX - 1;
 }
 
-void	coord_wall_texture(int x, t_back_line *line, t_vector *vec, t_info *info)
+void	coord_wall_texture(int x, t_back_line *line, t_info *info)
 {
 	double	step;
 	double	tex_pos;
@@ -59,8 +59,6 @@ void	coord_wall_texture(int x, t_back_line *line, t_vector *vec, t_info *info)
 		tex_pos += step;
 		tex_tmp = TEX_WIDTH * line->texY + line->texX;
 		line->color = info->texture[line->texNum][tex_tmp];
-		if (vec->side == Y_PLANE)
-			line->color = (line->color >> 1) & 8355711;
 		info->buf[y][x] = line->color;
 		y++;
 	}

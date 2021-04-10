@@ -9,9 +9,11 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 	img->img_ptr = mlx_xpm_file_to_image(info->mlx, path,
 			&img->width, &img->height);
 	if (!(img->img_ptr))
-		error_exit("image loading failed");
+		error_exit("Error: texture loading failed\n");
 	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp,
 			&img->size_l, &img->endian);
+	if (!(img->data))
+		error_exit("Error: texture data loading failed\n");
 	y = 0;
 	while (y < img->height)
 	{
@@ -30,15 +32,9 @@ void	load_texture(t_info *info)
 {
 	t_img	img;
 
-	load_image(info, info->texture[0], "textures/eagle.xpm", &img);
-	load_image(info, info->texture[1], "textures/redbrick.xpm", &img);
-	load_image(info, info->texture[2], "textures/purplestone.xpm", &img);
-	load_image(info, info->texture[3], "textures/greystone.xpm", &img);
-	load_image(info, info->texture[4], "textures/bluestone.xpm", &img);
-	load_image(info, info->texture[5], "textures/mossy.xpm", &img);
-	load_image(info, info->texture[6], "textures/wood.xpm", &img);
-	load_image(info, info->texture[7], "textures/colorstone.xpm", &img);
-	load_image(info, info->texture[8], "textures/barrel.xpm", &img);
-	load_image(info, info->texture[9], "textures/pillar.xpm", &img);
-	load_image(info, info->texture[10], "textures/greenlight.xpm", &img);
+	load_image(info, info->texture[T_NO], info->conf.tex_path[T_NO], &img);
+	load_image(info, info->texture[T_SO], info->conf.tex_path[T_SO], &img);
+	load_image(info, info->texture[T_WE], info->conf.tex_path[T_WE], &img);
+	load_image(info, info->texture[T_EA], info->conf.tex_path[T_EA], &img);
+	load_image(info, info->texture[T_SPRITE], info->conf.tex_path[T_SPRITE], &img);
 }
