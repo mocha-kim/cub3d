@@ -25,14 +25,6 @@ int		identifier(char *line)
 int		parse_line(t_config *config, char *line, t_list **map_buffer)
 {
 	static int	empty_map = 0;
-<<<<<<< HEAD
-	int	id;
-	int len;
-
-	len = ft_strlen(line);
-	if (len == 0 && config->set[C_MAP] == 1)
-		empty_map = 1;
-=======
 	// static int	after_empty = 0;
 	int			id;
 	int			len;
@@ -42,7 +34,6 @@ int		parse_line(t_config *config, char *line, t_list **map_buffer)
 		empty_map = 1;
 	// if (empty_map && after_empty)
 	// 	return (0);
->>>>>>> mapvalidcheck
 	if (len == 0)
 		return (1);
 	id = identifier(line);
@@ -79,7 +70,6 @@ int		parse_config(t_config *config, char *path)
 {
 	int		fd;
 	char	*line;
-	int		r;
 	t_list	*map_buffer;
 	int		r;
 
@@ -96,11 +86,7 @@ int		parse_config(t_config *config, char *path)
 		free(line);
 	}
 	if (r && ft_strlen(line) > 0)
-<<<<<<< HEAD
-		r = !!lst_add_back(&map_buffer, ft_strdup(line));
-=======
 		r = (r && parse_line(config, line, &map_buffer));
->>>>>>> mapvalidcheck
 	free(line);
 	close(fd);
 	if (!r || !parse_map(config, map_buffer))
