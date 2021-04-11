@@ -61,9 +61,11 @@ int				parse_map(t_config *config, t_list *map_buffer);
 int	 			copy_map(t_config *config, t_list *map_buffer);
 int				check_map_row(t_list *map_buffer);
 int				check_map_col(t_list *map_buffer);
-int				check_map(t_config *config, char **visit, int r, int c, int dir[2][4]);
+// int				check_map(t_config *config, char **visit, int r, int c, int dir[2][4]);
+int				check_map(t_config *config, int r, int c, int dir[2][4]);
 int				valid_map_check(t_config *config);
 int				element_check(int set[]);
 int				char_to_int_map(t_config *config);
+int				player_valid_check(t_config *config);
 
 #endif

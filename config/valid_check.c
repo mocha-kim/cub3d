@@ -26,7 +26,7 @@ int		char_to_int_map(t_config *config)
 		j = -1;
 		while (++j < config->map_col)
 		{
-			if (config->map_c[i][j] == ' ')
+			if (config->map_c[i][j] == ' ' || config->map_c[i][j] == 'x')
 				config->map[i][j] = 0;
 			else
 				config->map[i][j] = config->map_c[i][j] - '0';
@@ -35,21 +35,17 @@ int		char_to_int_map(t_config *config)
 	return (1);
 }
 
-// int		player_valid_check(t_config *config)
-// {
-	// int		r;
-	// int		c;
+int		player_valid_check(t_config *config)
+{
+	int		r;
+	int		c;
 
-	// r = config->pos_y;
-	// c = config->pos_x;
-	// while (++r > config->map_row && ft_strrchr(""))
-	// 	if (!ft_strrchr("012", config->map[r][c]))
-	// 		return (0);
-	// r = config->pos_y;
-	// while (--r <= 0)
-	// 	if (!ft_strrchr("012", config->map[r][c]))
-	// 		return (0);
-	// while (!ft_strrchr("012"))
-	// return (1);
-	// player 위치가 유효한가
-// }
+	r = config->pos_y;
+	c = config->pos_x;
+	if (r <= 0 || r >= config->map_row - 1 || c <= 0 || c >= config->map_col - 1)
+		return (0);
+	if (!ft_strrchr("12x", config->map_c[r][c + 1]) || !ft_strrchr("12x", config->map_c[r][c - 1])
+	|| !ft_strrchr("12x", config->map_c[r + 1][c]) || !ft_strrchr("12x", config->map_c[r - 1][c]))
+		return (0);
+	return (1);
+}

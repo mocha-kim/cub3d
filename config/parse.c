@@ -106,11 +106,10 @@ int			parse_color(t_config *config, int id, char *line)
 	config->set[id] = 1;
 	while (is_space(line[i]))
 		i++;
+	if (ft_strlen(line + i) == 0)
+		return (0);
 	if (!ft_isdigit(line[i]))
-	{
-		parse_texture(config, id, line);
-		return (1);
-	}
+		return (parse_texture(config, id, line));
 	if ((int)(color = str_to_color(line + i)) < 0)
 		return (0);
 	config->cf_color[id - T_SKY] = color;
