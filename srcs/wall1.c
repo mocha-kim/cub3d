@@ -71,13 +71,21 @@ void	calc_back(t_info *info)
 	while (x < info->conf.req_width)
 	{
 		calc_vars(x, &vec, info);
+		printf("calc_vars\n");
 		calc_dists(&vec, info);
+		printf("calc_dists\n");
 		ray_cast(&vec, info);
+		printf("ray_cast\n");
 		calc_line(&line, &vec, info);
+		printf(" .");
 		calc_wall(&line, &vec, info);
+		printf(" .");
 		coord_wall_texture(x, &line, info);
+		printf(" .");
 		calc_floor(&line, &vec);
+		printf(" .");
 		coord_floor_texture(x, &line, &vec, info);
+		printf(" .");
 		info->zBuffer[x] = vec.perpWallDist;
 		x++;
 	}
