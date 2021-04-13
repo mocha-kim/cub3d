@@ -55,9 +55,9 @@ int		key_update(t_info *info)
 	if (info->key.s)
 		move(info, -1);
 	if (info->key.d)
-		rotate(info, -1);
-	if (info->key.a)
 		rotate(info, 1);
+	if (info->key.a)
+		rotate(info, -1);
 	return (0);
 }
 
