@@ -80,6 +80,7 @@ int		parse_config(t_config *config, char *path)
 	config_init(config);
 	map_buffer = 0;
 	r = 1;
+	// printf("gnl\n");
 	while (get_next_line(fd, &line))
 	{
 		r = (r && parse_line(config, line, &map_buffer));
@@ -90,11 +91,15 @@ int		parse_config(t_config *config, char *path)
 		r = (r && parse_line(config, line, &map_buffer));
 	free(line);
 	close(fd);
+	// printf("element check %d\n", r);
 	r = r && !!element_check(config->set);
+	// printf("parse map\n");
 	if (!r || !parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
-	// printf("parse map\n");
 	lst_clear(&map_buffer);
+	// r = config->map_col;
+	// config->map_col = config->map_row;
+	// config->map_row = r;
 	return (1);
 }
 
@@ -103,15 +108,10 @@ int		clear_config(t_config *config)
 	int i;
 
 	i = 0;
-	if (*config->tex_path)
+	while (i < TEXTURES)
 	{
-		while (i < TEXTURES)
-		{
-			printf("%d\n", i);
-			if (config->tex_path[i])
-				free(config->tex_path[i]);
-			i++;
-		}
+		if (config->tex_path[i])
+			free(config->tex_path[i]);
 		return (1);
 	}
 	return (0);
