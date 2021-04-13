@@ -4,6 +4,7 @@ int		main_loop(t_info *info)
 {
 	calc_back(info);
 	calc_sprite(info);
+	// calc_ui(info);
 	draw(info);
 	key_update(info);
 	return (0);
