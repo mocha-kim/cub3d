@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sunhkim <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 15:58:49 by sunhkim           #+#    #+#             */
-/*   Updated: 2021/03/27 15:59:37 by sunhkim          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -37,12 +25,9 @@
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 480
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 
-# define NUM_SPRITES 18
 # define U_DIV 1
 # define V_DIV 1
 # define V_MOVE 0.0
@@ -84,8 +69,10 @@ typedef struct  s_info
     double      planeX;
     double      planeY;
     t_img       img;
-    int         buf[WIN_HEIGHT][WIN_WIDTH];
-	double		zBuffer[WIN_WIDTH];
+    // int         buf[WIN_HEIGHT][WIN_WIDTH];
+	// double		zBuffer[WIN_WIDTH];
+    int         **buf;
+	double		*zBuffer;
     t_sprite    sprite[TEXTURES];
     int         **texture;
     double      moveSpeed;
@@ -161,20 +148,27 @@ int 	main_close(t_info *info);
 void    draw(t_info *info);
 
 /*
-** init.c
+** info.c
+*/
+
+void	dir_init(t_info *info);
+int 	buf_init(t_info *info);
+void	key_init(t_info *info);
+int 	info_init(t_info *info);
+
+/*
+** window.c
 */
 
 int 	window_init(t_info *info);
-void	info_init(t_info *info);
-void	key_init(t_info *info);
-int     tex_init(t_info *info);
+void    clear_window(t_info *info);
 
 /*
 ** close.c
 */
 
-void    tex_free(t_info *info, int i);
-int		error_exit(char *message);
+int		error_exit(t_info *info, char *message);
+void	buf_free(t_info *info, int i);
 void	clear_game(t_info *info);
 
 /*
@@ -206,8 +200,10 @@ void    coord_floor_texture(int x, t_back_line *line, t_vector *vec, t_info *inf
 ** texture.c
 */
 
+int     tex_init(t_info *info);
 void	load_image(t_info *info, int *texture, char *path, t_img *img);
 void    load_texture(t_info *info);
+void    tex_free(t_info *info, int i);
 
 /*
 ** sprite.c

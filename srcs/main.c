@@ -22,12 +22,12 @@ void	draw(t_info *info)
 	int	y;
 
 	y = 0;
-	while (y < WIN_HEIGHT)
+	while (y < info->conf.req_height)
 	{
 		x = 0;
-		while (x < WIN_WIDTH)
+		while (x < info->conf.req_width)
 		{
-			info->img.data[y * WIN_WIDTH + x] = info->buf[y][x];
+			info->img.data[y * info->conf.req_width + x] = info->buf[y][x];
 			x++;
 		}
 		y++;
@@ -42,18 +42,13 @@ int		main(int argc, char **argv)
 	
 	has_save_opt = (argc >= 2 && !ft_strcmp(argv[1], "-save"));
 	if (argc < (2 + has_save_opt))
-		return (error_exit("Error: no map argument.\n"));
+		return (error_exit(NULL, "Error: no map argument.\n"));
 	if (!parse_config(&info.conf, argv[1]))
-		return (error_exit("Error: Invalid map."));
+		return (error_exit(&info, "Error: Invalid map."));
 	printf("========== game init start ==========\n");
-	info_init(&info);
-	key_init(&info);
-	if (window_init(&info) == -1 || tex_init(&info) == -1)
-		return (error_exit("Error: memory allocation failed."));
+	if (info_init(&info) == -1 || window_init(&info) == -1)
+		return (error_exit(&info, "Error: memory allocation failed."));
 	load_texture(&info);
-	info.img.img_ptr = mlx_new_image(info.mlx, WIN_WIDTH, WIN_HEIGHT);
-	info.img.data = (int *)mlx_get_data_addr(info.img.img_ptr, &info.img.bpp,
-			&info.img.size_l, &info.img.endian);
 	// if (has_save_opt)
 	// 	return (save_image(&info));
 	printf("========== game init complete ==========\n");
@@ -62,7 +57,7 @@ int		main(int argc, char **argv)
 	for (int i = 0; i < info.conf.map_row; i++)
 	{
 		for (int j = 0; j < info.conf.map_col; j++)
-			printf("%c ", info.conf.map[i][j]);
+			printf("%d", info.conf.map[i][j]);
 		printf("\n");
 	}
 	printf("> game start...\n");
