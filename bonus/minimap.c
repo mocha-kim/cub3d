@@ -4,18 +4,16 @@ void	draw_rectangle(t_info *info, int x, int y, int color)
 {
 	int i;
 	int j;
-	int	width;
 
 	x *= TILE_SIZE;
 	y *= TILE_SIZE;
 	i = 0;
-	while (i < TILE_SIZE)
+	while (i < TILE_SIZE && i + x < info->conf.req_height)
 	{
 		j = 0;
-		while (j < TILE_SIZE)
+		while (j < TILE_SIZE && j + y < info->conf.req_width)
 		{
-			width = info->conf.map_col * TILE_SIZE;
-			info->img.data[(y  + i) * width + x + j] = color;
+			info->buf[x + i][y + j] = color;
 			j++;
 		}
 		i++;
@@ -26,7 +24,9 @@ void	draw_rectangles(t_info *info)
 {
 	int		i;
 	int		j;
+	int		offset_x;
 
+	offset_x = info->conf.req_width / 2;
 	i = 0;
 	while (i < info->conf.map_row)
 	{

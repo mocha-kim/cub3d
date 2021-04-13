@@ -1,10 +1,10 @@
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 int		main_loop(t_info *info)
 {
 	calc_back(info);
 	calc_sprite(info);
-	// calc_ui(info);
+	draw_ui(info);
 	draw(info);
 	key_update(info);
 	return (0);
