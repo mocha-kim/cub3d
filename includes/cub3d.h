@@ -69,8 +69,6 @@ typedef struct  s_info
     double      planeX;
     double      planeY;
     t_img       img;
-    // int         buf[WIN_HEIGHT][WIN_WIDTH];
-	// double		zBuffer[WIN_WIDTH];
     int         **buf;
 	double		*zBuffer;
     t_sprite    sprite[TEXTURES];
@@ -151,6 +149,7 @@ void    draw(t_info *info);
 ** info.c
 */
 
+void    ptr_init(t_info *info);
 void	dir_init(t_info *info);
 int 	buf_init(t_info *info);
 void	key_init(t_info *info);

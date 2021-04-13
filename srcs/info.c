@@ -1,5 +1,16 @@
 #include "../includes/cub3d.h"
 
+void	ptr_init(t_info *info)
+{
+	info->buf = 0;
+	info->texture = 0;
+	info->zBuffer = 0;
+	info->img.img_ptr = 0;
+	info->img.data = 0;
+	info->mlx = 0;
+	info->win = 0;
+}
+
 void	dir_init(t_info *info)
 {
 	if (info->conf.dir == 'N')

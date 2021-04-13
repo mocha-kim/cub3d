@@ -40,23 +40,17 @@ int		main(int argc, char **argv)
 	t_info		info;
 	int			has_save_opt;
 	
-	has_save_opt = (argc >= 2 && !ft_strcmp(argv[1], "-save"));
+	ptr_init(&info);
+	has_save_opt = (argc >= 2 && !ft_strcmp(argv[1], "--save"));
 	if (argc < (2 + has_save_opt))
 		return (error_exit(NULL, "Error\n: no map argument.\n"));
-	info.buf = 0;
-	info.texture = 0;
-	info.zBuffer = 0;
-	info.img.img_ptr = 0;
-	info.mlx = 0;
 	if (!parse_config(&info.conf, argv[1]))
 		return (error_exit(&info, "Error\n: Invalid map.\n"));
-	printf("========== game init start ==========\n");
 	if (info_init(&info) == -1 || window_init(&info) == -1)
 		return (error_exit(&info, "Error\n: memory allocation failed.\n"));
 	load_texture(&info);
 	// if (has_save_opt)
 	// 	return (save_image(&info));
-	printf("========== game init complete ==========\n");
 	printf("info : pos(%.2f, %.2f), dir(%.2f, %.2f), config map[%d][%d]\n", 
 				info.posX, info.posY,info.dirX, info.dirY, info.conf.map_row, info.conf.map_col);
 	for (int i = 0; i < info.conf.map_row; i++)
