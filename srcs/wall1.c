@@ -4,7 +4,7 @@ void	calc_vars(int x, t_vector *vec, t_info *info)
 {
 	double	camera_x;
 
-	camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	camera_x = 2 * x / (double)info->conf.req_width - 1;
 	vec->rayDirX = info->dirX + info->planeX * camera_x;
 	vec->rayDirY = info->dirY + info->planeY * camera_x;
 	vec->mapX = (int)info->posX;
@@ -64,20 +64,28 @@ void	ray_cast(t_vector *vec, t_info *info)
 void	calc_back(t_info *info)
 {
 	t_vector	vec;
-	t_back_line		line;
+	t_back_line	line;
 	int			x;
 
 	x = 0;
-	while (x < WIN_WIDTH)
+	while (x < info->conf.req_width)
 	{
 		calc_vars(x, &vec, info);
+		printf("calc_vars\n");
 		calc_dists(&vec, info);
+		printf("calc_dists\n");
 		ray_cast(&vec, info);
+		printf("ray_cast\n");
 		calc_line(&line, &vec, info);
+		printf(" .");
 		calc_wall(&line, &vec, info);
+		printf(" .");
 		coord_wall_texture(x, &line, info);
+		printf(" .");
 		calc_floor(&line, &vec);
+		printf(" .");
 		coord_floor_texture(x, &line, &vec, info);
+		printf(" .");
 		info->zBuffer[x] = vec.perpWallDist;
 		x++;
 	}
