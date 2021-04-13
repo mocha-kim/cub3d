@@ -97,9 +97,9 @@ int		parse_config(t_config *config, char *path)
 	if (!r || !parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
 	lst_clear(&map_buffer);
-	// r = config->map_col;
-	// config->map_col = config->map_row;
-	// config->map_row = r;
+	r = config->map_col;
+	config->map_col = config->map_row;
+	config->map_row = r;
 	return (1);
 }
 
