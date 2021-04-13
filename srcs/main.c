@@ -42,12 +42,17 @@ int		main(int argc, char **argv)
 	
 	has_save_opt = (argc >= 2 && !ft_strcmp(argv[1], "-save"));
 	if (argc < (2 + has_save_opt))
-		return (error_exit(NULL, "Error: no map argument.\n"));
+		return (error_exit(NULL, "Error\n: no map argument.\n"));
+	info.buf = 0;
+	info.texture = 0;
+	info.zBuffer = 0;
+	info.img.img_ptr = 0;
+	info.mlx = 0;
 	if (!parse_config(&info.conf, argv[1]))
-		return (error_exit(&info, "Error: Invalid map."));
+		return (error_exit(&info, "Error\n: Invalid map.\n"));
 	printf("========== game init start ==========\n");
 	if (info_init(&info) == -1 || window_init(&info) == -1)
-		return (error_exit(&info, "Error: memory allocation failed."));
+		return (error_exit(&info, "Error\n: memory allocation failed.\n"));
 	load_texture(&info);
 	// if (has_save_opt)
 	// 	return (save_image(&info));

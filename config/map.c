@@ -24,6 +24,7 @@ int		check_map_col(t_list *map_buffer)
 		col = ft_strlen(map_buffer->content) - 1;
 		while (map_buffer->content[col] == ' ')
 			col--;
+		map_buffer->content[col + 1] = 0;
 		if (max_col < col + 1)
 			max_col = col + 1;
 		map_buffer = map_buffer->next;
