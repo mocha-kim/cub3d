@@ -1,5 +1,34 @@
 #include "../includes/cub3d.h"
 
+int		tex_init(t_info *info)
+{
+	int i;
+	int j;
+
+	info->texture = (int **)malloc(sizeof(int *) * TEXTURES);
+	if (!(info->texture))
+		return (-1);
+	i = 0;
+	while (i < TEXTURES)
+	{
+		info->texture[i] = (int *)malloc(sizeof(int) *
+				(TEX_HEIGHT * TEX_WIDTH));
+		if (!(info->texture[i]))
+		{
+			tex_free(info, i);
+			return (-1);
+		}
+		j = 0;
+		while (j < TEX_HEIGHT * TEX_WIDTH)
+		{
+			info->texture[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 void	load_image(t_info *info, int *texture, char *path, t_img *img)
 {
 	int	x;
@@ -9,11 +38,11 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 	img->img_ptr = mlx_xpm_file_to_image(info->mlx, path,
 			&img->width, &img->height);
 	if (!(img->img_ptr))
-		error_exit("Error: texture loading failed\n");
+		error_exit(info, "Error: texture loading failed\n");
 	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp,
 			&img->size_l, &img->endian);
 	if (!(img->data))
-		error_exit("Error: texture data loading failed\n");
+		error_exit(info, "Error: texture data loading failed\n");
 	y = 0;
 	while (y < img->height)
 	{
@@ -37,4 +66,14 @@ void	load_texture(t_info *info)
 	load_image(info, info->texture[T_WE], info->conf.tex_path[T_WE], &img);
 	load_image(info, info->texture[T_EA], info->conf.tex_path[T_EA], &img);
 	load_image(info, info->texture[T_SPRITE], info->conf.tex_path[T_SPRITE], &img);
+}
+
+void	tex_free(t_info *info, int i)
+{
+	while (i >= 0)
+	{
+		free(info->texture[i]);
+		i--;
+	}
+	free(info->texture);
 }

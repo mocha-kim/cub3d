@@ -4,7 +4,7 @@ void	calc_vars(int x, t_vector *vec, t_info *info)
 {
 	double	camera_x;
 
-	camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	camera_x = 2 * x / (double)info->conf.req_width - 1;
 	vec->rayDirX = info->dirX + info->planeX * camera_x;
 	vec->rayDirY = info->dirY + info->planeY * camera_x;
 	vec->mapX = (int)info->posX;
@@ -64,11 +64,11 @@ void	ray_cast(t_vector *vec, t_info *info)
 void	calc_back(t_info *info)
 {
 	t_vector	vec;
-	t_back_line		line;
+	t_back_line	line;
 	int			x;
 
 	x = 0;
-	while (x < WIN_WIDTH)
+	while (x < info->conf.req_width)
 	{
 		calc_vars(x, &vec, info);
 		calc_dists(&vec, info);

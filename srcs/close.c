@@ -1,23 +1,39 @@
 #include "../includes/cub3d.h"
 
-void	tex_free(t_info *info, int i)
-{
-	while (i >= 0)
-	{
-		free(info->texture[i]);
-		i--;
-	}
-	free(info->texture);
-}
-
-int		error_exit(char *message)
+int		error_exit(t_info *info, char *message)
 {
 	write(2, message, ft_strlen(message));
+	clear_game(info);
 	exit(-1);
 	return (-1);
 }
 
+void	buf_free(t_info *info, int i)
+{
+	while (i >= 0)
+	{
+		free(info->buf[i]);
+		i--;
+	}
+	free(info->buf);
+}
+
 void	clear_game(t_info *info)
 {
-	clear_config(&info->conf);
+	if (info)
+	{
+		clear_config(&info->conf);
+		printf("clear_config\n");
+		if (info->buf)
+			buf_free(info, info->conf.req_height);
+		printf("buf_free\n");
+		if (info->texture)
+			tex_free(info, TEXTURES);
+		printf("tex_free\n");
+		if (info->zBuffer)
+			free(info->zBuffer);
+		printf("free\n");
+		clear_window(info);
+		printf("clear_window\n");
+	}
 }
