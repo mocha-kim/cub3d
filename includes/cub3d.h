@@ -27,6 +27,7 @@
 
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
+# define MINIMAP_SIZE 6
 
 # define U_DIV 1
 # define V_DIV 1

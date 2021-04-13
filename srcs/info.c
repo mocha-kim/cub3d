@@ -15,23 +15,23 @@ void	dir_init(t_info *info)
 {
 	if (info->conf.dir == 'N')
 	{
-		info->dirX = 0;
 		info->dirY = 1;
+		info->planeX = -0.66;
 	}
 	else if (info->conf.dir == 'S')
 	{
-		info->dirX = 0;
 		info->dirY = -1;
+		info->planeX = 0.66;
 	}
 	else if (info->conf.dir == 'W')
 	{
 		info->dirX = -1;
-		info->dirY = 0;
+		info->planeY = -0.66;
 	}
 	else
 	{
 		info->dirX = 1;
-		info->dirY = 0;
+		info->planeY = 0.66;
 	}
 }
 
@@ -75,9 +75,11 @@ int		info_init(t_info *info)
 {
 	info->posX = info->conf.pos_x;
 	info->posY = info->conf.pos_y;
-	dir_init(info);
+	info->dirX = 0;
+	info->dirY = 0;
 	info->planeX = 0;
-	info->planeY = 0.66;
+	info->planeY = 0;
+	dir_init(info);
 	info->moveSpeed = 0.05;
 	info->rotSpeed = 0.05;
 	key_init(info);
