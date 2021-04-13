@@ -48,22 +48,22 @@ int		char_to_int_map(t_config *config)
 		while (++j < config->map_col)
 		{
 			if (config->map_c[i][j] == ' ' || config->map_c[i][j] == 'x')
-				config->map[j][i] = 0;
+				config->map[config->map_col - j - 1][config->map_row - i - 1] = 0;
 			else
-				config->map[j][i] = config->map_c[i][j] - '0';
+				config->map[config->map_col - j - 1][config->map_row - i - 1] = config->map_c[i][j] - '0';
 			printf("%c", config->map_c[i][j]);
 		}
 		printf("\n");
 	}
-	// i = -1;
-	// while (++i < config->map_col)
-	// {
-	// 	j = -1;
-	// 	while (++j < config->map_row)
-	// 		printf("%d", config->map[i][j]);
-	// 	printf("\n");
-	// }
-	// printf("\n");
+	i = -1;
+	while (++i < config->map_col)
+	{
+		j = -1;
+		while (++j < config->map_row)
+			printf("%d", config->map[i][j]);
+		printf("\n");
+	}
+	printf("\n");
 	return (1);
 }
 

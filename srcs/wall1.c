@@ -84,7 +84,7 @@ void	calc_back(t_info *info)
 		printf(" .");
 		calc_floor(&line, &vec);
 		printf(" .");
-		coord_floor_color(x, &line, &vec, info);
+		coord_floor_color(x, &line, info);
 		printf(" .");
 		info->zBuffer[x] = vec.perpWallDist;
 		x++;
