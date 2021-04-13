@@ -43,7 +43,7 @@ void	calc_wall(t_back_line *line, t_vector *vec, t_info *info)
 		line->texX = TEX_WIDTH - line->texX - 1;
 }
 
-void	coord_wall_texture(int x, t_back_line *line, t_info *info)
+void	coord_wall_tex(int x, t_back_line *line, t_info *info)
 {
 	double	step;
 	double	tex_pos;

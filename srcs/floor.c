@@ -24,25 +24,10 @@ void	calc_floor(t_back_line *line, t_vector *vec)
 	}
 }
 
-int		calc_pattern(double weight, t_back_line *line, t_info *info)
-{
-	double	curr_floor_x;
-	double	curr_floor_y;
-	int		check_pattern;
-
-	curr_floor_x = weight * line->floorXWall + (1.0 - weight) * info->posX;
-	curr_floor_y = weight * line->floorYWall + (1.0 - weight) * info->posY;
-	line->floorTexX = (int)(curr_floor_x * TEX_WIDTH) % TEX_WIDTH;
-	line->floorTexY = (int)(curr_floor_y * TEX_HEIGHT) % TEX_HEIGHT;
-	check_pattern = ((int)(curr_floor_x) + (int)(curr_floor_y)) % 2;
-	return (check_pattern);
-}
-
-void	coord_floor_texture(int x, t_back_line *line, t_vector *vec, t_info *info)
+void	coord_floor_tex(int x, t_back_line *line, t_vector *vec, t_info *info)
 {
 	double	weight;
 	int		y;
-	int		check_pattern;
 	int		floor_tex;
 	int		tex_tmp;
 
@@ -52,14 +37,25 @@ void	coord_floor_texture(int x, t_back_line *line, t_vector *vec, t_info *info)
 	while (y < info->conf.req_height)
 	{
 		weight = (info->conf.req_height / (2.0 * y - info->conf.req_height)) / vec->perpWallDist;
-		check_pattern = calc_pattern(weight, line, info);
-		if (check_pattern == 0)
-			floor_tex = 3;
-		else
-			floor_tex = 4;
+		floor_tex = T_FLOOR;
 		tex_tmp = TEX_WIDTH * line->floorTexY + line->floorTexX;
 		info->buf[y][x] = (info->texture[floor_tex][tex_tmp] >> 1) & 8355711;
 		info->buf[info->conf.req_height - y][x] = info->texture[6][tex_tmp];
+		y++;
+	}
+}
+
+void	coord_floor_color(int x, t_back_line *line, t_vector *vec, t_info *info)
+{
+	int		y;
+
+	if (line->drawEnd < 0)
+		line->drawEnd = info->conf.req_height;
+	y = line->drawEnd + 1;
+	while (y < info->conf.req_height)
+	{
+		info->buf[y][x] = info->conf.cf_color[1];
+		info->buf[info->conf.req_height - y][x] = info->conf.cf_color[0];
 		y++;
 	}
 }

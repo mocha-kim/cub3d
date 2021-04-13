@@ -80,11 +80,11 @@ void	calc_back(t_info *info)
 		printf(" .");
 		calc_wall(&line, &vec, info);
 		printf(" .");
-		coord_wall_texture(x, &line, info);
+		coord_wall_tex(x, &line, info);
 		printf(" .");
 		calc_floor(&line, &vec);
 		printf(" .");
-		coord_floor_texture(x, &line, &vec, info);
+		coord_floor_color(x, &line, &vec, info);
 		printf(" .");
 		info->zBuffer[x] = vec.perpWallDist;
 		x++;

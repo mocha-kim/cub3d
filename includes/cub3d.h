@@ -185,15 +185,16 @@ void    calc_back(t_info *info);
 
 void    calc_line(t_back_line *line, t_vector *vec, t_info *info);
 void    calc_wall(t_back_line *line, t_vector *vec, t_info *info);
-void    coord_wall_texture(int x, t_back_line *line, t_info *info);
+void    coord_wall_tex(int x, t_back_line *line, t_info *info);
 
 /*
 ** floor.c
 */
 
 void    calc_floor(t_back_line *line, t_vector *vec);
-int     calc_pattern(double weight, t_back_line *line, t_info *info);
-void    coord_floor_texture(int x, t_back_line *line, t_vector *vec, t_info *info);
+void    coord_floor_tex(int x, t_back_line *line, t_vector *vec, t_info *info);
+void    coord_floor_color(int x, t_back_line *line, t_vector *vec, t_info *info);
+
 
 /*
 ** texture.c
