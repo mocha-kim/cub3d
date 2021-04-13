@@ -46,7 +46,7 @@ int		parse_line(t_config *config, char *line, t_list **map_buffer)
 	else if (id == C_F || id == C_C)
 		return (parse_color(config, id, line));
 	config->set[id] = 1;
-	if (empty_map || !element_check(config->set))
+	if (empty_map)
 		return (0);
 	return (!!lst_add_back(map_buffer, ft_strdup(line)));
 }
@@ -83,27 +83,36 @@ int		parse_config(t_config *config, char *path)
 	while (get_next_line(fd, &line))
 	{
 		r = (r && parse_line(config, line, &map_buffer));
+		// printf("%d\n", r);
 		free(line);
 	}
 	if (r && ft_strlen(line) > 0)
 		r = (r && parse_line(config, line, &map_buffer));
 	free(line);
 	close(fd);
+	r = r && !!element_check(config->set);
 	if (!r || !parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
+	// printf("parse map\n");
 	lst_clear(&map_buffer);
 	return (1);
 }
 
-void	clear_config(t_config *config)
+int		clear_config(t_config *config)
 {
 	int i;
 
 	i = 0;
-	while (i < TEXTURES)
+	if (*config->tex_path)
 	{
-		if (config->tex_path[i])
-			free(config->tex_path[i]);
-		i++;
+		while (i < TEXTURES)
+		{
+			printf("%d\n", i);
+			if (config->tex_path[i])
+				free(config->tex_path[i]);
+			i++;
+		}
+		return (1);
 	}
+	return (0);
 }

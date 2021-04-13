@@ -18,10 +18,10 @@ int main(int argc, char *argv[])
 	i = 0;
 	printf("map row: %d, col: %d\n", config.map_row, config.map_col);
 	printf("pos_x: %d, pos_y: %d\n", config.pos_x, config.pos_y);
-	while (i < config.map_row)
+	while (i < config.map_col)
 	{
 		j = 0;
-		while (j < config.map_col)
+		while (j < config.map_row)
 			printf("%d", config.map[i][j++]);
 		printf("\n");
 		i++;

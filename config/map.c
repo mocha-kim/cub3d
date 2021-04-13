@@ -24,6 +24,7 @@ int		check_map_col(t_list *map_buffer)
 		col = ft_strlen(map_buffer->content) - 1;
 		while (map_buffer->content[col] == ' ')
 			col--;
+		map_buffer->content[col + 1] = 0;
 		if (max_col < col + 1)
 			max_col = col + 1;
 		map_buffer = map_buffer->next;
@@ -39,7 +40,7 @@ void	player_set(t_config *config, int x, int y)
 	config->map_c[y][x] = '0';
 }
 
-void	copy_map(t_config *config, t_list *map_buffer)
+int		copy_map(t_config *config, t_list *map_buffer)
 {
 	int		i;
 	int		j;
@@ -60,10 +61,13 @@ void	copy_map(t_config *config, t_list *map_buffer)
 			if (ft_strrchr("NSWE", config->map_c[i][j])
 			&& !config->pos_x && !config->pos_y)
 				player_set(config, j, i);
+			else if (ft_strrchr("NSWE", config->map_c[i][j]) && config->pos_x > 0 && config->pos_y > 0)
+				return (0);
 		}
 		config->map_c[i][config->map_col] = 0;
 		map_buffer = map_buffer->next;
 	}
+	return (1);
 }
 
 int		parse_map(t_config *config, t_list *map_buffer)
@@ -80,7 +84,8 @@ int		parse_map(t_config *config, t_list *map_buffer)
 	while (i < config->map_row)
 		if (!(config->map_c[i++] = malloc(sizeof(char) * (config->map_col + 1))))
 			return (-1);
-	copy_map(config, map_buffer);
+	if (!copy_map(config, map_buffer))
+		return (0);
 	config->map_c[config->map_row] = 0;
 	return (valid_map_check(config));
 }
