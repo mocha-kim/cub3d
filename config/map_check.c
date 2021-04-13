@@ -19,23 +19,17 @@ int				check_map(t_config *config,  int r, int c, int dir[2][4])
 	int i;
 
 	i = -1;
-	// if (r <= 0 || c <= 0 || r >= config->map_row || c >= config->map_col)
-	// {
-	// 	printf("r %d, c%d 범위 벗어남\n", r, c);
-	// 	return (0);
-	// }
-	if (config->map_c[r][c] == 0 || config->map_c[r][c] == ' ')
-	{
-		printf("0, 공백\n");
+	if (r < 0 || c < 0 || r >= config->map_row || c >= config->map_col)
 		return (0);
-	}
-	printf("%d %d %c\n", r, c, config->map_c[r][c]);
+	if (config->map_c[r][c] == 0 || config->map_c[r][c] == ' ')
+		return (0);
+	// printf("%d %d %c\n", r, c, config->map_c[r][c]);
 	if (config->map_c[r][c] == '1' || config->map_c[r][c] == 'x')
 		return (1);
 	config->map_c[r][c] = 'x';
 	while (++i < 4)
 	{
-		printf("%c\n", config->map_c[r + dir[0][i]][c + dir[1][i]]);
+		// printf("%c\n", config->map_c[r + dir[0][i]][c + dir[1][i]]);
 		if (!check_map(config, r + dir[0][i], c + dir[1][i], dir))
 			return (0);
 	}
@@ -73,7 +67,7 @@ int				valid_map_check(t_config *config)
 	while (++r < config->map_row)
 	{
 		c = -1;
-		// printf("%s\n", config->map_c[r]);
+		printf("%s\n", config->map_c[r]);
 		while (++c < config->map_col)
 			if (config->map_c[r][c] == '0')
 			{
@@ -86,6 +80,7 @@ int				valid_map_check(t_config *config)
 			}
 		// printf("%s\n", config->map_c[r]);
 	}
+	printf("valid map\n");
 	if (!char_to_int_map(config) || !player_valid_check(config))
 		is_valid = 0;
 	return (is_valid);

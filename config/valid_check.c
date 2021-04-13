@@ -22,9 +22,26 @@ int		char_to_int_map(t_config *config)
 	while (++i < config->map_col)
 		if (!(config->map[i] = malloc(sizeof(int) * config->map_row)))
 			return (0);
-	
+	// if (!(config->map = malloc(sizeof(int*) * config->map_row)))
+	// 	return (0);
+	// while (++i < config->map_row)
+	// 	if (!(config->map[i] = malloc(sizeof(int) * config->map_col)))
+	// 		return (0);
 	i = -1;
 	printf("row: %d col: %d\n", config->map_row, config->map_col);
+	// while (++i < config->map_row)
+	// {
+	// 	j = -1;
+	// 	while (++j < config->map_col)
+	// 	{
+	// 		if (config->map_c[i][j] == ' ' || config->map_c[i][j] == 'x')
+	// 			config->map[i][j] = 0;
+	// 		else
+	// 			config->map[i][j] = config->map_c[i][j] - '0';
+	// 		printf("%c", config->map_c[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
 	while (++i < config->map_row)
 	{
 		j = -1;
@@ -34,21 +51,19 @@ int		char_to_int_map(t_config *config)
 				config->map[j][i] = 0;
 			else
 				config->map[j][i] = config->map_c[i][j] - '0';
-			printf("%d", config->map[j][i]);
+			printf("%c", config->map_c[i][j]);
 		}
 		printf("\n");
 	}
-	i = -1;
-	while (++i < config->map_col)
-	{
-		j = -1;
-		while (++j < config->map_row)
-			printf("%d ", config->map[i][j]);
-		printf("\n");
-	}
-	i = config->map_col;
-	config->map_col = config->map_row;
-	config->map_row = i;
+	// i = -1;
+	// while (++i < config->map_col)
+	// {
+	// 	j = -1;
+	// 	while (++j < config->map_row)
+	// 		printf("%d", config->map[i][j]);
+	// 	printf("\n");
+	// }
+	// printf("\n");
 	return (1);
 }
 
