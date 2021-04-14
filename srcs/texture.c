@@ -34,7 +34,6 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 	int	x;
 	int	y;
 
-	printf(">> load_image : %s\n", path);
 	img->img_ptr = mlx_xpm_file_to_image(info->mlx, path,
 			&img->width, &img->height);
 	if (!(img->img_ptr))

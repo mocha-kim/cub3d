@@ -6,16 +6,16 @@ void	draw_rectangle(t_info *info, int x, int y, int color)
 	int j;
 	int	width;
 
-	x *= TILE_SIZE;
-	y *= TILE_SIZE;
+	width = info->conf.req_width / 100;
+	x *= width;
+	y *= width;
 	i = 0;
-	while (i < TILE_SIZE)
+	while (i < width && (x + i < info->conf.req_height))
 	{
 		j = 0;
-		while (j < TILE_SIZE)
+		while (j < width && (y + j < info->conf.req_width))
 		{
-			width = info->conf.map_col * TILE_SIZE;
-			info->img.data[(y  + i) * width + x + j] = color;
+			info->buf[x + i][y + j] = color;
 			j++;
 		}
 		i++;
@@ -33,13 +33,16 @@ void	draw_rectangles(t_info *info)
 		j = 0;
 		while (j < info->conf.map_col)
 		{
-			if (info->conf.map[i][j] == 1)
+			if (info->conf.map_c[j][i] == '1')
 				draw_rectangle(info, j, i, 0xFFFFFF);
-			else
+			else if (info->conf.map_c[j][i] == 'x')
 				draw_rectangle(info, j, i, 0x000000);
+			else if (info->conf.map_c[j][i] == '2')
+				draw_rectangle(info, j, i, 0xFFFF00);
 			j++;
 		}
 		i++;
 	}
+	draw_rectangle(info, info->posY, info->posX, 0xFF0000);
 }
 
