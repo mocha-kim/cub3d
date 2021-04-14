@@ -23,16 +23,12 @@ int				check_map(t_config *config,  int r, int c, int dir[2][4])
 		return (0);
 	if (config->map_c[r][c] == 0 || config->map_c[r][c] == ' ')
 		return (0);
-	// printf("%d %d %c\n", r, c, config->map_c[r][c]);
 	if (config->map_c[r][c] == '1' || config->map_c[r][c] == 'x')
 		return (1);
 	config->map_c[r][c] = 'x';
 	while (++i < 4)
-	{
-		// printf("%c\n", config->map_c[r + dir[0][i]][c + dir[1][i]]);
 		if (!check_map(config, r + dir[0][i], c + dir[1][i], dir))
 			return (0);
-	}
 	return (1);
 }
 
@@ -61,13 +57,12 @@ int				valid_map_check(t_config *config)
 
 	is_valid = 0;
 	if (!valid_char_map(config) || config->map_row <= 2 || config->map_col <= 2
-	|| !map_init(dir))
+	|| !map_init(dir) || !rotate_map(config))
 		return (0);
 	r = -1;
 	while (++r < config->map_row)
 	{
 		c = -1;
-		// printf("%s\n", config->map_c[r]);
 		while (++c < config->map_col)
 			if (config->map_c[r][c] == '0')
 			{
@@ -75,10 +70,6 @@ int				valid_map_check(t_config *config)
 				if (check_map(config, r, c, dir) == 0)
 					return (0);
 			}
-		// printf("%s\n", config->map_c[r]);
 	}
-	// printf("valid map\n");
-	if (!char_to_int_map(config) || !player_valid_check(config))
-		is_valid = 0;
-	return (is_valid);
+	return (is_valid && player_valid_check(config));
 }
