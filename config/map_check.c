@@ -67,20 +67,17 @@ int				valid_map_check(t_config *config)
 	while (++r < config->map_row)
 	{
 		c = -1;
-		printf("%s\n", config->map_c[r]);
+		// printf("%s\n", config->map_c[r]);
 		while (++c < config->map_col)
 			if (config->map_c[r][c] == '0')
 			{
 				is_valid = 1;
-				// printf("%c\n", config->map_c[r][c]);
-				// write(1, &config->map_c[r][c], 1);
-				// write(1, "\n", 1);
 				if (check_map(config, r, c, dir) == 0)
 					return (0);
 			}
 		// printf("%s\n", config->map_c[r]);
 	}
-	printf("valid map\n");
+	// printf("valid map\n");
 	if (!char_to_int_map(config) || !player_valid_check(config))
 		is_valid = 0;
 	return (is_valid);

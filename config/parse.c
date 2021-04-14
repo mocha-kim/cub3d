@@ -9,13 +9,21 @@ int			parse_resolution(t_config *config, char *line)
 	config->set[C_R] = 1;
 	if (line && line[0] == 'R')
 	{
-		while (line[i] && is_space(line[i]))
+		while (line[i] && line[i] == ' ')
 			i++;
-		config->req_width = ft_atoi(line + i);
+		if (ft_isdigit(line[i]))
+			config->req_width = ft_atoi(line + i);
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
-		config->req_height = ft_atoi(line + i);
-		if (config->req_height < 0 || config->req_width < 0)
+		while (line[i] && line[i] == ' ')
+			i++;
+		if (ft_isdigit(line[i]))
+			config->req_height = ft_atoi(line + i);
+		while (line[i] && ft_isdigit(line[i]))
+			i++;
+		while (line[i] && line[i] == ' ')
+			i++;
+		if (line[i] != 0 || config->req_height < 0 || config->req_width < 0)
 			return (0);
 		return (1);
 	}

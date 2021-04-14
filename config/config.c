@@ -25,15 +25,12 @@ int		identifier(char *line)
 int		parse_line(t_config *config, char *line, t_list **map_buffer)
 {
 	static int	empty_map = 0;
-	// static int	after_empty = 0;
 	int			id;
 	int			len;
 
 	len = ft_strlen(line);
 	if (len == 0 && config->set[C_MAP])
 		empty_map = 1;
-	// if (empty_map && after_empty)
-	// 	return (0);
 	if (len == 0)
 		return (1);
 	id = identifier(line);
@@ -56,6 +53,8 @@ void	config_init(t_config *config)
 	int	i;
 
 	i = 0;
+	config->req_height = -1;
+	config->req_width = -1;
 	while (i < TEXTURES)
 		config->tex_path[i++] = 0;
 	config->map_c = NULL;
@@ -73,33 +72,24 @@ int		parse_config(t_config *config, char *path)
 	t_list	*map_buffer;
 	int		r;
 
-	if (!ft_endcmp(path, ".cub"))
-		return (0);
-	if ((fd = open(path, O_RDONLY)) < 0)
+	if (!ft_endcmp(path, ".cub") || (fd = open(path, O_RDONLY)) < 0)
 		return (0);
 	config_init(config);
 	map_buffer = 0;
 	r = 1;
-	// printf("gnl\n");
 	while (get_next_line(fd, &line))
 	{
 		r = (r && parse_line(config, line, &map_buffer));
-		// printf("%d\n", r);
 		free(line);
 	}
 	if (r && ft_strlen(line) > 0)
 		r = (r && parse_line(config, line, &map_buffer));
 	free(line);
 	close(fd);
-	// printf("element check %d\n", r);
-	r = r && !!element_check(config->set);
-	// printf("parse map\n");
 	if (!r || !parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
 	lst_clear(&map_buffer);
-	r = config->map_col;
-	config->map_col = config->map_row;
-	config->map_row = r;
+	ft_swap(&config->map_col, &config->map_row);
 	return (1);
 }
 
