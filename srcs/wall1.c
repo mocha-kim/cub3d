@@ -56,7 +56,6 @@ void	ray_cast(t_vector *vec, t_info *info)
 			vec->mapY += vec->stepY;
 			vec->side = Y_PLANE;
 		}
-		printf("map[%d][%d]\n", vec->mapX, vec->mapY);
 		if (info->conf.map[vec->mapX][vec->mapY] > 0)
 			hit = 1;
 	}

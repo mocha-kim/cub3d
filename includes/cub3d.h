@@ -27,7 +27,6 @@
 
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define MINIMAP_SIZE 6
 
 # define U_DIV 1
 # define V_DIV 1
@@ -195,7 +194,6 @@ void    coord_wall_tex(int x, t_back_line *line, t_info *info);
 void    calc_floor(t_back_line *line, t_vector *vec);
 void    coord_floor_tex(int x, t_back_line *line, t_vector *vec, t_info *info);
 void    coord_floor_color(int x, t_back_line *line, t_info *info);
-
 
 /*
 ** texture.c
