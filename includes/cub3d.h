@@ -236,5 +236,6 @@ int		key_release(int key, t_info *info);
 */
 
 int		save_image(t_info *info);
+int		write_bmp_header(int file, int filesize, t_info *info);
 
 # endif
