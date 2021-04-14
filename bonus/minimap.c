@@ -22,6 +22,28 @@ void	draw_rectangle(t_info *info, int x, int y, int color)
 	}
 }
 
+void	draw_player(t_info *info, double x, double y, int color)
+{
+	int i;
+	int j;
+	int	width;
+
+	width = info->conf.req_width / 100;
+	x *= width;
+	y *= width;
+	i = 0;
+	while (i < width && (x + i < info->conf.req_height))
+	{
+		j = 0;
+		while (j < width && (y + j < info->conf.req_width))
+		{
+			info->buf[(int)(x + i)][(int)(y + j)] = color;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	draw_rectangles(t_info *info)
 {
 	int		i;
@@ -45,6 +67,6 @@ void	draw_rectangles(t_info *info)
 		}
 		i++;
 	}
-	draw_rectangle(info, info->posY, info->posX, 0xFF0000);
+	draw_player(info, info->posY, info->posX, 0xFF0000);
 }
 

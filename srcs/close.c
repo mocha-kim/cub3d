@@ -20,8 +20,9 @@ void	buf_free(t_info *info, int i)
 
 void	clear_game(t_info *info)
 {
-	if (info && clear_config(&info->conf))
+	if (info)
 	{
+		clear_config(&info->conf);
 		if (info->buf)
 			buf_free(info, info->conf.req_height - 1);
 		if (info->texture)

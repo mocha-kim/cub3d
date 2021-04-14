@@ -87,5 +87,6 @@ int		info_init(t_info *info)
 	if (buf_init(info) == -1 || tex_init(info) == -1)
 		return (-1);
 	info->zBuffer = (double*)malloc(sizeof(double) * info->conf.req_width);
+	printf("info\n");
 	return (0);
 }

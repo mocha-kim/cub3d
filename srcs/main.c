@@ -45,11 +45,14 @@ int		main(int argc, char **argv)
 	has_save_opt = (argc >= 2 && !ft_strcmp(argv[1], "--save"));
 	if (argc < (2 + has_save_opt))
 		return (error_exit(NULL, "Error\n: no map argument.\n"));
+	printf("loade\n");
 	if (!parse_config(&info.conf, argv[1]))
 		return (error_exit(&info, "Error\n: Invalid map.\n"));
+	printf("loade\n");
 	if (info_init(&info) == -1 || window_init(&info) == -1 || sprite_init(&info) == -1)
 		return (error_exit(&info, "Error\n: memory allocation failed.\n"));
 	load_texture(&info);
+	printf("loade\n");
 	// if (has_save_opt)
 	// 	return (save_image(&info));
 	printf("info : pos(%.2f, %.2f), dir(%.2f, %.2f), config map[%d][%d]\n", 
@@ -60,6 +63,9 @@ int		main(int argc, char **argv)
 			printf("%c", info.conf.map[j][i]);
 		printf("\n");
 	}
+	for (int i = 0; i < 5; i++)
+		printf("(%.0f, %.0f, %d) ", info.sprite[i].x, info.sprite[i].y, info.sprite[i].texture);
+	printf("\n");
 	printf("> game start...\n");
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, EVENT_KEY_PRESS, 0, &key_press, &info);
