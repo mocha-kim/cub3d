@@ -50,8 +50,8 @@ int		main(int argc, char **argv)
 	if (info_init(&info) == -1 || window_init(&info) == -1)
 		return (error_exit(&info, "Error\n: memory allocation failed.\n"));
 	load_texture(&info);
-	// if (has_save_opt)
-	// 	return (save_image(&info));
+	if (has_save_opt)
+		return (save_image(&info));
 	printf("info : pos(%.2f, %.2f), dir(%.2f, %.2f), config map[%d][%d]\n", 
 				info.posX, info.posY,info.dirX, info.dirY, info.conf.map_row, info.conf.map_col);
 	for (int i = 0; i < info.conf.map_col; i++)
