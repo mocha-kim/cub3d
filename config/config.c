@@ -99,9 +99,15 @@ int		clear_config(t_config *config)
 
 	i = -1;
 	while (++i < TEXTURES)
-	{
 		if (config->tex_path[i])
 			free(config->tex_path[i]);
-	}
-	return (0);
+	i = -1;
+	while (++i < config->map_row)
+		if (config->map[i])
+			free(config->map[i]);
+	i = -1;
+	while (++i < config->map_col)
+		if (config->map_c[i])
+			free(config->map_c[i]);
+	return (1);
 }
