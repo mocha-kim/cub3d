@@ -4,6 +4,7 @@ void	draw_rectangle(t_info *info, int x, int y, int color)
 {
 	int i;
 	int j;
+	int	width;
 
 	width = info->conf.req_width / 100;
 	x *= width;
