@@ -12,19 +12,19 @@
 # define C_SO   1
 # define C_WE   2
 # define C_EA   3
-# define C_C    4
-# define C_F    5
-# define C_S    6
+# define C_S    4
+# define C_C    5
+# define C_F    6
 # define C_MAP  7
 
-# define TEXTURES 7
+# define TEXTURES 5
 # define T_NO 0
 # define T_SO 1
 # define T_WE 2
 # define T_EA 3
-# define T_SKY 4
-# define T_FLOOR 5
-# define T_SPRITE 6
+# define T_SPRITE 4
+# define T_CEILING 5
+# define T_FLOOR 6
 # define T_SPRITE_UP 7
 # define T_SPRITE_C 8
 
