@@ -71,7 +71,5 @@ int				valid_map_check(t_config *config)
 					return (0);
 			}
 	}
-	// if (!rotate_map(config) || !player_valid_check(config))
-	// 	is_valid = 0;
 	return (is_valid && player_valid_check(config));
 }
