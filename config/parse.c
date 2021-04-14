@@ -11,6 +11,8 @@ int			parse_resolution(t_config *config, char *line)
 	{
 		while (line[i] && line[i] == ' ')
 			i++;
+		if (ft_strlen(line + i) == 0)
+			return (0);
 		if (ft_isdigit(line[i]))
 			config->req_width = ft_atoi(line + i);
 		while (line[i] && ft_isdigit(line[i]))
@@ -41,6 +43,8 @@ int			parse_texture(t_config *config, int id, char *line)
 	while (line[i] == ' ')
 		i++;
 	line += i;
+	if (ft_strlen(line) == 0)
+		return (0);
 	if (config->tex_path[id])
 	{
 		free(config->tex_path[id]);
