@@ -28,9 +28,9 @@ void	calc_wall(t_back_line *line, t_vector *vec, t_info *info)
 	else if (vec->side == X_PLANE && vec->stepX == -1)
 		line->texNum = T_WE;
 	else if (vec->side == Y_PLANE && vec->stepY == 1)
-		line->texNum = T_NO;
-	else
 		line->texNum = T_SO;
+	else
+		line->texNum = T_NO;
 	if (vec->side == 0)
 		line->wallX = info->posY + vec->perpWallDist * vec->rayDirY;
 	else

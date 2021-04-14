@@ -28,6 +28,8 @@ void	clear_game(t_info *info)
 			tex_free(info, TEXTURES - 1);
 		if (info->zBuffer)
 			free(info->zBuffer);
+		if (info->sprite)
+			free(info->sprite);
 		clear_window(info);
 	}
 }

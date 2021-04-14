@@ -9,19 +9,20 @@ void	ptr_init(t_info *info)
 	info->img.data = 0;
 	info->mlx = 0;
 	info->win = 0;
+	info->sprite = 0;
 }
 
 void	dir_init(t_info *info)
 {
 	if (info->conf.dir == 'N')
 	{
-		info->dirY = 1;
-		info->planeX = -0.66;
+		info->dirY = -1;
+		info->planeX = 0.66;
 	}
 	else if (info->conf.dir == 'S')
 	{
-		info->dirY = -1;
-		info->planeX = 0.66;
+		info->dirY = 1;
+		info->planeX = -0.66;
 	}
 	else if (info->conf.dir == 'W')
 	{

@@ -35,11 +35,11 @@ void	draw_rectangles(t_info *info)
 		j = 0;
 		while (j < info->conf.map_col)
 		{
-			if (info->conf.map_c[j][i] == '1')
+			if (info->conf.map[i][j] == '1')
 				draw_rectangle(info, j, i, 0xFFFFFF);
-			else if (info->conf.map_c[j][i] == 'x')
+			else if (info->conf.map[i][j] == '0')
 				draw_rectangle(info, j, i, 0x000000);
-			else if (info->conf.map_c[j][i] == '2')
+			else if (info->conf.map[i][j] == '2')
 				draw_rectangle(info, j, i, 0xFFFF00);
 			j++;
 		}

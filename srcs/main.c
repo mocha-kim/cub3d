@@ -47,7 +47,7 @@ int		main(int argc, char **argv)
 		return (error_exit(NULL, "Error\n: no map argument.\n"));
 	if (!parse_config(&info.conf, argv[1]))
 		return (error_exit(&info, "Error\n: Invalid map.\n"));
-	if (info_init(&info) == -1 || window_init(&info) == -1)
+	if (info_init(&info) == -1 || window_init(&info) == -1 || sprite_init(&info) == -1)
 		return (error_exit(&info, "Error\n: memory allocation failed.\n"));
 	load_texture(&info);
 	// if (has_save_opt)
@@ -57,7 +57,7 @@ int		main(int argc, char **argv)
 	for (int i = 0; i < info.conf.map_col; i++)
 	{
 		for (int j = 0; j < info.conf.map_row; j++)
-			printf("%d", info.conf.map[j][i]);
+			printf("%c", info.conf.map[j][i]);
 		printf("\n");
 	}
 	printf("> game start...\n");

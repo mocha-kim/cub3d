@@ -1,57 +1,6 @@
 #include "../includes/cub3d.h"
 
-void	sort_order(t_pair *sprites, int amount)
-{
-	int		i;
-	int		j;
-	t_pair	tmp;
-
-	i = 0;
-	while (i < amount)
-	{
-		j = 0;
-		while (j < amount - 1)
-		{
-			if (sprites[j].dist > sprites[j + 1].dist)
-			{
-				tmp.dist = sprites[j].dist;
-				tmp.order = sprites[j].order;
-				sprites[j].dist = sprites[j + 1].dist;
-				sprites[j].order = sprites[j + 1].order;
-				sprites[j + 1].dist = tmp.dist;
-				sprites[j + 1].order = tmp.order;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	sort_sprites(int *order, double *dist, int amount)
-{
-	int		i;
-	t_pair	*sprites;
-
-	sprites = (t_pair *)malloc(sizeof(t_pair) * amount);
-	i = 0;
-	while (i < amount)
-	{
-		sprites[i].dist = dist[i];
-		sprites[i].order = order[i];
-		i++;
-	}
-	sort_order(sprites, amount);
-	i = 0;
-	while (i < amount)
-	{
-		dist[i] = sprites[amount - i - 1].dist;
-		order[i] = sprites[amount - i - 1].order;
-		i++;
-	}
-	free(sprites);
-}
-
-void	calc_sprite_vars(t_sprt_line *sprt, int *order, t_info *info, int i)
+void	calc_sprite_pos(t_sprt_line *sprt, int *order, t_info *info, int i)
 {
 	double	inv_det;
 
@@ -62,6 +11,10 @@ void	calc_sprite_vars(t_sprt_line *sprt, int *order, t_info *info, int i)
 	sprt->transY = inv_det * (-info->planeY * sprt->x + info->planeX * sprt->y);
 	sprt->screenX = (int)((info->conf.req_width / 2)
 				* (1 + sprt->transX / sprt->transY));
+}
+
+void	calc_sprite_line(t_sprt_line *sprt, t_info *info)
+{
 	sprt->vMoveScreen = (int)(V_MOVE / sprt->transY);
 	sprt->height = (int)fabs((info->conf.req_height / sprt->transY) / V_DIV);
 	sprt->drawStartY = -sprt->height / 2 + info->conf.req_height / 2 + sprt->vMoveScreen;
@@ -105,32 +58,5 @@ void	coord_sprite_tex(t_info *info, int *order, t_sprt_line *sprt, int i)
 					info->buf[y][stripe] = sprt->color;
 			}
 		}
-	}
-}
-
-void	calc_sprite(t_info *info)
-{
-	int			i;
-	int			sprite_order[TEXTURES - 6];
-	double		sprite_dist[TEXTURES - 6];
-	t_sprt_line	sprite;
-
-	i = 0;
-	while (i < TEXTURES - 6)
-	{
-		sprite_order[i] = i;
-		sprite_dist[i] = ((info->posX - info->sprite[i].x)
-					* (info->posX - info->sprite[i].x)
-					+ (info->posY - info->sprite[i].y)
-					* (info->posY - info->sprite[i].y));
-		i++;
-	}
-	sort_sprites(sprite_order, sprite_dist, TEXTURES - 6);
-	i = 0;
-	while (i < TEXTURES - 6)
-	{
-		calc_sprite_vars(&sprite, sprite_order, info, i);
-		coord_sprite_tex(info, sprite_order, &sprite, i);
-		i++;
 	}
 }

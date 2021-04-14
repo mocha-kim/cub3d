@@ -71,7 +71,7 @@ typedef struct  s_info
     t_img       img;
     int         **buf;
 	double		*zBuffer;
-    t_sprite    sprite[TEXTURES];
+    t_sprite    *sprite;
     int         **texture;
     double      moveSpeed;
     double      rotSpeed;
@@ -205,14 +205,21 @@ void    load_texture(t_info *info);
 void    tex_free(t_info *info, int i);
 
 /*
-** sprite.c
+** sprite1.c
 */
 
+int 	sprite_init(t_info *info);
 void	sort_order(t_pair *sprites, int amount);
 void	sort_sprites(int *order, double *dist, int amount);
-void	calc_sprite_vars(t_sprt_line *sprite, int *order, t_info *info, int i);
-void	coord_sprite_tex(t_info *info, int *order, t_sprt_line *sprite, int i);
 void    calc_sprite(t_info *info);
+
+/*
+** sprite2.c
+*/
+
+void	calc_sprite_pos(t_sprt_line *sprt, int *order, t_info *info, int i);
+void	calc_sprite_line(t_sprt_line *sprt, t_info *info);
+void	coord_sprite_tex(t_info *info, int *order, t_sprt_line *sprite, int i);
 
 /*
 ** key_handling.c
