@@ -49,6 +49,10 @@ int			parse_texture(t_config *config, int id, char *line)
 	len = ft_strlen(line) - 1;
 	while (line[len] == ' ')
 		len--;
+	i = 0;
+	while (i < len + 1)
+		if (is_space(line[i++]))
+			return (0);
 	if (!(path = ft_substr(line, 0, len + 1)))
 		return (-1);
 	config->tex_path[id] = path;
