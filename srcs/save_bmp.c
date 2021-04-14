@@ -2,7 +2,24 @@
 
 static int	write_bmp_data(int fd, t_info *info)
 {
-	
+	// const unsigned char	zero[3] = {0, 0, 0};
+	int					i;
+	int					j;
+	int					color;
+
+	i = -1;
+	while (++i < info->conf.req_width)
+	{
+		j = -1;
+		while (++j < info->conf.req_height)
+		{
+			color = info->buf[j][i];
+			if ((write(fd, &color, 3) < 0))
+				return (0);
+			// if (write(fd, zero, 3))
+		}
+	}
+	return (1);
 }
 
 int			save_image(t_info *info)
@@ -17,6 +34,8 @@ int			save_image(t_info *info)
 		return (0);
 	filesize = 54 + (info->conf.req_width * info->conf.req_width);
 	if (!(write_bmp_header(file, filesize, info)))
+		return (0);
+	if (!write_bmp_data(file, info))
 		return (0);
 	return (1);
 }
