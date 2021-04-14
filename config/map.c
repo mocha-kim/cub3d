@@ -85,9 +85,9 @@ int		parse_map(t_config *config, t_list *map_buffer)
 		if (!(config->map_c[i++] = malloc(sizeof(char) * (config->map_col + 1))))
 			return (-1);
 	// printf("copy map\n");
-	if (!copy_map(config, map_buffer))
+	if (!copy_map(config, map_buffer) || !element_check(config->set))
 		return (0);
 	config->map_c[config->map_row] = 0;
-	printf("valid map check\n");
+	// printf("valid map check\n");
 	return (valid_map_check(config));
 }

@@ -3,13 +3,11 @@
 
 # include "cub3d.h"
 
-# define TILE_SIZE 160
-
 /*
 ** ui.c
 */
 
-void	draw_ui(t_info *info);
+void	calc_ui(t_info *info);
 
 /*
 ** minimap.c

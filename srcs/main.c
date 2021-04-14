@@ -4,7 +4,7 @@ int		main_loop(t_info *info)
 {
 	calc_back(info);
 	calc_sprite(info);
-	draw_ui(info);
+	calc_ui(info);
 	draw(info);
 	key_update(info);
 	return (0);
@@ -54,10 +54,10 @@ int		main(int argc, char **argv)
 	// 	return (save_image(&info));
 	printf("info : pos(%.2f, %.2f), dir(%.2f, %.2f), config map[%d][%d]\n", 
 				info.posX, info.posY,info.dirX, info.dirY, info.conf.map_row, info.conf.map_col);
-	for (int i = 0; i < info.conf.map_row; i++)
+	for (int i = 0; i < info.conf.map_col; i++)
 	{
-		for (int j = 0; j < info.conf.map_col; j++)
-			printf("%d", info.conf.map[i][j]);
+		for (int j = 0; j < info.conf.map_row; j++)
+			printf("%d", info.conf.map[j][i]);
 		printf("\n");
 	}
 	printf("> game start...\n");

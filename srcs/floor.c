@@ -55,7 +55,7 @@ void	coord_floor_color(int x, t_back_line *line, t_info *info)
 	while (y < info->conf.req_height)
 	{
 		info->buf[y][x] = info->conf.cf_color[1];
-		info->buf[info->conf.req_height - y][x] = info->conf.cf_color[0];
+		info->buf[info->conf.req_height - y - 1][x] = info->conf.cf_color[0];
 		y++;
 	}
 }

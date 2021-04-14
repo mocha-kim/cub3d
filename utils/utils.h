@@ -31,5 +31,6 @@ int					is_space(char ch);
 int					ft_atoi(const char *str);
 int					ft_isdigit(int c);
 char				*ft_strrchr(char *s, int c);
+void				ft_swap(int *n1, int *n2);
 
 #endif
