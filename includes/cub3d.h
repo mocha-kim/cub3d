@@ -196,7 +196,6 @@ void    calc_floor(t_back_line *line, t_vector *vec);
 void    coord_floor_tex(int x, t_back_line *line, t_vector *vec, t_info *info);
 void    coord_floor_color(int x, t_back_line *line, t_info *info);
 
-
 /*
 ** texture.c
 */
