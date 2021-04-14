@@ -72,9 +72,9 @@ int		parse_config(t_config *config, char *path)
 	t_list	*map_buffer;
 	int		r;
 
+	config_init(config);
 	if (!ft_endcmp(path, ".cub") || (fd = open(path, O_RDONLY)) < 0)
 		return (0);
-	config_init(config);
 	map_buffer = 0;
 	r = 1;
 	while (get_next_line(fd, &line))
@@ -97,12 +97,11 @@ int		clear_config(t_config *config)
 {
 	int i;
 
-	i = 0;
-	while (i < TEXTURES)
+	i = -1;
+	while (++i < TEXTURES)
 	{
 		if (config->tex_path[i])
 			free(config->tex_path[i]);
-		return (1);
 	}
 	return (0);
 }
