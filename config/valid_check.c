@@ -11,28 +11,49 @@ int		element_check(int set[])
 	return (1);
 }
 
-int		char_to_int_map(t_config *config)
+// int		char_to_int_map(t_config *config)
+// {
+// 	int		i;
+// 	int		j;
+
+// 	i = -1;
+// 	if (!(config->map = malloc(sizeof(int*) * config->map_col)))
+// 		return (0);
+// 	while (++i < config->map_col)
+// 		if (!(config->map[i] = malloc(sizeof(int) * config->map_row)))
+// 			return (0);
+// 	i = -1;
+// 	while (++i < config->map_row)
+// 	{
+// 		j = -1;
+// 		while (++j < config->map_col)
+// 		{
+// 			if (config->map_c[i][j] == ' ' || config->map_c[i][j] == 'x')
+// 				config->map[j][i] = 0;
+// 			else
+// 				config->map[j][i] = config->map_c[i][j] - '0';
+// 		}
+// 	}
+// 	return (1);
+// }
+
+int		rotate_map(t_config *config)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	if (!(config->map = malloc(sizeof(int*) * config->map_col)))
+	if (!(config->map = malloc(sizeof(char*) * config->map_col)))
 		return (0);
 	while (++i < config->map_col)
-		if (!(config->map[i] = malloc(sizeof(int) * config->map_row)))
+		if (!(config->map[i] = malloc(sizeof(char) * config->map_row)))
 			return (0);
 	i = -1;
 	while (++i < config->map_row)
 	{
 		j = -1;
 		while (++j < config->map_col)
-		{
-			if (config->map_c[i][j] == ' ' || config->map_c[i][j] == 'x')
-				config->map[j][i] = 0;
-			else
-				config->map[j][i] = config->map_c[i][j] - '0';
-		}
+			config->map[j][i] = config->map_c[i][j];
 	}
 	return (1);
 }

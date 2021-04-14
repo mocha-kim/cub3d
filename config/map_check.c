@@ -57,7 +57,7 @@ int				valid_map_check(t_config *config)
 
 	is_valid = 0;
 	if (!valid_char_map(config) || config->map_row <= 2 || config->map_col <= 2
-	|| !map_init(dir))
+	|| !map_init(dir) || !rotate_map(config))
 		return (0);
 	r = -1;
 	while (++r < config->map_row)
@@ -71,7 +71,7 @@ int				valid_map_check(t_config *config)
 					return (0);
 			}
 	}
-	if (!char_to_int_map(config) || !player_valid_check(config))
-		is_valid = 0;
-	return (is_valid);
+	// if (!rotate_map(config) || !player_valid_check(config))
+	// 	is_valid = 0;
+	return (is_valid && player_valid_check(config));
 }
