@@ -38,23 +38,22 @@ CC			= gcc
 CFLAGS		= -O3 -Wall -Wextra -Werror
 MLXFLAGS	= -Lmlx -lm -Lmlx_beta -lmlx -framework OpenGL -framework AppKit
 MMS			= libmlx.dylib
-MLX			= m
+MLX			= libm.a
 
 .c.o:
 		$(CC) $(CFLAGS) $(INCS) -c $< -o $(<:.c=.o)
 
 $(NAME):	$(MLX) $(OBJS) $(MMS)
-	mv $(MLX_PATH)/libmlx.a $(MLX_PATH)/libm.a
 	$(CC) $(CFLAGS) $(INCS) -o $(NAME) -L $(MLX_PATH) $(MLXFLAGS) $(OBJS)
 	@echo $(NAME) : Created
 
 $(MLX):
 	@$(MAKE) -C mlx
 	@$(MAKE) -C mlx_beta
+	mv $(MLX_PATH)/libmlx.a $(MLX_PATH)/$(MLX)
 	cp $(MMS_PATH)/$(MMS) .
 
 $(BONUS):	$(MLX) $(BNS_OBJS) $(MMS)
-	mv $(MLX_PATH)/libmlx.a $(MLX_PATH)/libm.a
 	$(CC) $(CFLAGS) $(INCS) -o $(NAME) -L $(MLX_PATH) $(MLXFLAGS) $(BNS_OBJS)
 	@echo $(BONUS) : Created
 
@@ -64,10 +63,11 @@ bonus:	$(BONUS)
 
 clean:
 	@$(MAKE) -C mlx clean
+	@$(MAKE) -C mlx_beta clean
 	rm -f $(OBJS) $(BNS_OBJS)
 
 fclean: clean
-	rm -f $(NAME) $(BONUS) $(MLX)
+	rm -f $(NAME) $(BONUS) $(MMS) $(MLX_PATH)/$(MLX)
 
 re:		fclean all
 
