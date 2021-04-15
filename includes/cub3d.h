@@ -45,10 +45,12 @@ typedef struct	s_img
 
 typedef struct  s_key
 {
-	int			a;
+	int			right;
+	int			left;
 	int			w;
 	int			s;
-	int			d;
+    int         a;
+    int         d;
 }               t_key;
 
 typedef struct	s_sprite
@@ -227,11 +229,17 @@ void	coord_sprite_tex(t_info *info, int *order, t_sprt_line *sprite, int i);
 ** key_handling.c
 */
 
-void    move(t_info *info, int direction);
-void    rotate(t_info *info, int direction);
 int     key_update(t_info *info);
 int     key_press(int key, t_info *info);
 int		key_release(int key, t_info *info);
+
+/*
+** camera.c
+*/
+
+void    move_vertical(t_info *info, int direction);
+void    move_horizontal(t_info *info, int direction);
+void    rotate(t_info *info, int direction);
 
 /*
 ** save_bmp.c

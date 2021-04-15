@@ -66,9 +66,11 @@ int		buf_init(t_info *info)
 
 void	key_init(t_info *info)
 {
-	info->key.a = 0;
+	info->key.right = 0;
+	info->key.left = 0;
 	info->key.w = 0;
 	info->key.s = 0;
+	info->key.a = 0;
 	info->key.d = 0;
 }
 
@@ -80,7 +82,7 @@ int		info_init(t_info *info)
 	info->dirY = 0;
 	info->planeX = 0;
 	info->planeY = 0;
-	info->score = 1000;
+	info->score = 0;
 	dir_init(info);
 	info->moveSpeed = 0.05;
 	info->rotSpeed = 0.05;
