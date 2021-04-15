@@ -8,10 +8,10 @@ static int	write_bmp_data(int fd, t_info *info)
 	int					color;
 
 	i = -1;
-	while (++i < info->conf.req_width)
+	while (++i < info->conf.req_height)
 	{
 		j = -1;
-		while (++j < info->conf.req_height)
+		while (++j < info->conf.req_width)
 		{
 			color = info->buf[j][i];
 			if ((write(fd, &color, 3) < 0))
@@ -19,24 +19,6 @@ static int	write_bmp_data(int fd, t_info *info)
 			// if (write(fd, zero, 3))
 		}
 	}
-	return (1);
-}
-
-int			save_image(t_info *info)
-{
-	int		file;
-	int		filesize;
-
-	calc_back(info);
-	calc_sprite(info);
-	draw(info);
-	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC)) < 0)
-		return (0);
-	filesize = 54 + (info->conf.req_width * info->conf.req_width);
-	if (!(write_bmp_header(file, filesize, info)))
-		return (0);
-	if (!write_bmp_data(file, info))
-		return (0);
 	return (1);
 }
 
@@ -66,6 +48,24 @@ int			write_bmp_header(int fd, int filesize, t_info *info)
 	i = info->conf.req_height;
 	set_int_in_char(file_header + 22, i);
 	file_header[27] = (unsigned char)1;
-	file_header[29] = (unsigned char)24;
+	file_header[28] = (unsigned char)24;
 	return (!(write(fd, file_header, 54) < 0));
+}
+
+int			save_image(t_info *info)
+{
+	int		file;
+	int		filesize;
+
+	calc_back(info);
+	calc_sprite(info);
+	draw(info);
+	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC)) < 0)
+		return (0);
+	filesize = 54 + (info->conf.req_width * info->conf.req_width);
+	if (!(write_bmp_header(file, filesize, info)))
+		return (0);
+	if (!write_bmp_data(file, info))
+		return (0);
+	return (1);
 }
