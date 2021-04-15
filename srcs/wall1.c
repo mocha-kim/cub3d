@@ -4,7 +4,7 @@ void	calc_vars(int x, t_vector *vec, t_info *info)
 {
 	double	camera_x;
 
-	camera_x = 2 * x / (double)info->conf.req_width - 1;
+	camera_x = 2 * x / (double)info->conf.win_width - 1;
 	vec->rayDirX = info->dirX + info->planeX * camera_x;
 	vec->rayDirY = info->dirY + info->planeY * camera_x;
 	vec->mapX = (int)info->posX;
@@ -68,7 +68,7 @@ void	calc_back(t_info *info)
 	int			x;
 
 	x = 0;
-	while (x < info->conf.req_width)
+	while (x < info->conf.win_width)
 	{
 		calc_vars(x, &vec, info);
 		calc_dists(&vec, info);

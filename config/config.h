@@ -30,8 +30,8 @@
 
 typedef struct	s_config
 {
-	int			req_height;
-	int			req_width;
+	int			win_width;
+	int			win_height;
 	char		*tex_path[TEXTURES];
 	int			cf_color[2];
 	char		**map;

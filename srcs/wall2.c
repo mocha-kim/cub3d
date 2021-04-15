@@ -12,13 +12,13 @@ void	calc_line(t_back_line *line, t_vector *vec, t_info *info)
 		vec->perpWallDist = (vec->mapY - info->posY + (1 - vec->stepY) / 2);
 		vec->perpWallDist /= vec->rayDirY;
 	}
-	line->lineHeight = (int)(info->conf.req_height / vec->perpWallDist);
-	line->drawStart = -(line->lineHeight) / 2 + info->conf.req_height / 2;
+	line->lineHeight = (int)(info->conf.win_height / vec->perpWallDist);
+	line->drawStart = -(line->lineHeight) / 2 + info->conf.win_height / 2;
 	if (line->drawStart < 0)
 		line->drawStart = 0;
-	line->drawEnd = line->lineHeight / 2 + info->conf.req_height / 2;
-	if (line->drawEnd >= info->conf.req_height)
-		line->drawEnd = info->conf.req_height - 1;
+	line->drawEnd = line->lineHeight / 2 + info->conf.win_height / 2;
+	if (line->drawEnd >= info->conf.win_height)
+		line->drawEnd = info->conf.win_height - 1;
 }
 
 void	calc_wall(t_back_line *line, t_vector *vec, t_info *info)
@@ -51,7 +51,7 @@ void	coord_wall_tex(int x, t_back_line *line, t_info *info)
 	int		y;
 
 	step = 1.0 * TEX_HEIGHT / line->lineHeight;
-	tex_pos = (line->drawStart - info->conf.req_height / 2 + line->lineHeight / 2) * step;
+	tex_pos = (line->drawStart - info->conf.win_height / 2 + line->lineHeight / 2) * step;
 	y = line->drawStart;
 	while (y < line->drawEnd)
 	{

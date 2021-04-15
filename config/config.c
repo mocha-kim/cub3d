@@ -53,8 +53,8 @@ void	config_init(t_config *config)
 	int	i;
 
 	i = 0;
-	config->req_height = -1;
-	config->req_width = -1;
+	config->win_height = -1;
+	config->win_width = -1;
 	while (i < TEXTURES)
 		config->tex_path[i++] = 0;
 	config->map_c = NULL;
