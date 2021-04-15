@@ -233,4 +233,11 @@ int     key_update(t_info *info);
 int     key_press(int key, t_info *info);
 int		key_release(int key, t_info *info);
 
+/*
+** save_bmp.c
+*/
+
+int		save_image(t_info *info);
+int		write_bmp_header(int file, int filesize, t_info *info);
+
 # endif

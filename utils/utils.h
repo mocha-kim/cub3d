@@ -14,6 +14,7 @@
 # define UTILS_H
 
 # include <stdlib.h>
+# include "../mlx_beta/mlx.h"
 
 typedef struct		s_list
 {
@@ -32,5 +33,6 @@ int					ft_atoi(const char *str);
 int					ft_isdigit(int c);
 char				*ft_strrchr(char *s, int c);
 void				ft_swap(int *n1, int *n2);
+void				screen_size(void *mlx, int *height, int *width);
 
 #endif
