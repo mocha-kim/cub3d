@@ -42,7 +42,7 @@ int		main(int argc, char **argv)
 	int			has_save_opt;
 	
 	ptr_init(&info);
-	has_save_opt = (argc >= 2 && !ft_strcmp(argv[2], "--save"));
+	has_save_opt = (argc > 2 && !ft_strcmp(argv[2], "--save"));
 	if (argc < (2 + has_save_opt))
 		return (error_exit(NULL, "Error\n: no map argument.\n"));
 	if (!parse_config(&info.conf, argv[1]))
@@ -50,7 +50,7 @@ int		main(int argc, char **argv)
 	if (info_init(&info) == -1 || window_init(&info) == -1 || sprite_init(&info) == -1)
 		return (error_exit(&info, "Error\n: memory allocation failed.\n"));
 	load_texture(&info);
-	printf("%d\n", has_save_opt);
+	// printf("%d\n", has_save_opt);
 	if (has_save_opt)
 		return (save_image(&info));
 	printf("info : pos(%.2f, %.2f), dir(%.2f, %.2f), config map[%d][%d]\n", 

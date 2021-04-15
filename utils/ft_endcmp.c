@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "utils.h"
+#include <stdio.h>
 
 int	ft_endcmp(char *str, char *s)
 {
@@ -19,7 +20,7 @@ int	ft_endcmp(char *str, char *s)
 
 	size = ft_strlen(str) - 1;
 	i = ft_strlen(s) - 1;
-	while (str[size] && s[i])
+	while (i >= 0 && size >= 0)
 	{
 		if (str[size--] != s[i--])
 			return (0);

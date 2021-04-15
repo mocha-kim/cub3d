@@ -1,8 +1,8 @@
 #include "../includes/cub3d.h"
 
-static int	write_bmp_data(int fd, t_info *info)
+static int	write_bmp_data(int fd, t_info *info, int pad)
 {
-	// const unsigned char	zero[3] = {0, 0, 0};
+	const unsigned char	zero[3] = {0, 0, 0};
 	int					i;
 	int					j;
 	int					color;
@@ -13,11 +13,12 @@ static int	write_bmp_data(int fd, t_info *info)
 		j = -1;
 		while (++j < info->conf.req_width)
 		{
-			color = info->buf[j][i];
+			color = info->buf[i][j];
 			if ((write(fd, &color, 3) < 0))
 				return (0);
-			// if (write(fd, zero, 3))
 		}
+		if (pad > 0 && write(fd, &zero, pad) < 0)
+			return (0);
 	}
 	return (1);
 }
@@ -49,23 +50,28 @@ int			write_bmp_header(int fd, int filesize, t_info *info)
 	set_int_in_char(file_header + 22, i);
 	file_header[27] = (unsigned char)1;
 	file_header[28] = (unsigned char)24;
-	return (!(write(fd, file_header, 54) < 0));
+	if (write(fd, file_header, 54) != 54)
+		return (0);
+	return (1);
 }
 
 int			save_image(t_info *info)
 {
 	int		file;
 	int		filesize;
+	int		pad;
 
 	calc_back(info);
 	calc_sprite(info);
 	draw(info);
-	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC)) < 0)
+	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, 0644)) < 0)
 		return (0);
-	filesize = 54 + (info->conf.req_width * info->conf.req_width);
-	if (!(write_bmp_header(file, filesize, info)))
-		return (0);
-	if (!write_bmp_data(file, info))
-		return (0);
-	return (1);
+	pad = (4 - (info->conf.req_width * 3) % 4) % 4;
+	filesize = 54 + (3 * (info->conf.req_width + pad) * info->conf.req_width);
+	if (!write_bmp_header(file, filesize, info))
+		return (1);
+	if (!write_bmp_data(file, info, pad))
+		return (1);
+	close(file);
+	return (0);
 }
