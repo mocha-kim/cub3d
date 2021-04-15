@@ -66,8 +66,8 @@ int			save_image(t_info *info)
 	draw(info);
 	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, 0644)) < 0)
 		return (0);
-	pad = (4 - (info->conf.req_width * 3) % 4) % 4;
-	filesize = 54 + (3 * (info->conf.req_width + pad) * info->conf.req_width);
+	pad = (4 - (info->conf.win_width * 3) % 4) % 4;
+	filesize = 54 + (3 * (info->conf.win_width + pad) * info->conf.win_width);
 	if (!write_bmp_header(file, filesize, info))
 		return (1);
 	if (!write_bmp_data(file, info, pad))
