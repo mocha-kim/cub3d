@@ -5,10 +5,10 @@ int		window_init(t_info *info)
 	info->mlx = mlx_init();
 	if (!(info->mlx))
 		return (-1);
-	info->win = mlx_new_window(info->mlx, info->conf.req_width, info->conf.req_height, "cub3d");
+	info->win = mlx_new_window(info->mlx, info->conf.win_width, info->conf.win_height, "cub3D");
 	if (!(info->win))
 		return (-1);
-	info->img.img_ptr = mlx_new_image(info->mlx, info->conf.req_width, info->conf.req_height);
+	info->img.img_ptr = mlx_new_image(info->mlx, info->conf.win_width, info->conf.win_height);
 	info->img.data = (int *)mlx_get_data_addr(info->img.img_ptr, &info->img.bpp,
 			&info->img.size_l, &info->img.endian);
 	return (0);
@@ -20,4 +20,17 @@ void	clear_window(t_info *info)
 		mlx_destroy_image(info->mlx, info->img.img_ptr);
 	if (info->mlx && info->win)
 		mlx_destroy_window(info->mlx, info->win);
+}
+
+void	set_window_res(t_info *info)
+{
+	if (info->conf.win_width > 1600)
+	{
+		info->conf.win_width = 1600;
+
+	}
+	if (info->conf.win_height > 1200)
+	{
+		info->conf.win_height = 1200;
+	}
 }

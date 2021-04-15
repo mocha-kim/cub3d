@@ -8,10 +8,10 @@ static int	write_bmp_data(int fd, t_info *info, int pad)
 	int					color;
 
 	i = -1;
-	while (++i < info->conf.req_height)
+	while (++i < info->conf.win_height)
 	{
 		j = -1;
-		while (++j < info->conf.req_width)
+		while (++j < info->conf.win_width)
 		{
 			color = info->buf[i][j];
 			if ((write(fd, &color, 3) < 0))
@@ -44,9 +44,9 @@ int			write_bmp_header(int fd, int filesize, t_info *info)
 	set_int_in_char(file_header + 2, filesize);
 	file_header[10] = (unsigned char)(54);
 	file_header[14] = (unsigned char)(40);
-	i = info->conf.req_width;
+	i = info->conf.win_width;
 	set_int_in_char(file_header + 18, i);
-	i = info->conf.req_height;
+	i = info->conf.win_height;
 	set_int_in_char(file_header + 22, i);
 	file_header[27] = (unsigned char)1;
 	file_header[28] = (unsigned char)24;

@@ -23,12 +23,12 @@ void	draw(t_info *info)
 	int	y;
 
 	y = 0;
-	while (y < info->conf.req_height)
+	while (y < info->conf.win_height)
 	{
 		x = 0;
-		while (x < info->conf.req_width)
+		while (x < info->conf.win_width)
 		{
-			info->img.data[y * info->conf.req_width + x] = info->buf[y][x];
+			info->img.data[y * info->conf.win_width + x] = info->buf[y][x];
 			x++;
 		}
 		y++;
@@ -45,17 +45,14 @@ int		main(int argc, char **argv)
 	has_save_opt = (argc > 2 && !ft_strcmp(argv[2], "--save"));
 	if (argc < (2 + has_save_opt))
 		return (error_exit(NULL, "Error\n: no map argument.\n"));
-	printf("loade\n");
 	if (!parse_config(&info.conf, argv[1]))
 		return (error_exit(&info, "Error\n: Invalid map.\n"));
-	printf("loade\n");
 	if (info_init(&info) == -1 || window_init(&info) == -1 || sprite_init(&info) == -1)
 		return (error_exit(&info, "Error\n: memory allocation failed.\n"));
 	load_texture(&info);
-	printf("loade\n");
 	if (has_save_opt)
 		return (save_image(&info));
-	screen_size(info.mlx, &info.conf.req_width, &info.conf.req_height);
+	screen_size(info.mlx, &info.conf.win_width, &info.conf.win_height);
 	printf("info : pos(%.2f, %.2f), dir(%.2f, %.2f), config map[%d][%d]\n", 
 				info.posX, info.posY,info.dirX, info.dirY, info.conf.map_row, info.conf.map_col);
 	for (int i = 0; i < info.conf.map_col; i++)
@@ -64,7 +61,7 @@ int		main(int argc, char **argv)
 			printf("%c", info.conf.map[j][i]);
 		printf("\n");
 	}
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < info.sprite_num; i++)
 		printf("(%.0f, %.0f, %d) ", info.sprite[i].x, info.sprite[i].y, info.sprite[i].texture);
 	printf("\n");
 	printf("> game start...\n");

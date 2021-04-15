@@ -24,7 +24,7 @@ void	clear_game(t_info *info)
 	{
 		clear_config(&info->conf);
 		if (info->buf)
-			buf_free(info, info->conf.req_height - 1);
+			buf_free(info, info->conf.win_height - 1);
 		if (info->texture)
 			tex_free(info, TEXTURES - 1);
 		if (info->zBuffer)
