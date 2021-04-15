@@ -32,12 +32,15 @@ int		check_map_col(t_list *map_buffer)
 	return (max_col);
 }
 
-void	player_set(t_config *config, int x, int y)
+int		player_set(t_config *config, int x, int y)
 {
+	if (config->pos_x > 0 && config->pos_y > 0)
+		return (0);
 	config->pos_x = x;
 	config->pos_y = y;
 	config->dir = config->map_c[y][x];
 	config->map_c[y][x] = '0';
+	return (1);
 }
 
 int		copy_map(t_config *config, t_list *map_buffer)
@@ -58,11 +61,9 @@ int		copy_map(t_config *config, t_list *map_buffer)
 				break ;
 			}
 			config->map_c[i][j] = map_buffer->content[j];
-			if (ft_strrchr("NSWE", config->map_c[i][j])
-			&& !config->pos_x && !config->pos_y)
-				player_set(config, j, i);
-			else if (ft_strrchr("NSWE", config->map_c[i][j]) && config->pos_x > 0 && config->pos_y > 0)
-				return (0);
+			if (ft_strrchr("NSWE", config->map_c[i][j]))
+				if (!player_set(config, j, i))
+					return (0);
 		}
 		config->map_c[i][config->map_col] = 0;
 		map_buffer = map_buffer->next;
@@ -82,7 +83,8 @@ int		parse_map(t_config *config, t_list *map_buffer)
 		return (0);
 	i = 0;
 	while (i < config->map_row)
-		if (!(config->map_c[i++] = malloc(sizeof(char) * (config->map_col + 1))))
+		if (!(config->map_c[i++] = malloc(sizeof(char)
+		* (config->map_col + 1))))
 			return (-1);
 	if (!copy_map(config, map_buffer) || !element_check(config->set))
 		return (0);

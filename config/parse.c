@@ -9,22 +9,19 @@ int			parse_resolution(t_config *config, char *line)
 	config->set[C_R] = 1;
 	if (line && line[0] == 'R')
 	{
-		while (line[i] && line[i] == ' ')
-			i++;
+		i = notspace_index(line, i);
 		if (ft_strlen(line + i) == 0)
 			return (0);
 		if (ft_isdigit(line[i]))
 			config->win_width = ft_atoi(line + i);
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
-		while (line[i] && line[i] == ' ')
-			i++;
+		i = notspace_index(line, i);
 		if (ft_isdigit(line[i]))
 			config->win_height = ft_atoi(line + i);
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
-		while (line[i] && line[i] == ' ')
-			i++;
+		i = notspace_index(line, i);
 		if (line[i] != 0 || config->win_height < 0 || config->win_width < 0)
 			return (0);
 		return (1);
@@ -40,9 +37,7 @@ int			parse_texture(t_config *config, int id, char *line)
 
 	i = 2;
 	config->set[id] = 1;
-	while (line[i] == ' ')
-		i++;
-	line += i;
+	line += notspace_index(line, i);
 	if (ft_strlen(line) == 0)
 		return (0);
 	if (config->tex_path[id])
@@ -58,7 +53,7 @@ int			parse_texture(t_config *config, int id, char *line)
 		if (is_space(line[i++]))
 			return (0);
 	if (!(path = ft_substr(line, 0, len + 1)))
-		return (-1);
+		return (0);
 	config->tex_path[id] = path;
 	return (1);
 }

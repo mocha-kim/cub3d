@@ -11,32 +11,6 @@ int		element_check(int set[])
 	return (1);
 }
 
-// int		char_to_int_map(t_config *config)
-// {
-// 	int		i;
-// 	int		j;
-
-// 	i = -1;
-// 	if (!(config->map = malloc(sizeof(int*) * config->map_col)))
-// 		return (0);
-// 	while (++i < config->map_col)
-// 		if (!(config->map[i] = malloc(sizeof(int) * config->map_row)))
-// 			return (0);
-// 	i = -1;
-// 	while (++i < config->map_row)
-// 	{
-// 		j = -1;
-// 		while (++j < config->map_col)
-// 		{
-// 			if (config->map_c[i][j] == ' ' || config->map_c[i][j] == 'x')
-// 				config->map[j][i] = 0;
-// 			else
-// 				config->map[j][i] = config->map_c[i][j] - '0';
-// 		}
-// 	}
-// 	return (1);
-// }
-
 int		rotate_map(t_config *config)
 {
 	int		i;
@@ -74,4 +48,11 @@ int		player_valid_check(t_config *config)
 	|| !ft_strrchr("12x", config->map_c[r - 1][c]))
 		return (0);
 	return (1);
+}
+
+int		notspace_index(char *line, int ind)
+{
+	while (line[ind] && line[ind] == ' ')
+		ind++;
+	return (ind);
 }
