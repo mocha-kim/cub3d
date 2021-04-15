@@ -22,7 +22,8 @@ int		malloc_sprite(t_info *info)
 	info->sprite = (t_sprite *)malloc(sizeof(t_sprite) * num);
 	if (!info->sprite)
 		return (-1);
-	return (num);
+	info->sprite_num = num;
+	return (0);
 }
 
 int		sprite_init(t_info *info)
@@ -109,12 +110,12 @@ void	sort_sprites(int *order, double *dist, int amount)
 void	calc_sprite(t_info *info)
 {
 	int			i;
-	int			sprite_order[TEXTURES - 4];
-	double		sprite_dist[TEXTURES - 4];
+	int			sprite_order[info->sprite_num];
+	double		sprite_dist[info->sprite_num];
 	t_sprt_line	sprite;
 
 	i = 0;
-	while (i < TEXTURES - 6)
+	while (i < info->sprite_num)
 	{
 		sprite_order[i] = i;
 		sprite_dist[i] = ((info->posX - info->sprite[i].x)
@@ -123,9 +124,9 @@ void	calc_sprite(t_info *info)
 					* (info->posY - info->sprite[i].y));
 		i++;
 	}
-	sort_sprites(sprite_order, sprite_dist, TEXTURES - 4);
+	sort_sprites(sprite_order, sprite_dist, info->sprite_num);
 	i = 0;
-	while (i < TEXTURES - 6)
+	while (i < info->sprite_num)
 	{
 		calc_sprite_pos(&sprite, sprite_order, info, i);
 		calc_sprite_line(&sprite, info);

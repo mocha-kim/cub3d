@@ -71,6 +71,7 @@ typedef struct  s_info
     t_img       img;
     int         **buf;
 	double		*zBuffer;
+    int         sprite_num;
     t_sprite    *sprite;
     int         **texture;
     double      moveSpeed;

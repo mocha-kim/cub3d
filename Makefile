@@ -3,6 +3,7 @@ NAME		= cub3D
 INC_PATH	= ./includes
 SRC_PATH	= ./srcs
 MLX_PATH	= ./mlx
+MMS_PATH	= ./mlx_beta
 CON_PATH	= ./config
 GNL_PATH	= ./gnl
 UTL_PATH	= ./utils
@@ -23,19 +24,23 @@ OBJS		= $(SRCS:.c=.o)
 
 CC			= gcc
 CFLAGS		= -O3 -Wall -Wextra -Werror
-MLXFLAGS	= -lmlx -framework OpenGL -framework AppKit
-MLX			= libmlx.dylib
+MLXFLAGS	= -Lmlx -lm -Lmlx_beta -lmlx -framework OpenGL -framework AppKit
+MMS			= libmlx.dylib
+MLX			= m
 
 .c.o:
 		$(CC) $(CFLAGS) $(INCS) -c $< -o $(<:.c=.o)
 
-$(NAME):	$(MLX) $(OBJS)
+$(NAME):	$(MLX) $(OBJS) $(MMS)
+	mv $(MLX_PATH)/libmlx.a $(MLX_PATH)/libm.a
 	$(CC) $(CFLAGS) $(INCS) -o $(NAME) -L $(MLX_PATH) $(MLXFLAGS) $(OBJS)
-	@install_name_tool -change libmlx.dylib @loader_path/mlx/libmlx.dylib cub3d
+	#@install_name_tool -change libmlx.dylib @loader_path/mlx/libmlx.dylib cub3d
 	@echo $(NAME) : Created
 
 $(MLX):
 	@$(MAKE) -C mlx
+	@$(MAKE) -C mlx_beta
+	cp $(MMS_PATH)/$(MMS) .
 
 all:	$(NAME)
 
