@@ -68,6 +68,7 @@ typedef struct  s_info
     double      dirY;
     double      planeX;
     double      planeY;
+    int         score;
     t_img       img;
     int         **buf;
 	double		*zBuffer;

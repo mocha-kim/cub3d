@@ -44,8 +44,8 @@ int		sprite_init(t_info *info)
 		{
 			if (info->conf.map[j][i] == '2')
 			{
-				info->sprite[k].x = j;
-				info->sprite[k].y = i;
+				info->sprite[k].x = j + 0.5;
+				info->sprite[k].y = i + 0.5;
 				info->sprite[k].texture = T_SPRITE;
 				k++;
 			}

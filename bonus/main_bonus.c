@@ -1,10 +1,12 @@
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 int		main_loop(t_info *info)
 {
 	calc_back(info);
 	calc_sprite(info);
+	calc_minimap(info);
 	draw(info);
+	draw_score(info);
 	key_update(info);
 	return (0);
 }
@@ -52,6 +54,17 @@ int		main(int argc, char **argv)
 	if (has_save_opt)
 		return (save_image(&info));
 	screen_size(info.mlx, &info.conf.win_width, &info.conf.win_height);
+	printf("info : pos(%.2f, %.2f), dir(%.2f, %.2f), config map[%d][%d]\n", 
+				info.posX, info.posY,info.dirX, info.dirY, info.conf.map_row, info.conf.map_col);
+	for (int i = 0; i < info.conf.map_col; i++)
+	{
+		for (int j = 0; j < info.conf.map_row; j++)
+			printf("%c", info.conf.map[j][i]);
+		printf("\n");
+	}
+	for (int i = 0; i < info.sprite_num; i++)
+		printf("(%.0f, %.0f, %d) ", info.sprite[i].x, info.sprite[i].y, info.sprite[i].texture);
+	printf("\n");
 	printf("> game start...\n");
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, EVENT_KEY_PRESS, 0, &key_press, &info);
