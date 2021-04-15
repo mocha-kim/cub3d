@@ -49,3 +49,10 @@ int		player_valid_check(t_config *config)
 		return (0);
 	return (1);
 }
+
+int		notspace_index(char *line, int ind)
+{
+	while (line[ind] && line[ind] == ' ')
+		ind++;
+	return (ind);
+}

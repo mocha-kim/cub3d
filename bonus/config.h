@@ -22,9 +22,9 @@
 # define T_SO 1
 # define T_WE 2
 # define T_EA 3
-# define T_S 4
-# define T_C 5
-# define T_F 6
+# define T_SPRITE 4
+# define T_CEILING 5
+# define T_FLOOR 6
 # define T_SPRITE_UP 7
 # define T_SPRITE_C 8
 
@@ -56,7 +56,7 @@ int				parse_texture(t_config *config, int id, char *line);
 int				str_to_color(char *line);
 int				parse_color(t_config *config, int id, char *line);
 
-int				player_set(t_config *config, int x, int y);
+void			player_set(t_config *config, int x, int y);
 int				parse_map(t_config *config, t_list *map_buffer);
 int	 			copy_map(t_config *config, t_list *map_buffer);
 int				check_map_row(t_list *map_buffer);
@@ -66,6 +66,5 @@ int				valid_map_check(t_config *config);
 int				element_check(int set[]);
 int				player_valid_check(t_config *config);
 int				rotate_map(t_config *config);
-int				notspace_index(char *line, int ind);
 
 #endif

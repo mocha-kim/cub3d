@@ -14,7 +14,7 @@ static int		map_init(int dir[2][4])
 	return (1);
 }
 
-int				check_map(t_config *config,  int r, int c, int dir[2][4])
+int				check_map(t_config *config, int r, int c, int dir[2][4])
 {
 	int i;
 
