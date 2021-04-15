@@ -41,20 +41,20 @@ int		buf_init(t_info *info)
 	int i;
 	int j;
 
-	info->buf = (int**)malloc(sizeof(int*) * info->conf.req_height);
+	info->buf = (int**)malloc(sizeof(int*) * info->conf.win_height);
 	if (!(info->buf))
 		return (-1);
 	i = 0;
-	while (i < info->conf.req_height)
+	while (i < info->conf.win_height)
 	{
-		info->buf[i] = (int*)malloc((sizeof(int) * info->conf.req_width));
+		info->buf[i] = (int*)malloc((sizeof(int) * info->conf.win_width));
 		if (!(info->buf[i]))
 		{
 			buf_free(info, i);
 			return (-1);
 		}
 		j = 0;
-		while (j < info->conf.req_width)
+		while (j < info->conf.win_width)
 		{
 			info->buf[i][j] = 0;
 			j++;
@@ -74,8 +74,8 @@ void	key_init(t_info *info)
 
 int		info_init(t_info *info)
 {
-	info->posX = info->conf.pos_x;
-	info->posY = info->conf.pos_y;
+	info->posX = info->conf.pos_x + 0.5;
+	info->posY = info->conf.pos_y + 0.5;
 	info->dirX = 0;
 	info->dirY = 0;
 	info->planeX = 0;
@@ -86,7 +86,6 @@ int		info_init(t_info *info)
 	key_init(info);
 	if (buf_init(info) == -1 || tex_init(info) == -1)
 		return (-1);
-	info->zBuffer = (double*)malloc(sizeof(double) * info->conf.req_width);
-	printf("info\n");
+	info->zBuffer = (double*)malloc(sizeof(double) * info->conf.win_width);
 	return (0);
 }

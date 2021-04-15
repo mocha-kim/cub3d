@@ -14,18 +14,18 @@ int			parse_resolution(t_config *config, char *line)
 		if (ft_strlen(line + i) == 0)
 			return (0);
 		if (ft_isdigit(line[i]))
-			config->req_width = ft_atoi(line + i);
+			config->win_width = ft_atoi(line + i);
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
 		while (line[i] && line[i] == ' ')
 			i++;
 		if (ft_isdigit(line[i]))
-			config->req_height = ft_atoi(line + i);
+			config->win_height = ft_atoi(line + i);
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
 		while (line[i] && line[i] == ' ')
 			i++;
-		if (line[i] != 0 || config->req_height < 0 || config->req_width < 0)
+		if (line[i] != 0 || config->win_height < 0 || config->win_width < 0)
 			return (0);
 		return (1);
 	}
