@@ -25,12 +25,14 @@ void	ft_swap(int *n1, int *n2)
 	*n2 = tmp;
 }
 
-void	screen_size(void *mlx, int *height, int *width)
+void	screen_size(void *mlx, int *width, int *height)
 {
 	int 	sizex;
 	int		sizey;
 
 	mlx_get_screen_size(mlx, &sizex, &sizey);
-	printf("sizex: %d\nsizey: %d\n", sizex, sizey);
-	printf("screen x: %d, y: %d\n", *width, *height);
+	if (sizex < *width)
+		*width = sizex;
+	if (sizey < *height)
+		*height = sizey;
 }
