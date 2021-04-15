@@ -1,4 +1,4 @@
-#include "config.h"
+#include "config_bonus.h"
 #include <stdio.h>
 
 int			parse_resolution(t_config *config, char *line)

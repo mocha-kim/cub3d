@@ -1,5 +1,5 @@
-#ifndef CONFIG_H
-# define CONFIG_H
+#ifndef CONFIG_BONUS_H
+# define CONFIG_BONUS_H
 
 # include "../gnl/get_next_line.h"
 # include "../utils/utils.h"
@@ -7,26 +7,29 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# define C_R    8
+# define C_R    10
 # define C_NO   0
 # define C_SO   1
 # define C_WE   2
 # define C_EA   3
 # define C_S    4
-# define C_C    5
-# define C_F    6
-# define C_MAP  7
+# define C_SU	5
+# define C_SC	6
+# define C_C    7
+# define C_F    8
+# define C_MAP  9
 
-# define TEXTURES 5
+
+# define TEXTURES 9
 # define T_NO 0
 # define T_SO 1
 # define T_WE 2
 # define T_EA 3
 # define T_SPRITE 4
-# define T_CEILING 5
-# define T_FLOOR 6
-# define T_SPRITE_UP 7
-# define T_SPRITE_C 8
+# define T_SPRITE_UP 5
+# define T_SPRITE_C 6
+# define T_CEILING 7
+# define T_FLOOR 8
 
 typedef struct	s_config
 {
@@ -42,7 +45,7 @@ typedef struct	s_config
 	int			pos_y;
 	char		dir;
 	int			path_cnt;
-	int			set[9];
+	int			set[11];
 }				t_config;
 
 int				identifier(char *line);
