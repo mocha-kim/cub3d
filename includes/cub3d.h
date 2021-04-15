@@ -163,7 +163,6 @@ int 	info_init(t_info *info);
 
 int 	window_init(t_info *info);
 void    clear_window(t_info *info);
-void    set_window_res(t_info *info);
 
 /*
 ** close.c

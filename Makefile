@@ -1,5 +1,5 @@
 NAME		= cub3D
-BONUS		= cub3D
+BONUS		= cub3D_bonus
 
 INC_PATH	= ./includes
 SRC_PATH	= ./srcs
@@ -56,7 +56,7 @@ $(MLX):
 $(BONUS):	$(MLX) $(BNS_OBJS) $(MMS)
 	mv $(MLX_PATH)/libmlx.a $(MLX_PATH)/libm.a
 	$(CC) $(CFLAGS) $(INCS) -o $(NAME) -L $(MLX_PATH) $(MLXFLAGS) $(BNS_OBJS)
-	@echo $(NAME)_bonus : Created
+	@echo $(BONUS) : Created
 
 all:	$(NAME)
 
@@ -67,7 +67,7 @@ clean:
 	rm -f $(OBJS) $(BNS_OBJS)
 
 fclean: clean
-	rm -f $(NAME) $(MLX)
+	rm -f $(NAME) $(BONUS) $(MLX)
 
 re:		fclean all
 
