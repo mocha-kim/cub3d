@@ -1,9 +1,9 @@
-R 640 200
+R 640 500
 NO ./textures/bluestone.xpm 
 SO ./textures/eagle.xpm 
 WE ./textures/greystone.xpm
 EA ./textures/redbrick.xpm
-S ./textures/greenlight.xpm
+S ./textures/barrel.xpm
 F 00,153,15
 C 255,255,255
 
