@@ -1,5 +1,4 @@
 #include "utils.h"
-#include <stdio.h>
 
 int		is_space(char ch)
 {
@@ -27,8 +26,8 @@ void	ft_swap(int *n1, int *n2)
 
 void	screen_size(void *mlx, int *width, int *height)
 {
-	int 	sizex;
-	int		sizey;
+	int sizex;
+	int	sizey;
 
 	mlx_get_screen_size(mlx, &sizex, &sizey);
 	if (sizex < *width)

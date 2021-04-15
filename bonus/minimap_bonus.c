@@ -24,7 +24,20 @@ void	draw_rectangle(t_info *info, int x, int y, int color)
 	}
 }
 
-void	draw_rectangles(t_info *info)
+void	calc_mininap_object(t_info *info)
+{
+	int		i;
+
+	i = 0;
+	while(i < info->sprite_num)
+	{
+		draw_rectangle(info, info->sprite[i].y, info->sprite[i].x, 0x00FF00);
+		i++;
+	}
+	draw_rectangle(info, info->posY, info->posX, 0xFF0000);
+}
+
+void	calc_minimap(t_info *info)
 {
 	int		i;
 	int		j;
@@ -37,16 +50,16 @@ void	draw_rectangles(t_info *info)
 		j = 0;
 		while (j < info->conf.map_col)
 		{
-			if (info->conf.map[i][j] == '1')
+			if (info->conf.map[i][j] == ' ')
+				draw_rectangle(info, j, i, 0x00FFFFFF);
+			else if (info->conf.map[i][j] == '1')
 				draw_rectangle(info, j, i, 0xFFFFFF);
-			else if (info->conf.map[i][j] == '0')
+			else
 				draw_rectangle(info, j, i, 0x000000);
-			else if (info->conf.map[i][j] == '2')
-				draw_rectangle(info, j, i, 0xFFFF00);
 			j++;
 		}
 		i++;
 	}
-	draw_rectangle(info, info->posY, info->posX, 0xFF0000);
+	calc_mininap_object(info);
 }
 

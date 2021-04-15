@@ -1,5 +1,4 @@
 #include "utils.h"
-#include <stdio.h>
 
 t_list	*lst_add_back(t_list **lst, char *line)
 {

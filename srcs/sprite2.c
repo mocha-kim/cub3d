@@ -17,10 +17,12 @@ void	calc_sprite_line(t_sprt_line *sprt, t_info *info)
 {
 	sprt->vMoveScreen = (int)(V_MOVE / sprt->transY);
 	sprt->height = (int)fabs((info->conf.win_height / sprt->transY) / V_DIV);
-	sprt->drawStartY = -sprt->height / 2 + info->conf.win_height / 2 + sprt->vMoveScreen;
+	sprt->drawStartY = -sprt->height / 2 + info->conf.win_height
+						/ 2 + sprt->vMoveScreen;
 	if (sprt->drawStartY < 0)
 		sprt->drawStartY = 0;
-	sprt->drawEndY = sprt->height / 2 + info->conf.win_height / 2 + sprt->vMoveScreen;
+	sprt->drawEndY = sprt->height / 2 + info->conf.win_height
+						/ 2 + sprt->vMoveScreen;
 	if (sprt->drawEndY >= info->conf.win_height)
 		sprt->drawEndY = info->conf.win_height - 1;
 	sprt->width = (int)fabs((info->conf.win_height / sprt->transY) / U_DIV);

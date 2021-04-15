@@ -51,7 +51,8 @@ void	coord_wall_tex(int x, t_back_line *line, t_info *info)
 	int		y;
 
 	step = 1.0 * TEX_HEIGHT / line->lineHeight;
-	tex_pos = (line->drawStart - info->conf.win_height / 2 + line->lineHeight / 2) * step;
+	tex_pos = (line->drawStart - info->conf.win_height
+				/ 2 + line->lineHeight / 2) * step;
 	y = line->drawStart;
 	while (y < line->drawEnd)
 	{

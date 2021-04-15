@@ -31,9 +31,8 @@ int		sprite_init(t_info *info)
 	int	i;
 	int	j;
 	int	k;
-	int	num;
 
-	if ((num = malloc_sprite(info)) == -1)
+	if (malloc_sprite(info) == -1)
 		return (-1);
 	i = 0;
 	k = 0;
@@ -44,9 +43,9 @@ int		sprite_init(t_info *info)
 		{
 			if (info->conf.map[j][i] == '2')
 			{
-				info->sprite[k].x = j;
-				info->sprite[k].y = i;
-				info->sprite[k].texture = T_SPRITE;
+				info->sprite[k].x = j + 0.5;
+				info->sprite[k].y = i + 0.5;
+				info->sprite[k].texture = T_S;
 				k++;
 			}
 			j++;

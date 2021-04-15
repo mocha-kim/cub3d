@@ -80,6 +80,7 @@ int		info_init(t_info *info)
 	info->dirY = 0;
 	info->planeX = 0;
 	info->planeY = 0;
+	info->score = 1000;
 	dir_init(info);
 	info->moveSpeed = 0.05;
 	info->rotSpeed = 0.05;

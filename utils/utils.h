@@ -33,6 +33,9 @@ int					ft_atoi(const char *str);
 int					ft_isdigit(int c);
 char				*ft_strrchr(char *s, int c);
 void				ft_swap(int *n1, int *n2);
+long long			ft_abs(int n);
+int					ft_intlen(int n);
+char				*ft_itoa(int n);
 void				screen_size(void *mlx, int *height, int *width);
 
 #endif

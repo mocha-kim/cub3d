@@ -1,5 +1,4 @@
 #include "config.h"
-#include <stdio.h>
 
 int			parse_resolution(t_config *config, char *line)
 {
@@ -123,6 +122,6 @@ int			parse_color(t_config *config, int id, char *line)
 		return (0);
 	if ((int)(color = str_to_color(line + i)) < 0)
 		return (0);
-	config->cf_color[id - T_CEILING] = color;
+	config->cf_color[id - T_C] = color;
 	return (1);
 }
