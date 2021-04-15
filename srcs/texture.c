@@ -64,7 +64,7 @@ void	load_texture(t_info *info)
 	load_image(info, info->texture[T_SO], info->conf.tex_path[T_SO], &img);
 	load_image(info, info->texture[T_WE], info->conf.tex_path[T_WE], &img);
 	load_image(info, info->texture[T_EA], info->conf.tex_path[T_EA], &img);
-	load_image(info, info->texture[T_SPRITE], info->conf.tex_path[T_SPRITE], &img);
+	load_image(info, info->texture[T_S], info->conf.tex_path[T_S], &img);
 }
 
 void	tex_free(t_info *info, int i)

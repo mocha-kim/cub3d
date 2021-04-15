@@ -39,20 +39,20 @@ int		main(int argc, char **argv)
 {
 	t_info		info;
 	int			has_save_opt;
-	
+
 	ptr_init(&info);
 	has_save_opt = (argc > 2 && !ft_strcmp(argv[2], "--save"));
 	if (argc < (2 + has_save_opt))
 		return (error_exit(NULL, "Error\n: no map argument.\n"));
 	if (!parse_config(&info.conf, argv[1]))
 		return (error_exit(&info, "Error\n: Invalid map.\n"));
-	if (info_init(&info) == -1 || window_init(&info) == -1 || sprite_init(&info) == -1)
+	if (info_init(&info) == -1 || window_init(&info) == -1
+		|| sprite_init(&info) == -1)
 		return (error_exit(&info, "Error\n: memory allocation failed.\n"));
 	load_texture(&info);
 	if (has_save_opt)
 		return (save_image(&info));
 	screen_size(info.mlx, &info.conf.win_width, &info.conf.win_height);
-	printf("> game start...\n");
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, EVENT_KEY_PRESS, 0, &key_press, &info);
 	mlx_hook(info.win, EVENT_KEY_RELEASE, 0, &key_release, &info);
