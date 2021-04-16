@@ -1,4 +1,4 @@
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static int	write_bmp_data(int fd, t_info *info, int pad)
 {
