@@ -57,7 +57,8 @@ void	config_init(t_config *config)
 	config->win_width = -1;
 	while (i < TEXTURES)
 		config->tex_path[i++] = 0;
-	config->map_c = NULL;
+	config->map_c = 0;
+	config->map = 0;
 	i = 0;
 	while (i < 9)
 		config->set[i++] = 0;
@@ -101,25 +102,22 @@ int		clear_config(t_config *config)
 
 	i = -1;
 	while (++i < TEXTURES)
-	{
-		if (config->tex_path[i])
+		if (config->tex_path[i] != 0)
 			free(config->tex_path[i]);
-	}
+	// printf("free textures\n%d, %d\n", config->map_row, config->map_col);
 	i = -1;
 	while (++i < config->map_row)
-	{
 		if (config->map[i])
 			free(config->map[i]);
-	}
-	if (*config->map)
+	if (config->map_row > 0 && config->map)
 		free(config->map);
+	// printf("free\n");
 	i = -1;
 	while (++i < config->map_col)
-	{
 		if (config->map_c[i])
 			free(config->map_c[i]);
-	}
-	if (*config->map_c)
+	if (config->map_c != 0)
 		free(config->map_c);
+	// printf("free\n");
 	return (1);
 }

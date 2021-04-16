@@ -62,6 +62,7 @@ void	config_init(t_config *config)
 	while (i < TEXTURES)
 		config->tex_path[i++] = 0;
 	config->map_c = NULL;
+	config->map = NULL;
 	i = 0;
 	while (i < 11)
 		config->set[i++] = 0;
@@ -88,7 +89,6 @@ int		parse_config(t_config *config, char *path)
 		r = (r && parse_line(config, line, &map_buffer));
 		free(line);
 	}
-	printf("%d\n", r);
 	if (r && ft_strlen(line) > 0)
 		r = (r && parse_line(config, line, &map_buffer));
 	free(line);
@@ -112,13 +112,13 @@ int		clear_config(t_config *config)
 	while (++i < config->map_row)
 		if (config->map[i])
 			free(config->map[i]);
-	if (*config->map)
+	if (config->map)
 		free(config->map);
 	i = -1;
 	while (++i < config->map_col)
 		if (config->map_c[i])
 			free(config->map_c[i]);
-	if (*config->map_c)
+	if (config->map_c)
 		free(config->map_c);
 	return (1);
 }
