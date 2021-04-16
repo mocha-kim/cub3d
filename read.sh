@@ -1,4 +1,6 @@
-gcc -Wall -Werror -Wextra gnl/*.c config/*.c utils/*.c main.c -o parse_map;
+# gcc -Wall -Werror -Wextra -fsanitize=address gnl/*.c config/*.c utils/*.c main.c -o parse_map;
+
+gcc -Wall -Werror -Wextra -fsanitize=address gnl/*.c bonus/map_check_bonus.c bonus/map_bonus.c bonus/valid_check_bonus.c bonus/config_bonus.c bonus/parse_bonus.c utils/*.c config_main_bonus.c -o parse_map;
 
 echo "fail case"
 for ((i=1;i<=57;i++))
@@ -12,4 +14,11 @@ done
 # do
 # 	echo $i
 # 	./parse_map ./maps/test$i.cub
+# done
+
+# echo bonus
+# for ((i=1;i<=2;i++))
+# do
+# 	echo $i
+# 	./parse_map ./maps/bonus$i.cub
 # done
