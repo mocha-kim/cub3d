@@ -63,10 +63,12 @@ void	config_init(t_config *config)
 		config->tex_path[i++] = 0;
 	config->map_c = NULL;
 	i = 0;
-	while (i < 9)
+	while (i < 11)
 		config->set[i++] = 0;
 	config->pos_x = 0;
 	config->pos_y = 0;
+	config->map_row = 0;
+	config->map_col = 0;
 }
 
 int		parse_config(t_config *config, char *path)
@@ -103,15 +105,28 @@ int		clear_config(t_config *config)
 
 	i = -1;
 	while (++i < TEXTURES)
+	{
 		if (config->tex_path[i])
 			free(config->tex_path[i]);
+		// config->tex_path[i] = 0;
+	}
 	i = -1;
 	while (++i < config->map_row)
+	{
 		if (config->map[i])
 			free(config->map[i]);
+		// config->map[i] = 0;
+	}
+	if (*config->map)
+		free(config->map);
 	i = -1;
 	while (++i < config->map_col)
+	{
 		if (config->map_c[i])
 			free(config->map_c[i]);
+		// config->map[i] = 0;
+	}
+	if (*config->map_c)
+		free(config->map_c);
 	return (1);
 }
