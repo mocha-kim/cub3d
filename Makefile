@@ -24,7 +24,7 @@ OBJS		= $(SRCS:.c=.o)
 
 BNS_SRCS	= $(BNS_PATH)/main_bonus.c $(SRC_PATH)/info.c $(SRC_PATH)/close.c $(SRC_PATH)/window.c \
 			  $(SRC_PATH)/key_handling.c $(SRC_PATH)/wall1.c $(SRC_PATH)/wall2.c $(SRC_PATH)/floor.c \
-			  $(SRC_PATH)/sprite1.c $(SRC_PATH)/sprite2.c $(SRC_PATH)/texture.c \
+			  $(SRC_PATH)/sprite1.c $(SRC_PATH)/sprite2.c $(SRC_PATH)/texture.c $(SRC_PATH)/camera.c \
 			  $(SRC_PATH)/save_bmp.c \
 			  $(CON_PATH)/config.c $(CON_PATH)/map_check.c $(CON_PATH)/map.c $(CON_PATH)/parse.c \
 			  $(CON_PATH)/valid_check.c \

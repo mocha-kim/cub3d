@@ -21,7 +21,7 @@ int		identifier(char *line)
 	else if (line[0] == 'S' && line[1] == 'U')
 		return (C_SU);
 	else if (line[0] == 'S' && line[1] == 'C')
-		return (C_SU);
+		return (C_SC);
 	else
 		return (C_MAP);
 }
