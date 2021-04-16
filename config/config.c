@@ -88,7 +88,6 @@ int		parse_config(t_config *config, char *path)
 		r = (r && parse_line(config, line, &map_buffer));
 	free(line);
 	close(fd);
-	printf("%d\n", r);
 	if (!r || !parse_map(config, map_buffer))
 		return (lst_clear(&map_buffer));
 	lst_clear(&map_buffer);
@@ -105,14 +104,12 @@ int		clear_config(t_config *config)
 	{
 		if (config->tex_path[i])
 			free(config->tex_path[i]);
-		config->tex_path[i] = 0;
 	}
 	i = -1;
 	while (++i < config->map_row)
 	{
 		if (config->map[i])
 			free(config->map[i]);
-		config->map[i] = 0;
 	}
 	if (*config->map)
 		free(config->map);
@@ -121,7 +118,6 @@ int		clear_config(t_config *config)
 	{
 		if (config->map_c[i])
 			free(config->map_c[i]);
-		config->map[i] = 0;
 	}
 	if (*config->map_c)
 		free(config->map_c);

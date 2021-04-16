@@ -86,23 +86,25 @@ int			str_to_color(char *line)
 	int rgb;
 	int i;
 	int cnt;
+	int num;
 
 	i = 0;
 	cnt = 0;
 	rgb = 0;
 	if (!color_split(line))
 		return (-1);
-	while (line[i] && cnt <= 16)
+	while (line[i] != ',' && line[i] && cnt <= 16)
 	{
-		while (!ft_strrchr(", ", line[i]))
-			i++;
-		line[i] = 0;
-		if (ft_atoi(line) > 255 || ft_atoi(line) < 0)
+		num = ft_atoi(line + i);
+		if (num > 255 || num < 0)
 			return (-1);
-		rgb = rgb | (ft_atoi(line) << (16 - cnt));
-		line += i + 1;
-		i = 0;
+		rgb = (rgb | (num << (16 - cnt)));
 		cnt += 8;
+		i = notspace_index(line, i);
+		while (line[i] && ft_isdigit(line[i]))
+			i++;
+		if (line[i] == ',')
+			i++;
 	}
 	return (rgb);
 }
@@ -112,10 +114,7 @@ int			parse_color(t_config *config, int id, char *line)
 	int				i;
 	unsigned int	color;
 
-	i = 1;
-	config->set[id] = 1;
-	while (is_space(line[i]))
-		i++;
+	i = notspace_index(line, 1);
 	if (ft_strlen(line + i) == 0)
 		return (0);
 	if (!ft_isdigit(line[i]))
@@ -123,5 +122,6 @@ int			parse_color(t_config *config, int id, char *line)
 	if ((int)(color = str_to_color(line + i)) < 0)
 		return (0);
 	config->cf_color[id - T_C] = color;
+	config->set[id] = 1;
 	return (1);
 }

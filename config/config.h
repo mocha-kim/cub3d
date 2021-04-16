@@ -25,8 +25,6 @@
 # define T_S 4
 # define T_C 5
 # define T_F 6
-# define T_SPRITE_UP 7
-# define T_SPRITE_C 8
 
 typedef struct	s_config
 {
@@ -41,7 +39,6 @@ typedef struct	s_config
 	int			pos_x;
 	int			pos_y;
 	char		dir;
-	int			path_cnt;
 	int			set[9];
 }				t_config;
 
@@ -58,7 +55,7 @@ int				parse_color(t_config *config, int id, char *line);
 
 int				player_set(t_config *config, int x, int y);
 int				parse_map(t_config *config, t_list *map_buffer);
-int	 			copy_map(t_config *config, t_list *map_buffer);
+int				copy_map(t_config *config, t_list *map_buffer);
 int				check_map_row(t_list *map_buffer);
 int				check_map_col(t_list *map_buffer);
 int				check_map(t_config *config, int r, int c, int dir[2][4]);

@@ -1,12 +1,13 @@
-#include "config.h"
+#include "../includes/cub3d_bonus.h"
 
 int		element_check(int set[])
 {
 	int i;
 
 	i = -1;
-	while (++i < 9)
-		if (set[i] == 0 && i != C_S && i != C_MAP)
+	while (++i < 11)
+		if (set[i] == 0 && i != C_S && i != C_MAP
+		&& i != C_SC && i != C_SU)
 			return (0);
 	return (1);
 }
@@ -42,10 +43,10 @@ int		player_valid_check(t_config *config)
 	if (r <= 0 || r >= config->map_row - 1
 	|| c <= 0 || c >= config->map_col - 1)
 		return (0);
-	if (!ft_strrchr("1x", config->map_c[r][c + 1])
-	|| !ft_strrchr("1x", config->map_c[r][c - 1])
-	|| !ft_strrchr("1x", config->map_c[r + 1][c])
-	|| !ft_strrchr("1x", config->map_c[r - 1][c]))
+	if (!ft_strrchr("12x", config->map_c[r][c + 1])
+	|| !ft_strrchr("12x", config->map_c[r][c - 1])
+	|| !ft_strrchr("12x", config->map_c[r + 1][c])
+	|| !ft_strrchr("12x", config->map_c[r - 1][c]))
 		return (0);
 	return (1);
 }

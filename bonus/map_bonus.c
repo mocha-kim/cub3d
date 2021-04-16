@@ -1,4 +1,4 @@
-#include "config.h"
+#include "config_bonus.h"
 
 int		check_map_row(t_list *map_buffer)
 {
@@ -67,6 +67,7 @@ int		copy_map(t_config *config, t_list *map_buffer)
 		}
 		map_buffer = map_buffer->next;
 	}
+	
 	return (1);
 }
 
@@ -84,7 +85,7 @@ int		parse_map(t_config *config, t_list *map_buffer)
 	while (i < config->map_row)
 		if (!(config->map_c[i++] = malloc(sizeof(char)
 		* (config->map_col))))
-			return (-1);
+			return (0);
 	if (!copy_map(config, map_buffer) || !element_check(config->set))
 		return (0);
 	return (valid_map_check(config));
