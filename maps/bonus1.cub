@@ -4,9 +4,10 @@ SO ./textures/eagle.xpm
 WE ./textures/greystone.xpm
 EA ./textures/redbrick.xpm
 S ./textures/barrel.xpm
-
-F 207,178,181
-C 177,219,240
+SU ./textures/greenlight.xpm
+SC ./textures/pillar.xpm
+F ./textures/wood.xpm
+C ./textures/mossy.xpm
 
         1111111111111111111111111
         1000000000110000000000001
