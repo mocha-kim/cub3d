@@ -8,7 +8,10 @@ int main(int argc, char *argv[])
 	if (argc < 2 || (argc == 3 && !ft_strcmp(argv[2], "--save")))
 		return (write(2, "Error\n", 6));
 	if (!parse_config(&config, argv[1]))
+	{
+		clear_config(&config);
 		return (write(2, "Error\n", 6));
+	}
 	printf("height: %d, width: %d\n", config.win_height, config.win_width);
 	printf("NO: %s\nSO: %s\nWE: %s\nEA: %s\n", config.tex_path[T_NO], config.tex_path[T_SO], config.tex_path[T_WE], config.tex_path[T_EA]);
 	printf("SKY: %X\nFLOOR: %X\n", config.cf_color[0], config.cf_color[1]);
