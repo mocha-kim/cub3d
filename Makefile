@@ -35,7 +35,7 @@ BNS_SRCS	= $(BNS_PATH)/main_bonus.c $(BNS_PATH)/info_bonus.c $(BNS_PATH)/close_b
 BNS_OBJS	= $(BNS_SRCS:.c=.o)
 
 CC			= gcc
-CFLAGS		= -O3 -Wall -Wextra -Werror -fsanitize=address
+CFLAGS		= -O3 -Wall -Wextra -Werror
 MLXFLAGS	= -Lmlx -lm -Lmlx_beta -lmlx -framework OpenGL -framework AppKit
 MMS			= libmlx.dylib
 MLX			= libm.a

@@ -6,7 +6,7 @@ int		element_check(int set[])
 
 	i = -1;
 	while (++i < 11)
-		if (set[i] == 0 && i != C_S && i != C_MAP
+		if (set[i] == 0 && i != C_S
 		&& i != C_SC && i != C_SU)
 			return (0);
 	return (1);

@@ -170,9 +170,9 @@ void    clear_window(t_info *info);
 ** close.c
 */
 
-int		error_exit(t_info *info, char *message);
+int		error_exit(t_info *info, char *message, int status);
 void	buf_free(t_info *info, int i);
-void	clear_game(t_info *info);
+void	clear_game(t_info *info, int status);
 
 /*
 ** wall1.c

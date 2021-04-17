@@ -96,28 +96,29 @@ int		parse_config(t_config *config, char *path)
 	return (1);
 }
 
-int		clear_config(t_config *config)
+int		clear_config(t_config *config, int status)
 {
 	int i;
 
 	i = -1;
+	if (status < 0)
+		ft_swap(&config->map_row, &config->map_col);
+	else if (status == 0)
+		return (1);
 	while (++i < TEXTURES)
 		if (config->tex_path[i] != 0)
 			free(config->tex_path[i]);
-	// printf("free textures\n%d, %d\n", config->map_row, config->map_col);
 	i = -1;
-	while (++i < config->map_row)
-		if (config->map[i])
-			free(config->map[i]);
-	if (config->map_row > 0 && config->map)
-		free(config->map);
-	// printf("free\n");
-	i = -1;
-	while (++i < config->map_col)
+	while (config->map_c != 0 && ++i < config->map_col)
 		if (config->map_c[i])
 			free(config->map_c[i]);
 	if (config->map_c != 0)
 		free(config->map_c);
-	// printf("free\n");
+	i = -1;
+	while (config->map != 0 && ++i < config->map_row)
+		if (config->map[i])
+			free(config->map[i]);
+	if (config->map != 0)
+		free(config->map);
 	return (1);
 }
