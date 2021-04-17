@@ -19,7 +19,6 @@
 # define C_F    8
 # define C_MAP  9
 
-
 # define TEXTURES 9
 # define T_NO 0
 # define T_SO 1
@@ -60,7 +59,7 @@ int				parse_color(t_config *config, int id, char *line);
 
 int				player_set(t_config *config, int x, int y);
 int				parse_map(t_config *config, t_list *map_buffer);
-int	 			copy_map(t_config *config, t_list *map_buffer);
+int				copy_map(t_config *config, t_list *map_buffer);
 int				check_map_row(t_list *map_buffer);
 int				check_map_col(t_list *map_buffer);
 int				check_map(t_config *config, int r, int c, int dir[2][4]);
