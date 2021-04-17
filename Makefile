@@ -22,16 +22,16 @@ SRCS		= $(SRC_PATH)/main.c $(SRC_PATH)/info.c $(SRC_PATH)/close.c $(SRC_PATH)/wi
 			  $(UTL_PATH)/ft_itoa.c $(UTL_PATH)/ft_strrchr.c $(UTL_PATH)/lst_add_back.c $(UTL_PATH)/utils.c
 OBJS		= $(SRCS:.c=.o)
 
-BNS_SRCS	= $(BNS_PATH)/main_bonus.c $(BNS_PATH)/info.c $(BNS_PATH)/close.c $(BNS_PATH)/window.c \
-			  $(BNS_PATH)/key_handling.c $(BNS_PATH)/wall1.c $(BNS_PATH)/wall2.c $(BNS_PATH)/floor.c \
-			  $(BNS_PATH)/sprite1.c $(BNS_PATH)/sprite2.c $(BNS_PATH)/texture.c $(BNS_PATH)/camera.c \
-			  $(BNS_PATH)/save_bmp.c \
-			  $(BNS_PATH)/config_bonus.c $(BNS_PATH)/map_check_bonus.c $(BNS_PATH)/map_bonus.c $(BNS_PATH)/parse_bonus.c \
-			  $(BNS_PATH)/valid_check_bonus.c \
+BNS_SRCS	= $(BNS_PATH)/main_bonus.c $(BNS_PATH)/info_bonus.c $(BNS_PATH)/close_bonus.c \
+			  $(BNS_PATH)/window_bonus.c $(BNS_PATH)/save_bmp_bonus.c $(BNS_PATH)/key_handling_bonus.c \
+			  $(BNS_PATH)/wall1_bonus.c $(BNS_PATH)/wall2_bonus.c $(BNS_PATH)/floor_bonus.c \
+			  $(BNS_PATH)/sprite1_bonus.c $(BNS_PATH)/sprite2_bonus.c $(BNS_PATH)/texture_bonus.c \
+			  $(BNS_PATH)/camera_bonus.c $(BNS_PATH)/score_bonus.c $(BNS_PATH)/minimap_bonus.c\
+			  $(BNS_PATH)/config_bonus.c $(BNS_PATH)/map_check_bonus.c $(BNS_PATH)/map_bonus.c \
+			  $(BNS_PATH)/parse_bonus.c $(BNS_PATH)/valid_check_bonus.c \
 			  $(GNL_PATH)/get_next_line.c $(GNL_PATH)/get_next_line_utils.c \
 			  $(UTL_PATH)/ft_atoi.c $(UTL_PATH)/ft_endcmp.c $(UTL_PATH)/ft_strcmp.c $(UTL_PATH)/ft_strlen.c \
-			  $(UTL_PATH)/ft_itoa.c $(UTL_PATH)/ft_strrchr.c $(UTL_PATH)/lst_add_back.c $(UTL_PATH)/utils.c \
-			  $(BNS_PATH)/score_bonus.c $(BNS_PATH)/minimap_bonus.c
+			  $(UTL_PATH)/ft_itoa.c $(UTL_PATH)/ft_strrchr.c $(UTL_PATH)/lst_add_back.c $(UTL_PATH)/utils.c
 BNS_OBJS	= $(BNS_SRCS:.c=.o)
 
 CC			= gcc
