@@ -64,7 +64,16 @@ void	load_texture(t_info *info)
 	load_image(info, info->texture[T_SO], info->conf.tex_path[T_SO], &img);
 	load_image(info, info->texture[T_WE], info->conf.tex_path[T_WE], &img);
 	load_image(info, info->texture[T_EA], info->conf.tex_path[T_EA], &img);
-	load_image(info, info->texture[T_S], info->conf.tex_path[T_S], &img);
+	if (info->conf.tex_path[T_S])
+		load_image(info, info->texture[T_S], info->conf.tex_path[T_S], &img);
+	if (info->conf.tex_path[T_SU])
+		load_image(info, info->texture[T_SU], info->conf.tex_path[T_SU], &img);
+	if (info->conf.tex_path[T_SC])
+		load_image(info, info->texture[T_SC], info->conf.tex_path[T_SC], &img);
+	if (info->conf.tex_path[T_C])
+		load_image(info, info->texture[T_C], info->conf.tex_path[T_C], &img);
+	if (info->conf.tex_path[T_F])
+		load_image(info, info->texture[T_F], info->conf.tex_path[T_F], &img);
 }
 
 void	tex_free(t_info *info, int i)

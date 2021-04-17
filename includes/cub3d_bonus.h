@@ -142,7 +142,7 @@ typedef struct	s_pair
 }				t_pair;
 
 /*
-** main.c
+** main_bonus.c
 */
 
 int		main_loop(t_info *info);
@@ -249,13 +249,13 @@ int		save_image(t_info *info);
 int		write_bmp_header(int file, int filesize, t_info *info);
 
 /*
-** score.c
+** score_bonus.c
 */
 
 void	draw_score(t_info *info);
 
 /*
-** minimap.c
+** minimap_bonus.c
 */
 
 void	draw_rectangle(t_info *info, int x, int y, int color);

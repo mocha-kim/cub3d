@@ -26,8 +26,8 @@
 # define T_WE 2
 # define T_EA 3
 # define T_S 4
-# define T_SPRITE_UP 5
-# define T_SPRITE_C 6
+# define T_SU 5
+# define T_SC 6
 # define T_C 7
 # define T_F 8
 

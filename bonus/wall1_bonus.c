@@ -77,6 +77,7 @@ void	calc_back(t_info *info)
 		calc_wall(&line, &vec, info);
 		coord_wall_tex(x, &line, info);
 		calc_floor(&line, &vec);
+		coord_floor_tex(x, &line, &vec, info);
 		coord_floor_color(x, &line, info);
 		info->zBuffer[x] = vec.perpWallDist;
 		x++;
