@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <string.h>
+# include <unistd.h>
 
 # define Y_PLANE 1
 # define X_PLANE 0
@@ -81,6 +82,7 @@ typedef struct  s_info
     double      rotSpeed;
     t_key       key;
     t_config    conf;
+    int         pid;
 }               t_info;
 
 typedef struct  s_vetor
