@@ -63,7 +63,9 @@ int			save_image(t_info *info)
 
 	calc_back(info);
 	calc_sprite(info);
+	calc_minimap(info);
 	draw(info);
+	draw_score(info);
 	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, 0644)) < 0)
 		return (0);
 	pad = (4 - (info->conf.win_width * 3) % 4) % 4;

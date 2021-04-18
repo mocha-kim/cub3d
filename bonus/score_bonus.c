@@ -28,4 +28,5 @@ void		draw_score(t_info *info)
 	score = ft_itoa(info->score);
 	mlx_string_put(info->mlx, info->win, info->conf.win_width - 100, info->conf.win_height - 10, 0xFFFFFF, "score : ");
 	mlx_string_put(info->mlx, info->win, info->conf.win_width - 45, info->conf.win_height - 10, 0xFFFFFF, score);
+	free(score);
 }
