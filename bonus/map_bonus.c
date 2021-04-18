@@ -67,7 +67,6 @@ int		copy_map(t_config *config, t_list *map_buffer)
 		}
 		map_buffer = map_buffer->next;
 	}
-	
 	return (1);
 }
 

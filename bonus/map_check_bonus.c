@@ -64,7 +64,7 @@ int				valid_map_check(t_config *config)
 	{
 		c = -1;
 		while (++c < config->map_col)
-			if (config->map_c[r][c] == '0')
+			if (ft_strrchr("0234", config->map_c[r][c]))
 			{
 				is_valid = 1;
 				if (check_map(config, r, c, dir) == 0)

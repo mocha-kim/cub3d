@@ -1,6 +1,6 @@
 #include "../includes/cub3d_bonus.h"
 
-void	calc_score(t_info *info)
+static void	calc_score(t_info *info)
 {
 	int		i;
 
@@ -20,7 +20,7 @@ void	calc_score(t_info *info)
 	}
 }
 
-void	draw_score(t_info *info)
+void		draw_score(t_info *info)
 {
 	char	*score;
 
