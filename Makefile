@@ -49,8 +49,10 @@ $(NAME):	$(MLX) $(OBJS) $(MMS)
 
 $(MLX):
 	@$(MAKE) -C mlx
-	@$(MAKE) -C mlx_beta
 	mv $(MLX_PATH)/libmlx.a $(MLX_PATH)/$(MLX)
+
+$(MMS):
+	@$(MAKE) -C mlx_beta
 	cp $(MMS_PATH)/$(MMS) .
 
 $(BONUS):	$(MLX) $(BNS_OBJS) $(MMS)

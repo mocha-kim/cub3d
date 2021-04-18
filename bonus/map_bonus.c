@@ -82,8 +82,7 @@ int		parse_map(t_config *config, t_list *map_buffer)
 		return (0);
 	i = 0;
 	while (i < config->map_row)
-		if (!(config->map_c[i++] = malloc(sizeof(char)
-		* (config->map_col))))
+		if (!(config->map_c[i++] = malloc(sizeof(char) * (config->map_col))))
 			return (0);
 	if (!copy_map(config, map_buffer) || !element_check(config->set))
 		return (0);

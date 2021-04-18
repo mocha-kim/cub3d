@@ -14,7 +14,6 @@
 # define UTILS_H
 
 # include <stdlib.h>
-# include "../mlx_beta/mlx.h"
 
 typedef struct		s_list
 {

@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "../mlx_beta/mlx.h"
 
 int		is_space(char ch)
 {
