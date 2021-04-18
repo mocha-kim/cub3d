@@ -73,5 +73,6 @@ int			save_image(t_info *info)
 	if (!write_bmp_data(file, info, pad))
 		return (1);
 	close(file);
+	clear_game(info, 1);
 	return (0);
 }

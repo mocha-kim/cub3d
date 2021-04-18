@@ -22,8 +22,6 @@ void	clear_game(t_info *info, int status)
 {
 	if (info)
 	{
-		if (info->pid > 0)
-			system("killall afplay");
 		if (status != 0)
 			clear_config(&info->conf, status);
 		if (info->buf)
@@ -35,5 +33,7 @@ void	clear_game(t_info *info, int status)
 		if (info->sprite)
 			free(info->sprite);
 		clear_window(info);
+		system("afplay music.wav &");
+		system("killall afplay");
 	}
 }

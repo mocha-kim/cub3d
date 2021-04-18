@@ -90,10 +90,5 @@ int		info_init(t_info *info)
 	if (buf_init(info) == -1 || tex_init(info) == -1)
 		return (-1);
 	info->zBuffer = (double*)malloc(sizeof(double) * info->conf.win_width);
-	// if ((info->pid = fork()) == 0)
-	// {
-		// while (1)
-		// 	system("afplay ./music.wav");
-	// }
 	return (0);
 }
