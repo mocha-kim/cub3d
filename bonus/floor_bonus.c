@@ -47,7 +47,8 @@ void	coord_floor_tex(int x, t_back_line *line, t_vector *vec, t_info *info)
 		if (info->conf.tex_path[T_F] != 0)
 			info->buf[y][x] = info->texture[T_F][tex_tmp];
 		if (info->conf.tex_path[T_C] != 0)
-			info->buf[info->conf.win_height - y][x] = info->texture[T_C][tex_tmp];
+			info->buf[info->conf.win_height
+			- y][x] = info->texture[T_C][tex_tmp];
 		y++;
 	}
 }
@@ -66,7 +67,8 @@ void	coord_floor_color(int x, t_back_line *line, t_info *info)
 		if (info->conf.cf_color[1] != -1)
 			info->buf[y][x] = info->conf.cf_color[1];
 		if (info->conf.cf_color[0] != -1)
-			info->buf[info->conf.win_height - y - 1][x] = info->conf.cf_color[0];
+			info->buf[info->conf.win_height - y
+			- 1][x] = info->conf.cf_color[0];
 		y++;
 	}
 }

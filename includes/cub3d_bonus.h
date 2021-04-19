@@ -152,7 +152,7 @@ int 	main_close(t_info *info);
 void    draw(t_info *info);
 
 /*
-** info.c
+** info_bonus.c
 */
 
 void    ptr_init(t_info *info);
@@ -162,14 +162,14 @@ void	key_init(t_info *info);
 int 	info_init(t_info *info);
 
 /*
-** window.c
+** window_bonus.c
 */
 
 int 	window_init(t_info *info);
 void    clear_window(t_info *info);
 
 /*
-** close.c
+** close_bonus.c
 */
 
 int		error_exit(t_info *info, char *message, int status);
@@ -177,7 +177,7 @@ void	buf_free(t_info *info, int i);
 void	clear_game(t_info *info, int status);
 
 /*
-** wall1.c
+** wall1_bonus.c
 */
 
 void    calc_vars(int x, t_vector *vec, t_info *info);
@@ -186,7 +186,7 @@ void    ray_cast(t_vector *vec, t_info *info);
 void    calc_back(t_info *info);
 
 /*
-** wall2.c
+** wall2_bonus.c
 */
 
 void    calc_line(t_back_line *line, t_vector *vec, t_info *info);
@@ -194,7 +194,7 @@ void    calc_wall(t_back_line *line, t_vector *vec, t_info *info);
 void    coord_wall_tex(int x, t_back_line *line, t_info *info);
 
 /*
-** floor.c
+** floor_bonus.c
 */
 
 void    calc_floor(t_back_line *line, t_vector *vec);
@@ -202,7 +202,7 @@ void    coord_floor_tex(int x, t_back_line *line, t_vector *vec, t_info *info);
 void    coord_floor_color(int x, t_back_line *line, t_info *info);
 
 /*
-** texture.c
+** texture_bonus.c
 */
 
 int     tex_init(t_info *info);
@@ -211,16 +211,17 @@ void    load_texture(t_info *info);
 void    tex_free(t_info *info, int i);
 
 /*
-** sprite1.c
+** sprite1_bonus.c
 */
 
+int		malloc_sprite(t_info *info);
 int 	sprite_init(t_info *info);
 void	sort_order(t_pair *sprites, int amount);
 void	sort_sprites(int *order, double *dist, int amount);
 void    calc_sprite(t_info *info);
 
 /*
-** sprite2.c
+** sprite2_bonus.c
 */
 
 void	calc_sprite_pos(t_sprt_line *sprt, int *order, t_info *info, int i);
@@ -228,7 +229,7 @@ void	calc_sprite_line(t_sprt_line *sprt, t_info *info);
 void	coord_sprite_tex(t_info *info, int *order, t_sprt_line *sprite, int i);
 
 /*
-** key_handling.c
+** key_handling_bonus.c
 */
 
 int     key_update(t_info *info);
@@ -236,7 +237,7 @@ int     key_press(int key, t_info *info);
 int		key_release(int key, t_info *info);
 
 /*
-** camera.c
+** camera_bonus.c
 */
 
 void    move_vertical(t_info *info, int direction);
@@ -244,7 +245,7 @@ void    move_horizontal(t_info *info, int direction);
 void    rotate(t_info *info, int direction);
 
 /*
-** save_bmp.c
+** save_bmp_bonus.c
 */
 
 int		save_image(t_info *info);
@@ -261,6 +262,7 @@ void	draw_score(t_info *info);
 */
 
 void	draw_rectangle(t_info *info, int x, int y, int color);
+void	calc_mininap_object(t_info *info);
 void	calc_minimap(t_info *info);
 
 # endif

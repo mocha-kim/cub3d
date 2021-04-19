@@ -29,7 +29,7 @@ void	calc_mininap_object(t_info *info)
 	int		i;
 
 	i = 0;
-	while(i < info->sprite_num)
+	while (i < info->sprite_num)
 	{
 		draw_rectangle(info, info->sprite[i].y, info->sprite[i].x, 0x00FF00);
 		i++;
@@ -62,4 +62,3 @@ void	calc_minimap(t_info *info)
 	}
 	calc_mininap_object(info);
 }
-
