@@ -9,16 +9,16 @@ void	move_vertical(t_info *info, int direction)
 	tmp_y = info->posY + direction * info->dirY * info->moveSpeed;
 	if (direction == 1)
 	{
-		if (info->conf.map[tmp_x][(int)info->posY] != '1')
+		if (!ft_strrchr("14", info->conf.map[tmp_x][(int)info->posY]))
 			info->posX += info->dirX * info->moveSpeed;
-		if (info->conf.map[(int)info->posX][tmp_y] != '1')
+		if (!ft_strrchr("14", info->conf.map[(int)info->posX][tmp_y]))
 			info->posY += info->dirY * info->moveSpeed;
 	}
 	if (direction == -1)
 	{
-		if (info->conf.map[tmp_x][(int)info->posY] != '1')
+		if (!ft_strrchr("14", info->conf.map[tmp_x][(int)info->posY]))
 			info->posX -= info->dirX * info->moveSpeed;
-		if (info->conf.map[(int)info->posX][tmp_y] != '1')
+		if (!ft_strrchr("14", info->conf.map[(int)info->posX][tmp_y]))
 			info->posY -= info->dirY * info->moveSpeed;
 	}
 }
@@ -32,7 +32,7 @@ void	move_horizontal(t_info *info, int direction)
 	tmp_y = info->posY + direction * info->planeY * info->moveSpeed;
 	if (direction == 1)
 	{
-		if (info->conf.map[tmp_x][tmp_y] != '1')
+		if (!ft_strrchr("14", info->conf.map[tmp_x][tmp_y]))
 		{
 			info->posX += info->planeX * info->moveSpeed;
 			info->posY += info->planeY * info->moveSpeed;
@@ -40,7 +40,7 @@ void	move_horizontal(t_info *info, int direction)
 	}
 	if (direction == -1)
 	{
-		if (info->conf.map[tmp_x][tmp_y] != '1')
+		if (!ft_strrchr("14", info->conf.map[tmp_x][tmp_y]))
 		{
 			info->posX -= info->planeX * info->moveSpeed;
 			info->posY -= info->planeY * info->moveSpeed;
