@@ -41,14 +41,15 @@ int		main(int argc, char **argv)
 {
 	t_info		info;
 	int			has_save_opt;
-	
+
 	ptr_init(&info);
 	has_save_opt = (argc > 2 && !ft_strcmp(argv[2], "--save"));
 	if (argc < (2 + has_save_opt))
 		return (error_exit(NULL, "Error\n: no map argument.\n", 0));
 	if (!parse_config(&info.conf, argv[1]))
 		return (error_exit(&info, "Error\n: Invalid map.\n", -1));
-	if (info_init(&info) == -1 || window_init(&info) == -1 || sprite_init(&info) == -1)
+	if (info_init(&info) == -1 || window_init(&info) == -1
+	|| sprite_init(&info) == -1)
 		return (error_exit(&info, "Error\n: memory allocation failed.\n", 1));
 	load_texture(&info);
 	if (has_save_opt)
