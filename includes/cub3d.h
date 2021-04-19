@@ -211,6 +211,7 @@ void    tex_free(t_info *info, int i);
 ** sprite1.c
 */
 
+int		malloc_sprite(t_info *info);
 int 	sprite_init(t_info *info);
 void	sort_order(t_pair *sprites, int amount);
 void	sort_sprites(int *order, double *dist, int amount);
