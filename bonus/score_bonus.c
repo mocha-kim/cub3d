@@ -1,6 +1,6 @@
 #include "../includes/cub3d_bonus.h"
 
-void	calc_score(t_info *info)
+static void	calc_score(t_info *info)
 {
 	int		i;
 
@@ -22,7 +22,7 @@ void	calc_score(t_info *info)
 	}
 }
 
-void	draw_score(t_info *info)
+void		draw_score(t_info *info)
 {
 	char	*score;
 
@@ -32,4 +32,5 @@ void	draw_score(t_info *info)
 	info->conf.win_height - 10, 0xFFFFFF, "score : ");
 	mlx_string_put(info->mlx, info->win, info->conf.win_width - 45,
 	info->conf.win_height - 10, 0xFFFFFF, score);
+	free(score);
 }

@@ -63,6 +63,7 @@ int			save_image(t_info *info)
 
 	calc_back(info);
 	calc_sprite(info);
+	calc_minimap(info);
 	draw(info);
 	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, 0644)) < 0)
 		return (0);
@@ -73,5 +74,6 @@ int			save_image(t_info *info)
 	if (!write_bmp_data(file, info, pad))
 		return (1);
 	close(file);
+	clear_game(info, 1);
 	return (0);
 }

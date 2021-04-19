@@ -33,5 +33,7 @@ void	clear_game(t_info *info, int status)
 		if (info->sprite)
 			free(info->sprite);
 		clear_window(info);
+		system("afplay music.wav &");
+		system("killall afplay");
 	}
 }

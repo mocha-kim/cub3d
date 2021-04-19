@@ -56,6 +56,7 @@ int		main(int argc, char **argv)
 		return (save_image(&info));
 	screen_size(info.mlx, &info.conf.win_width, &info.conf.win_height);
 	mlx_loop_hook(info.mlx, &main_loop, &info);
+	system("afplay music.wav &");
 	mlx_hook(info.win, EVENT_KEY_PRESS, 0, &key_press, &info);
 	mlx_hook(info.win, EVENT_KEY_RELEASE, 0, &key_release, &info);
 	mlx_hook(info.win, EVENT_KEY_EXIT, 0, &main_close, &info);

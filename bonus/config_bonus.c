@@ -72,6 +72,7 @@ void	config_init(t_config *config)
 	config->map_col = 0;
 	config->cf_color[0] = -1;
 	config->cf_color[1] = -1;
+	config->dir = 0;
 }
 
 int		parse_config(t_config *config, char *path)

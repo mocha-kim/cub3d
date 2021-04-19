@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 		return (write(2, "Error\n", 6));
 	if (!parse_config(&config, argv[1]))
 	{
-		clear_config(&config);
+		clear_config(&config, -1);
 		return (write(2, "Error\n", 6));
 	}
 	printf("height: %d, width: %d\n", config.win_height, config.win_width);
@@ -23,10 +23,10 @@ int main(int argc, char *argv[])
 	else
 		printf("SKY: %X\n", config.cf_color[0]);
 	printf("SPRITE: %s\n", config.tex_path[T_S]);
-	if (config.tex_path[T_SPRITE_C])
-		printf("SPRITE C: %s\n", config.tex_path[T_SPRITE_C]);
-	if (config.tex_path[T_SPRITE_UP])
-		printf("SPRITE UP: %s\n", config.tex_path[T_SPRITE_UP]);
+	if (config.tex_path[T_SC])
+		printf("SPRITE C: %s\n", config.tex_path[T_SC]);
+	if (config.tex_path[T_SU])
+		printf("SPRITE UP: %s\n", config.tex_path[T_SU]);
 	printf("MAP\n");
 	int i, j;
 	i = 0;
@@ -40,6 +40,6 @@ int main(int argc, char *argv[])
 		printf("\n");
 		i++;
 	}
-	clear_config(&config);
+	clear_config(&config, 1);
 	return (0);
 }

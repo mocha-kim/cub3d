@@ -13,7 +13,7 @@ int		malloc_sprite(t_info *info)
 		j = 0;
 		while (j < info->conf.map_row)
 		{
-			if (info->conf.map[j][i] == '2')
+			if (ft_strrchr("234", info->conf.map[j][i]))
 				num++;
 			j++;
 		}
@@ -41,11 +41,11 @@ int		sprite_init(t_info *info)
 		j = 0;
 		while (j < info->conf.map_row)
 		{
-			if (info->conf.map[j][i] == '2')
+			if (ft_strrchr("234", info->conf.map[j][i]))
 			{
 				info->sprite[k].x = j + 0.5;
 				info->sprite[k].y = i + 0.5;
-				info->sprite[k].texture = T_S;
+				info->sprite[k].texture = info->conf.map[j][i] - '0' + 2;
 				k++;
 			}
 			j++;
