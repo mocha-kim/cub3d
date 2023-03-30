@@ -3,6 +3,10 @@
 ### Wolfenstein 3D game 같은 초기 형태의 3D 게임을 만들어보자
 
 * 2021.04.05 ~ 2021.04.19
+<img width="2032" alt="스크린샷 2023-03-30 오후 6 50 58" src="https://user-images.githubusercontent.com/49827929/228800087-7aaf81de-d700-4132-a77b-6340f9b2f7c3.png">
+
+<img width="752" alt="스크린샷 2023-03-30 오후 6 51 40" src="https://user-images.githubusercontent.com/49827929/228800138-21c8613c-17cd-474c-be40-62fd03689c23.png">
+
 * `make` 또는 `make bonus`로 컴파일
 * `./Cub3D [.cub파일]` 로 실행
 * Cun3D
