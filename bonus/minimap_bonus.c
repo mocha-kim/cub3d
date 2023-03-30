@@ -41,8 +41,7 @@ void	calc_minimap(t_info *info)
 {
 	int		i;
 	int		j;
-
-	offset_x = info->conf.win_width / 2;
+	
 	i = 0;
 	while (i < info->conf.map_row)
 	{
